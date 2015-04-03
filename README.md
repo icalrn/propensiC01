@@ -1,3 +1,25 @@
+# Propensi C01
+Proyek Pengembangan Sistem Informasi, Semester Genap 2015, Fasilkom Universitas Indonesia. Kelompok C01: **Pusat Perencanaan Karir**
+  * Faisal Rahman
+  * Hilmy Mahfuzra
+  * Nitto Sahadi
+  * William Suwignyo
+
+###Before You Start
+
+  1. Buat akun [GitHub](www.github.com). Jika sudah melihat ini di GitHub diasumsikan Anda sudah memiliki akun.
+  2. Install [Git](www.git-scm.com). Git ini nantinya akan banyak digunakan untuk kolaborasi di GitHub.
+  3. Buat folder di komputer Anda untuk menyimpan project ini. Buka *command window* di folder tersebut.
+  4. Inisialisasi folder tersebut sebagai *local repository* dengan mengeksekusi command `git init`.
+  5. Inisialisasi alamat *remote repository* dengan mengeksekusi command `git remote add propensi https://www.github.com/icalrn/propensiC01`. Note that `propensi` disini akan menjadi nama (alias) dari *remote repository* di komputer Anda.
+  6. Cek apakah remote repository sudah terdaftar dengan `git remote -v`.
+  7. Untuk mengambil file dari remote repository tersebut, eksekusi command `git pull propensi master` pada folder project anda.
+  8. **Happy coding!**
+  9. Jika ingin menambah file baru ke dalam index project, lakukan dengan `git add .`. Lebih lanjut tentang `git add` dapat dilihat [di sini](http://stackoverflow.com/questions/572549/difference-between-git-add-a-and-git-add).
+  10. Setiap selesai mengubah sesuatu, *commit* perubahan yang Anda lakukan dengan command `git commit -m [pesan]`, `pesan` disini diisi dengan deskripsi apa yang telah anda lakukan/ubah.
+  11. Push (upload) hasil kerja Anda ke remote repository dengan command `git push propensi master`. Note that `master` disini adalah nama dari *branch* yang ingin anda target, dan `propensi` adalah nama remote repository yang dijelaskan di atas. Saat ini baru ada branch *master*, namun tidak menutup kemungkinan akan ada branch baru lagi di masa mendatang.
+
+---
 Yii 2 Advanced Application Template
 ===================================
 
