@@ -5,6 +5,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use frontend\widgets\Alert;
+use yii\bootstrap\BootstrapAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
