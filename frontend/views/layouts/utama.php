@@ -27,7 +27,7 @@ AppAsset::register($this);
 				'brandLabel' => 'Pusat Perencanaan Karir',
 				'brandUrl' => Yii::$app->homeUrl,
 				'options' => [
-					'class' => 'navbar-inverse navbar-fixed-top',
+					'class' => 'navbar-blue navbar-fixed-top',
 				],
 		]);
 		$activateItems =true;
@@ -51,6 +51,14 @@ AppAsset::register($this);
 			]);
 		NavBar::end();
 	?>
+	<div class="page-wrapper">
+		<div class="masthead">
+			<div class="masthead-cover"></div>
+			<div class="container text-center masthead-content">
+				<h1 class="title">Pusat Perencanaan Karir</h1>
+			</div>
+		</div>
+	</div>
 	<?php $this->endBody() ?>
 </body>
 <?php $this->endPage() ?>
