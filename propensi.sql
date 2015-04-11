@@ -7,36 +7,29 @@
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
--- Database: `propensi`
+-- Database: propensi
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `activity_log`
+-- Table structure for table activity_log
 --
 
-CREATE TABLE IF NOT EXISTS `activity_log` (
-  `User_ID` int(11) NOT NULL,
-  `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Activity` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+ set search_path to propensi;
+CREATE TABLE IF NOT EXISTS activity_log (
+  User_ID int NOT NULL,
+  Timestamp timestamp NOT NULL,
+  Activity varchar(100) NOT NULL
+) ;
 
 --
--- Dumping data for table `activity_log`
+-- Dumping data for table activity_log
 --
 
-INSERT INTO `activity_log` (`User_ID`, `Timestamp`, `Activity`) VALUES
+INSERT INTO activity_log (User_ID, Timestamp, Activity) VALUES
 (1, '2015-04-09 16:40:47', 'Membuat database sambil main coc'),
 (1, '2015-04-10 05:26:12', 'Memberikan testimoni'),
 (1, '2015-04-10 05:27:22', 'Membuat subkategori baru'),
@@ -45,24 +38,23 @@ INSERT INTO `activity_log` (`User_ID`, `Timestamp`, `Activity`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `answer`
+-- Table structure for table answer
 --
 
-CREATE TABLE IF NOT EXISTS `answer` (
-  `User_ID` int(10) NOT NULL,
-  `Quiz_ID` int(3) NOT NULL,
-  `Question_ID` int(6) NOT NULL,
-  `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Answer_text` text NOT NULL,
-  `Subcategory_text` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS answer (
+  User_ID int NOT NULL,
+  Quiz_ID int NOT NULL,
+  Question_ID int NOT NULL,
+  Timestamp timestamp NOT NULL,
+  Answer_text text NOT NULL,
+  Subcategory_text varchar(50) NOT NULL
+);
 
 --
--- Dumping data for table `answer`
+-- Dumping data for table answer
 --
 
-INSERT INTO `answer` (`User_ID`, `Quiz_ID`, `Question_ID`, `Timestamp`, `Answer_text`, `Subcategory_text`) VALUES
-(1, 1, 1, '0000-00-00 00:00:00', 'Bidang pekerjaan yang dijalankan & ditekuni dengan serius dalam jangka waktu panjang, memberikan peluang untuk mengembangkan diri', 'Pekerjaan'),
+INSERT INTO answer (User_ID, Quiz_ID, Question_ID, Timestamp, Answer_text, Subcategory_text) VALUES
 (1, 1, 1, '2000-11-10 18:00:00', 'Jalan menuju sukses', 'Jalan Hidup '),
 (1, 1, 1, '2000-11-10 19:00:00', 'Sesuatu yang anda sukai dalam mengerjakannya dan dapat memberikan penghasilan untuk memenuhi kebutuhan harian', 'Penunjang Kehidupan'),
 (1, 1, 1, '2000-11-10 20:00:00', 'Proses mencapai visi diri. Didalamnya terdapat rasa senang hati menjalankannya, pengembangan diri, perbaikan siri terus menerus. Karir tidak selalu sama dengan pekerjaan. Karir dicapai dalam jangka yang panjang.', 'Aktualisasi diri'),
@@ -137,19 +129,19 @@ INSERT INTO `answer` (`User_ID`, `Quiz_ID`, `Question_ID`, `Timestamp`, `Answer_
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category`
+-- Table structure for table category
 --
 
-CREATE TABLE IF NOT EXISTS `category` (
-  `Category_text` varchar(20) NOT NULL,
-  `Subcategory_text` varchar(50) NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS category (
+  Category_text varchar(20) NOT NULL,
+  Subcategory_text varchar(50) NOT NULL DEFAULT ''
+);
 
 --
--- Dumping data for table `category`
+-- Dumping data for table category
 --
 
-INSERT INTO `category` (`Category_text`, `Subcategory_text`) VALUES
+INSERT INTO category (Category_text, Subcategory_text) VALUES
 ('Akhir Pendidikan', 'Akhir Kuliah'),
 ('Pendidikan Tinggi', 'Akhir kuliah'),
 ('Akhir Pendidikan', 'Akhir SMA'),
@@ -451,41 +443,41 @@ INSERT INTO `category` (`Category_text`, `Subcategory_text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `history`
+-- Table structure for table history
 --
 
-CREATE TABLE IF NOT EXISTS `history` (
-  `User_ID` int(11) NOT NULL,
-  `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Quiz_ID` int(3) NOT NULL,
-  `Result_ID` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS history (
+  User_ID int NOT NULL,
+  Timestamp timestamp NOT NULL,
+  Quiz_ID int NOT NULL,
+  Result_ID int NOT NULL
+);
 
 --
--- Dumping data for table `history`
+-- Dumping data for table history
 --
 
-INSERT INTO `history` (`User_ID`, `Timestamp`, `Quiz_ID`, `Result_ID`) VALUES
+INSERT INTO history (User_ID, Timestamp, Quiz_ID, Result_ID) VALUES
 (1, '2015-04-09 16:33:36', 1, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `question`
+-- Table structure for table question
 --
 
-CREATE TABLE IF NOT EXISTS `question` (
-`Question_ID` int(6) NOT NULL,
-  `Question_text` varchar(100) NOT NULL,
-  `Weight` int(11) DEFAULT NULL,
-  `Category_text` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS question (
+Question_ID int NOT NULL,
+  Question_text varchar(100) NOT NULL,
+  Weight int DEFAULT NULL,
+  Category_text varchar(20) NOT NULL
+);
 
 --
--- Dumping data for table `question`
+-- Dumping data for table question
 --
 
-INSERT INTO `question` (`Question_ID`, `Question_text`, `Weight`, `Category_text`) VALUES
+INSERT INTO question (Question_ID, Question_text, Weight, Category_text) VALUES
 (1, 'Menurut saya, karir adalah', NULL, 'Kehidupan'),
 (2, 'Menurut saya , pekerjaan adalah…			\r\n', NULL, 'penghasilan'),
 (3, 'Menurut saya, waktu yang paling tepat untuk mulai memikirkan karir adalah						', NULL, 'Aktualisasi Diri'),
@@ -495,38 +487,38 @@ INSERT INTO `question` (`Question_ID`, `Question_text`, `Weight`, `Category_text
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quiz`
+-- Table structure for table quiz
 --
 
-CREATE TABLE IF NOT EXISTS `quiz` (
-`Quiz_ID` int(3) NOT NULL,
-  `Title` varchar(50) NOT NULL,
-  `Description` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS quiz (
+Quiz_ID int NOT NULL,
+  Title varchar(50) NOT NULL,
+  Description text NOT NULL
+) ;
 
 --
--- Dumping data for table `quiz`
+-- Dumping data for table quiz
 --
 
-INSERT INTO `quiz` (`Quiz_ID`, `Title`, `Description`) VALUES
+INSERT INTO quiz (Quiz_ID, Title, Description) VALUES
 (1, 'Kuesioner Kesiapan Karir', 'Lorem ipsum dolor sit amet');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quiz_content`
+-- Table structure for table quiz_content
 --
 
-CREATE TABLE IF NOT EXISTS `quiz_content` (
-  `Quiz_ID` int(3) NOT NULL,
-  `Question_ID` int(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS quiz_content (
+  Quiz_ID int NOT NULL,
+  Question_ID int NOT NULL
+) ;
 
 --
--- Dumping data for table `quiz_content`
+-- Dumping data for table quiz_content
 --
 
-INSERT INTO `quiz_content` (`Quiz_ID`, `Question_ID`) VALUES
+INSERT INTO quiz_content (Quiz_ID, Question_ID) VALUES
 (1, 1),
 (1, 2),
 (1, 3),
@@ -536,39 +528,39 @@ INSERT INTO `quiz_content` (`Quiz_ID`, `Question_ID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quiz_result`
+-- Table structure for table quiz_result
 --
 
-CREATE TABLE IF NOT EXISTS `quiz_result` (
-  `Result_ID` int(5) NOT NULL,
-  `Quiz_ID` int(3) NOT NULL,
-  `Classification_result` varchar(20) NOT NULL,
-  `Result_text` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS quiz_result (
+  Result_ID int NOT NULL,
+  Quiz_ID int NOT NULL,
+  Classification_result varchar(20) NOT NULL,
+  Result_text text NOT NULL
+) ;
 
 --
--- Dumping data for table `quiz_result`
+-- Dumping data for table quiz_result
 --
 
-INSERT INTO `quiz_result` (`Result_ID`, `Quiz_ID`, `Classification_result`, `Result_text`) VALUES
+INSERT INTO quiz_result (Result_ID, Quiz_ID, Classification_result, Result_text) VALUES
 (1, 1, 'Sukses', 'Selamat! Anda merupakan pengunjung yang pertama');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sub_category`
+-- Table structure for table sub_category
 --
 
-CREATE TABLE IF NOT EXISTS `sub_category` (
-  `Subcategory_text` varchar(50) NOT NULL,
-  `Counter` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS sub_category (
+  Subcategory_text varchar(50) NOT NULL,
+  Counter int DEFAULT NULL
+) ;
 
 --
--- Dumping data for table `sub_category`
+-- Dumping data for table sub_category
 --
 
-INSERT INTO `sub_category` (`Subcategory_text`, `Counter`) VALUES
+INSERT INTO sub_category (Subcategory_text, Counter) VALUES
 ('Akhir kuliah', 2),
 ('Akhir SMA', 2),
 ('Akhir SMP', 1),
@@ -952,203 +944,200 @@ INSERT INTO `sub_category` (`Subcategory_text`, `Counter`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `testimony`
+-- Table structure for table testimony
 --
 
-CREATE TABLE IF NOT EXISTS `testimony` (
-  `User_ID` int(11) NOT NULL,
-  `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Testimony_text` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS testimony (
+  User_ID int NOT NULL,
+  Timestamp timestamp NOT NULL,
+  Testimony_text text NOT NULL
+) ;
 
 --
--- Dumping data for table `testimony`
+-- Dumping data for table testimony
 --
 
-INSERT INTO `testimony` (`User_ID`, `Timestamp`, `Testimony_text`) VALUES
+INSERT INTO testimony (User_ID, Timestamp, Testimony_text) VALUES
 (1, '2015-04-09 16:28:12', 'lorem ipsum dolor sit amet');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table user
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
-`ID` int(10) NOT NULL,
-  `Username` varchar(20) NOT NULL,
-  `Password_hash` binary(32) NOT NULL,
-  `password_reset_token` varchar(32) DEFAULT NULL,
-  `auth_key` varchar(32) DEFAULT NULL,
-  `Role` char(1) NOT NULL,
-  `Email` varchar(30) NOT NULL,
-  `status` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Date_of_birth` date NOT NULL,
-  `Place_of_birth` varchar(30) NOT NULL,
-  `Address` varchar(50) NOT NULL,
-  `Gender` char(1) NOT NULL,
-  `Phone` varchar(12) NOT NULL,
-  `Education` varchar(4) NOT NULL,
-  `Occupation` varchar(30) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS pengguna (
+ID int NOT NULL,
+  Username varchar(20) NOT NULL,
+  Password_hash char(64) NOT NULL,
+  password_reset_token varchar(32) DEFAULT NULL,
+  auth_key varchar(32) DEFAULT NULL,
+  Role char(1) NOT NULL,
+  Email varchar(30) NOT NULL,
+  status int NOT NULL,
+  created_at timestamp NOT NULL,
+  updated_at timestamp NOT NULL,
+  Date_of_birth date NOT NULL,
+  Place_of_birth varchar(30) NOT NULL,
+  Address varchar(50) NOT NULL,
+  Gender char(1) NOT NULL,
+  Phone varchar(12) NOT NULL,
+  Education varchar(4) NOT NULL,
+  Occupation varchar(30) NOT NULL
+) ;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table user
 --
 
-INSERT INTO `user` (`ID`, `Username`, `Password_hash`, `password_reset_token`, `auth_key`, `Role`, `Email`, `status`, `created_at`, `updated_at`, `Date_of_birth`, `Place_of_birth`, `Address`, `Gender`, `Phone`, `Education`, `Occupation`) VALUES
-(1, 'Admin', 0xde7804989ad9c5f4d39e0ad1c29c1bff00000000000000000000000000000000, NULL, NULL, 'A', 'lorem@ipsum.dolor', 0, '2015-04-09 16:24:18', '2015-04-09 16:25:20', '1993-02-07', 'lorem ipsum', 'lorem ipsum', 'M', '08123456789', 'SD', 'Admin'),
-(2, 'anonim', 0xf2b0a1c07ccefc2d6763c8815e8a794600000000000000000000000000000000, NULL, NULL, 'M', 'anonim@anon.im', 0, '2015-04-09 16:24:18', '2015-04-09 16:25:20', '2012-09-09', 'unknown', 'unknown', 'F', '08155555555', 'S3', 'NEET');
+
+INSERT INTO pengguna (ID, Username, Password_hash, password_reset_token, auth_key, Role, Email, status, created_at, updated_at, Date_of_birth, Place_of_birth, Address, Gender, Phone, Education, Occupation) VALUES
+(1, 'Admin', 'de7804989ad9c5f4d39e0ad1c29c1bff00000000000000000000000000000000', NULL, NULL, 'A', 'lorem@ipsum.dolor', 0, '2015-04-09 16:24:18', '2015-04-09 16:25:20', '1993-02-07', 'lorem ipsum', 'lorem ipsum', 'M', '08123456789', 'SD', 'Admin'),
+(2, 'anonim', 'f2b0a1c07ccefc2d6763c8815e8a794600000000000000000000000000000000', NULL, NULL, 'M', 'anonim@anon.im', 0, '2015-04-09 16:24:18', '2015-04-09 16:25:20', '2012-09-09', 'unknown', 'unknown', 'F', '08155555555', 'S3', 'NEET');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `activity_log`
+-- Indexes for table activity_log
 --
-ALTER TABLE `activity_log`
- ADD PRIMARY KEY (`User_ID`,`Timestamp`);
+ALTER TABLE activity_log
+ ADD PRIMARY KEY (User_ID,Timestamp);
 
 --
--- Indexes for table `answer`
+-- Indexes for table answer
 --
-ALTER TABLE `answer`
- ADD PRIMARY KEY (`User_ID`,`Quiz_ID`,`Question_ID`,`Timestamp`), ADD KEY `Subcategory_text` (`Subcategory_text`), ADD KEY `User_ID` (`User_ID`), ADD KEY `Quiz_ID` (`Quiz_ID`), ADD KEY `Question_ID` (`Question_ID`);
+ALTER TABLE answer
+ ADD PRIMARY KEY (User_ID,Quiz_ID,Question_ID,Timestamp);
 
 --
--- Indexes for table `category`
+-- Indexes for table category
 --
-ALTER TABLE `category`
- ADD PRIMARY KEY (`Category_text`,`Subcategory_text`), ADD KEY `Subcategory_text` (`Subcategory_text`);
+ALTER TABLE category
+ ADD PRIMARY KEY (Category_text,Subcategory_text);
 
 --
--- Indexes for table `history`
+-- Indexes for table history
 --
-ALTER TABLE `history`
- ADD PRIMARY KEY (`User_ID`,`Timestamp`), ADD KEY `Quiz_ID` (`Quiz_ID`,`Result_ID`), ADD KEY `Result_ID` (`Result_ID`);
+ALTER TABLE history
+ ADD PRIMARY KEY (User_ID,Timestamp), ADD KEY Quiz_ID (Quiz_ID,Result_ID), ADD KEY Result_ID (Result_ID);
 
 --
--- Indexes for table `question`
+-- Indexes for table question
 --
-ALTER TABLE `question`
- ADD PRIMARY KEY (`Question_ID`), ADD KEY `Category_text` (`Category_text`);
+ALTER TABLE question
+ ADD PRIMARY KEY (Question_ID), ADD KEY Category_text (Category_text);
 
 --
--- Indexes for table `quiz`
+-- Indexes for table quiz
 --
-ALTER TABLE `quiz`
- ADD PRIMARY KEY (`Quiz_ID`);
+ALTER TABLE quiz
+ ADD PRIMARY KEY (Quiz_ID);
 
 --
--- Indexes for table `quiz_content`
+-- Indexes for table quiz_content
 --
-ALTER TABLE `quiz_content`
- ADD PRIMARY KEY (`Quiz_ID`,`Question_ID`), ADD KEY `Question_ID` (`Question_ID`);
+ALTER TABLE quiz_content
+ ADD PRIMARY KEY (Quiz_ID,Question_ID), ADD KEY Question_ID (Question_ID);
 
 --
--- Indexes for table `quiz_result`
+-- Indexes for table quiz_result
 --
-ALTER TABLE `quiz_result`
- ADD PRIMARY KEY (`Result_ID`), ADD KEY `Quiz_ID` (`Quiz_ID`);
+ALTER TABLE quiz_result
+ ADD PRIMARY KEY (Result_ID), ADD KEY Quiz_ID (Quiz_ID);
 
 --
--- Indexes for table `sub_category`
+-- Indexes for table sub_category
 --
-ALTER TABLE `sub_category`
- ADD PRIMARY KEY (`Subcategory_text`);
+ALTER TABLE sub_category
+ ADD PRIMARY KEY (Subcategory_text);
 
 --
--- Indexes for table `testimony`
+-- Indexes for table testimony
 --
-ALTER TABLE `testimony`
- ADD PRIMARY KEY (`User_ID`,`Timestamp`);
+ALTER TABLE testimony
+ ADD PRIMARY KEY (User_ID,Timestamp);
 
 --
--- Indexes for table `user`
+-- Indexes for table user
 --
-ALTER TABLE `user`
- ADD PRIMARY KEY (`ID`), ADD KEY `User_ID` (`ID`);
+ALTER TABLE user
+ ADD PRIMARY KEY (ID), ADD KEY User_ID (ID);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `question`
+-- AUTO_INCREMENT for table question
 --
-ALTER TABLE `question`
-MODIFY `Question_ID` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+ALTER TABLE question
+MODIFY Question_ID int NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `quiz`
+-- AUTO_INCREMENT for table quiz
 --
-ALTER TABLE `quiz`
-MODIFY `Quiz_ID` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+ALTER TABLE quiz
+MODIFY Quiz_ID int NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT for table user
 --
-ALTER TABLE `user`
-MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+ALTER TABLE user
+MODIFY ID int NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `activity_log`
+-- Constraints for table activity_log
 --
-ALTER TABLE `activity_log`
-ADD CONSTRAINT `activity_log_ibfk_1` FOREIGN KEY (`User_ID`) REFERENCES `user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE activity_log
+ADD CONSTRAINT activity_log_ibfk_1 FOREIGN KEY (User_ID) REFERENCES user (ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `answer`
+-- Constraints for table answer
 --
-ALTER TABLE `answer`
-ADD CONSTRAINT `answer_ibfk_4` FOREIGN KEY (`Subcategory_text`) REFERENCES `sub_category` (`Subcategory_text`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `answer_ibfk_5` FOREIGN KEY (`User_ID`) REFERENCES `user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `answer_ibfk_6` FOREIGN KEY (`Quiz_ID`) REFERENCES `quiz` (`Quiz_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `answer_ibfk_7` FOREIGN KEY (`Question_ID`) REFERENCES `question` (`Question_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE answer
+ADD CONSTRAINT answer_ibfk_4 FOREIGN KEY (Subcategory_text) REFERENCES sub_category (Subcategory_text) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT answer_ibfk_5 FOREIGN KEY (User_ID) REFERENCES user (ID) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT answer_ibfk_6 FOREIGN KEY (Quiz_ID) REFERENCES quiz (Quiz_ID) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT answer_ibfk_7 FOREIGN KEY (Question_ID) REFERENCES question (Question_ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `category`
+-- Constraints for table category
 --
-ALTER TABLE `category`
-ADD CONSTRAINT `category_ibfk_1` FOREIGN KEY (`Subcategory_text`) REFERENCES `sub_category` (`Subcategory_text`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE category
+ADD CONSTRAINT category_ibfk_1 FOREIGN KEY (Subcategory_text) REFERENCES sub_category (Subcategory_text) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `history`
+-- Constraints for table history
 --
-ALTER TABLE `history`
-ADD CONSTRAINT `history_ibfk_2` FOREIGN KEY (`Quiz_ID`) REFERENCES `quiz` (`Quiz_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `history_ibfk_3` FOREIGN KEY (`Result_ID`) REFERENCES `quiz_result` (`Result_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `history_ibfk_4` FOREIGN KEY (`User_ID`) REFERENCES `user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE history
+ADD CONSTRAINT history_ibfk_2 FOREIGN KEY (Quiz_ID) REFERENCES quiz (Quiz_ID) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT history_ibfk_3 FOREIGN KEY (Result_ID) REFERENCES quiz_result (Result_ID) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT history_ibfk_4 FOREIGN KEY (User_ID) REFERENCES user (ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `question`
+-- Constraints for table question
 --
-ALTER TABLE `question`
-ADD CONSTRAINT `question_ibfk_1` FOREIGN KEY (`Category_text`) REFERENCES `category` (`Category_text`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE question
+ADD CONSTRAINT question_ibfk_1 FOREIGN KEY (Category_text) REFERENCES category (Category_text) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `quiz_content`
+-- Constraints for table quiz_content
 --
-ALTER TABLE `quiz_content`
-ADD CONSTRAINT `quiz_content_ibfk_1` FOREIGN KEY (`Quiz_ID`) REFERENCES `quiz` (`Quiz_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `quiz_content_ibfk_2` FOREIGN KEY (`Question_ID`) REFERENCES `question` (`Question_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE quiz_content
+ADD CONSTRAINT quiz_content_ibfk_1 FOREIGN KEY (Quiz_ID) REFERENCES quiz (Quiz_ID) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT quiz_content_ibfk_2 FOREIGN KEY (Question_ID) REFERENCES question (Question_ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `quiz_result`
+-- Constraints for table quiz_result
 --
-ALTER TABLE `quiz_result`
-ADD CONSTRAINT `quiz_result_ibfk_1` FOREIGN KEY (`Quiz_ID`) REFERENCES `quiz` (`Quiz_ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE quiz_result
+ADD CONSTRAINT quiz_result_ibfk_1 FOREIGN KEY (Quiz_ID) REFERENCES quiz (Quiz_ID) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `testimony`
+-- Constraints for table testimony
 --
-ALTER TABLE `testimony`
-ADD CONSTRAINT `testimony_ibfk_1` FOREIGN KEY (`User_ID`) REFERENCES `user` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+ALTER TABLE testimony
+ADD CONSTRAINT testimony_ibfk_1 FOREIGN KEY (User_ID) REFERENCES user (ID) ON DELETE CASCADE ON UPDATE CASCADE;
