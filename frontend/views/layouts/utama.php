@@ -52,12 +52,7 @@ AppAsset::register($this);
 		NavBar::end();
 	?>
 	<div class="page-wrapper">
-		<div class="masthead">
-			<div class="masthead-cover"></div>
-			<div class="container text-center masthead-content">
-				<h1 class="title">Pusat Perencanaan Karir</h1>
-			</div>
-		</div>
+		<?= $content ?>
 	</div>
 	<?php $this->endBody() ?>
 </body>
