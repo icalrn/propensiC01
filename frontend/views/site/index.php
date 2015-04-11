@@ -7,11 +7,17 @@ $this->title = 'Pusat Perencanaan Karir';
 <div class="masthead">
 	<div class="masthead-cover"></div>
 	<div class="container text-center masthead-content">
-		<h1 class="title">Pusat Perencanaan Karir</h1>
+		<h1 class="title MuseoSlab-500Italic">Pusat Perencanaan Karir</h1>
 		<div class="row">
 			<div class="col-md-12 text-center">
-				<button class="btn btn-primary btn-lg main-button">Daftar</button>
-				<button class="btn btn-success btn-lg main-button">Masuk</button>
+				<?php
+				if (Yii::$app->user->isGuest){
+					echo '<button class="btn btn-primary btn-lg main-button">Daftar</button>';
+					echo '<button class="btn btn-success btn-lg main-button">Masuk</button>';
+				}else{
+					echo '<h1 class="title MuseoSlab-500">Halo, '.Yii::$app->user->identity->username.'!</h1>';
+				}
+				?>
 			</div>
 		</div>
 	</div>

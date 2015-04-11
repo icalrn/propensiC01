@@ -67,7 +67,6 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $this->layout = 'utama';
         return $this->render('index');
     }
 
