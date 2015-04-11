@@ -18,11 +18,15 @@ $this->title = 'Pusat Perencanaan Karir';
 </div>
 
 <div class="container">
-	<div class="row text-center">
+	<div class="row text-center" id="main-menu">
 		<div class="col-md-4" id="kuesioner-kesiapan">
-			<button class="btn btn-primary btn-circle btn-outline"><?php echo FA::icon('briefcase')->size(FA::SIZE_2X); ?></button>
+			<button class="btn btn-main-menu btn-circle btn-outline"><?php echo FA::icon('briefcase')->size(FA::SIZE_2X); ?></button>
 		</div>
-		<div class="col-md-4" id="kuesioner-karir">Karir yang Tepat untuk Anda</div>
-		<div class="col-md-4" id="kuesioner-kepribadian">Tes Kepribadian Anda</div>
+		<div class="col-md-4" id="kuesioner-karir">
+			<button class="btn btn-main-menu btn-circle btn-outline"><?php echo FA::icon('check')->size(FA::SIZE_2X); ?></button>
+		</div>
+		<div class="col-md-4" id="kuesioner-kepribadian">
+			<button class="btn btn-main-menu btn-circle btn-outline"><?php echo FA::icon('pie-chart')->size(FA::SIZE_2X); ?></button>
+		</div>
 	</div>
 </div>
