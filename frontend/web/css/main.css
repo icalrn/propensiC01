@@ -21,12 +21,13 @@
 }
 
 .masthead{
-	position: absolute;
+	position: relative;
 	width: 100%;
 	height: 400px;
 	z-index: 1;
 	background: url(../../assets/images/masthead.jpg) no-repeat center;
 	background-size: cover;
+	margin-bottom: 100px;
 }
 .masthead-cover {
 	position: absolute;
@@ -64,4 +65,20 @@
 	margin-left: 5px;
 	padding-left: 40px;
 	padding-right: 40px; 
+}
+
+.btn-circle{
+	width: 150px;
+    height: 150px;
+    padding: 10px 16px;
+    border-radius: 75px;
+    font-size: 36px;
+    line-height: 1.33;
+    border-width: 2px;
+}
+
+.btn-outline{
+	color: inherit;
+	background-color: transparent;
+	transition: all .5s;
 }
