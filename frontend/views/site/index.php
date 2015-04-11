@@ -14,3 +14,11 @@ $this->title = 'Pusat Perencanaan Karir';
 		</div>
 	</div>
 </div>
+
+<div class="container">
+	<div class="row text-center">
+		<div class="col-md-4" id="kuesioner-kesiapan">Kuesioner Kesiapan Karir</div>
+		<div class="col-md-4" id="kuesioner-karir">Karir yang Tepat untuk Anda</div>
+		<div class="col-md-4" id="kuesioner-kepribadian">Tes Kepribadian Anda</div>
+	</div>
+</div>
