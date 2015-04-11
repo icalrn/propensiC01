@@ -21,12 +21,13 @@
 }
 
 .masthead{
-	position: absolute;
+	position: relative;
 	width: 100%;
 	height: 400px;
 	z-index: 1;
 	background: url(../../assets/images/masthead.jpg) no-repeat center;
 	background-size: cover;
+	margin-bottom: 50px;
 }
 .masthead-cover {
 	position: absolute;
@@ -48,12 +49,80 @@
 .masthead-content > .title {
 	padding-top: 150px;
 	padding-bottom: 10px;
-	font-size: 36pt;
-	font-style: italic;
+	font-size: 42pt;
 	border-bottom: 1px #F33 solid;
 }
 
 .page-wrapper{
 	padding: 50px 0 0 0;
 	margin: 0;
+}
+
+.main-button {
+	margin-top: 50px;
+	margin-right: 5px;
+	margin-left: 5px;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+.btn-main-menu{
+	color:#FFF;
+	background-color: #79BD9A;
+	border-color: #84C29F;
+}
+.btn-main-menu.btn-outline{
+	color: #79BD9A;
+}
+.btn-main-menu.btn-outline:hover{
+	color: #FFF;
+	background-color: #79BD9A;
+}
+
+.btn-circle{
+	width: 150px;
+    height: 150px;
+    padding: 10px 16px;
+    border-radius: 75px;
+    font-size: 36px;
+    line-height: 1.33;
+    border-width: 2px;
+}
+
+.btn-outline{
+	color: inherit;
+	background-color: transparent;
+	transition: all .5s;
+}
+
+#main-menu {
+	margin-bottom: 30px;
+	margin-top: 30px;
+}
+
+/*Museo Fonts Kit*/
+.Museo-700 { 
+	font-family: Museo-700;
+	font-weight: normal;
+	font-style: normal;
+}
+.Museo-300 { 
+	font-family: Museo-300;
+	font-weight: normal;
+	font-style: normal;
+}
+.Museo-500 { 
+	font-family: Museo-500;
+	font-weight: normal;
+	font-style: normal;
+}
+.MuseoSlab-500 { 
+	font-family: MuseoSlab-500;
+	font-weight: normal;
+	font-style: normal;
+}
+.MuseoSlab-500Italic { 
+	font-family: MuseoSlab-500Italic;
+	font-weight: normal;
+	font-style: normal;
 }

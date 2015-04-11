@@ -24,6 +24,13 @@ Langkah-langkah yang harus dilakukan agar *project* dapat dikerjakan di komputer
   10. Setiap selesai mengubah sesuatu, *commit* perubahan yang Anda lakukan dengan command `git commit -m [pesan]`, `pesan` disini diisi dengan deskripsi apa yang telah anda lakukan/ubah.
   11. Push (upload) hasil kerja Anda ke remote repository dengan command `git push propensi master`. Note that `master` disini adalah nama dari *branch* yang ingin anda target, dan `propensi` adalah nama remote repository yang dijelaskan di atas. Saat ini baru ada branch *master*, namun tidak menutup kemungkinan akan ada branch baru lagi di masa mendatang.
 
+###Color palette for Frontend
+1. 0B468B - Bluer
+2. 3B8686 - Blue
+3. 79BD9A - Greenish Blue/Bluish Green
+4. A8DBA8 - Light Green
+5. CFF09E - Light Leaf Green
+
 ---
 Yii 2 Advanced Application Template
 ===================================

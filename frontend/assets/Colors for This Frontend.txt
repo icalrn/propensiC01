@@ -1,0 +1,6 @@
+Colors for This Frontend
+#0B468B - Bluer
+#3B8686 - Blue
+#79BD9A - Greenish Blue/Bluish Green
+#A8DBA8 - Light Green
+#CFF09E - Light Leaf Green
