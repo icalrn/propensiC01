@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Question_ID',
             'Question_text',
             'Weight',
-            'Category_text',
+            'Category_ID',
         ],
     ]) ?>
 

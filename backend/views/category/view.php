@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Category */
 
-$this->title = $model->Category_text;
+$this->title = $model->Category_ID;
 $this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'Category_text' => $model->Category_text, 'Subcategory_text' => $model->Subcategory_text], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'Category_text' => $model->Category_text, 'Subcategory_text' => $model->Subcategory_text], [
+        <?= Html::a('Update', ['update', 'id' => $model->Category_ID], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->Category_ID], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -28,8 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
+            'Category_ID',
             'Category_text',
-            'Subcategory_text',
         ],
     ]) ?>
 

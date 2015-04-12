@@ -18,7 +18,8 @@ class CategorySearch extends Category
     public function rules()
     {
         return [
-            [['Category_text', 'Subcategory_text'], 'safe'],
+            [['Category_ID'], 'integer'],
+            [['Category_text'], 'safe'],
         ];
     }
 
@@ -54,8 +55,11 @@ class CategorySearch extends Category
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'Category_text', $this->Category_text])
-            ->andFilterWhere(['like', 'Subcategory_text', $this->Subcategory_text]);
+        $query->andFilterWhere([
+            'Category_ID' => $this->Category_ID,
+        ]);
+
+        $query->andFilterWhere(['like', 'Category_text', $this->Category_text]);
 
         return $dataProvider;
     }

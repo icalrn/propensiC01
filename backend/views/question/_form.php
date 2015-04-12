@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Weight')->textInput() ?>
 
-    <?= $form->field($model, 'Category_text')->textInput(['maxlength' => 20]) ?>
+    <?= $form->field($model, 'Category_ID')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

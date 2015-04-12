@@ -5,15 +5,14 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "quiz_result".
+ * This is the model class for table "propensi.QUIZ_RESULT".
  *
  * @property integer $Result_ID
  * @property integer $Quiz_ID
  * @property string $Classification_result
  * @property string $Result_text
  *
- * @property History[] $histories
- * @property Quiz $quiz
+ * @property HISTORY[] $hISTORies
  */
 class QuizResult extends \yii\db\ActiveRecord
 {
@@ -22,7 +21,7 @@ class QuizResult extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'quiz_result';
+        return 'propensi.QUIZ_RESULT';
     }
 
     /**
@@ -31,8 +30,8 @@ class QuizResult extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Result_ID', 'Quiz_ID', 'Classification_result', 'Result_text'], 'required'],
-            [['Result_ID', 'Quiz_ID'], 'integer'],
+            [['Quiz_ID', 'Classification_result', 'Result_text'], 'required'],
+            [['Quiz_ID'], 'integer'],
             [['Result_text'], 'string'],
             [['Classification_result'], 'string', 'max' => 20]
         ];
@@ -54,16 +53,8 @@ class QuizResult extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getHistories()
+    public function getHISTORies()
     {
-        return $this->hasMany(History::className(), ['Result_ID' => 'Result_ID']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getQuiz()
-    {
-        return $this->hasOne(Quiz::className(), ['Quiz_ID' => 'Quiz_ID']);
+        return $this->hasMany(HISTORY::className(), ['Result_ID' => 'Result_ID']);
     }
 }

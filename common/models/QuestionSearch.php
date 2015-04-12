@@ -18,8 +18,8 @@ class QuestionSearch extends Question
     public function rules()
     {
         return [
-            [['Question_ID', 'Weight'], 'integer'],
-            [['Question_text', 'Category_text'], 'safe'],
+            [['Question_ID', 'Weight', 'Category_ID'], 'integer'],
+            [['Question_text'], 'safe'],
         ];
     }
 
@@ -58,10 +58,10 @@ class QuestionSearch extends Question
         $query->andFilterWhere([
             'Question_ID' => $this->Question_ID,
             'Weight' => $this->Weight,
+            'Category_ID' => $this->Category_ID,
         ]);
 
-        $query->andFilterWhere(['like', 'Question_text', $this->Question_text])
-            ->andFilterWhere(['like', 'Category_text', $this->Category_text]);
+        $query->andFilterWhere(['like', 'Question_text', $this->Question_text]);
 
         return $dataProvider;
     }
