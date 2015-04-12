@@ -26,7 +26,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'kuesioner'],
+                        'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -55,14 +55,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        $this->layout = 'utama';
         return $this->render('index');
-    }
-
-    public function actionKuesioner()
-    {
-        $this->layout = 'utama';
-        return $this->render('kuesioner');
     }
 
     public function actionLogin()

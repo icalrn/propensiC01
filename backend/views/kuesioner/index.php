@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	</div>
 	<div class="row">
 		<div class="col-md-4">
-			<?= Html::a('Buat Baru', ['site/index'], ['class' => 'btn btn-primary btn-lg']) ?>
+			<?= Html::a('Buat Baru', ['kuesioner/create'], ['class' => 'btn btn-primary btn-lg']) ?>
 		</div>
 	</div>
 </div>
