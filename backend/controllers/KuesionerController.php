@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
+use common\models\Quiz;
 
 class KuesionerController extends Controller
 {
@@ -36,15 +37,16 @@ class KuesionerController extends Controller
         ];
     }
 
-    
+
     public function actionLogin()
     {
         return $this->redirect('site/login');
     }
-    
+
     public function actionCreate()
     {
-        return $this->render('create');
+        $model = new Quiz;
+        return $this->render('test', ['model' => $model]);
     }
 
     public function actionDelete()
