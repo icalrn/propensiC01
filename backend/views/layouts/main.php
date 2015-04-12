@@ -5,6 +5,7 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use yii\widgets\Menu;
+use rmrevin\yii\fontawesome\FA;
 
 AppAsset::register($this);
 ?>
@@ -22,12 +23,13 @@ AppAsset::register($this);
 <body>
 	<?php $this->beginBody() ?>
 	<div id="sidebar">
-		<?= Html::a('<div class="sidebar-element text-right MuseoSans active">Dashboard</div>', ['site/index']) ?>
-		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Kuesioner</div>', ['kuesioner/index']) ?>
-		<!-- <a href="#"><div class="sidebar-element text-right MuseoSans active">Dashboard</div></a> -->
-		<!-- <a href="#"><div class="sidebar-element text-right MuseoSans">Kuesioner</div></a> -->
-		<a href="#"><div class="sidebar-element text-right MuseoSans">Pertanyaan</div></a>
-		<a href="#"><div class="sidebar-element text-right MuseoSans">Kesimpulan</div></a>
+		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Dashboard</div>', ['site/index']) ?>
+		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Kuesioner</div>', ['quiz/index']) ?>
+		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Pertanyaan</div>', ['question/index']) ?>
+		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Kesimpulan</div>', ['quizresult/index']) ?>
+		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Kategori</div>', ['category/index']) ?>
+		<?= Html::a('<div class="logout-element text-right MuseoSans">'.FA::icon('sign-out').'Logout</div>', ['site/logout'], ['data-method' => 'post'])?>
+		
 	</div>
 	<div id="page-wrapper">
 		<?= Breadcrumbs::widget([
@@ -39,6 +41,10 @@ AppAsset::register($this);
         ]) ?>
 		<?= $content ?>
 	</div>
+
+	<script type="text/javascript">
+		
+	</script>
 	<?php $this->endBody() ?>
 </body>
 <?php $this->endPage() ?>
