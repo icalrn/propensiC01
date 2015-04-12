@@ -22,8 +22,10 @@ AppAsset::register($this);
 <body>
 	<?php $this->beginBody() ?>
 	<div id="sidebar">
-		<a href="#"><div class="sidebar-element text-right MuseoSans active">Dashboard</div></a>
-		<a href="#"><div class="sidebar-element text-right MuseoSans">Kuesioner</div></a>
+		<?= Html::a('<div class="sidebar-element text-right MuseoSans active">Dashboard</div>', ['site/index']) ?>
+		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Kuesioner</div>', ['site/kuesioner']) ?>
+		<!-- <a href="#"><div class="sidebar-element text-right MuseoSans active">Dashboard</div></a> -->
+		<!-- <a href="#"><div class="sidebar-element text-right MuseoSans">Kuesioner</div></a> -->
 		<a href="#"><div class="sidebar-element text-right MuseoSans">Pertanyaan</div></a>
 		<a href="#"><div class="sidebar-element text-right MuseoSans">Kesimpulan</div></a>
 	</div>
