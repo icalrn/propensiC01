@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\QuizResult */
 
-$this->title = $model->Result_ID;
+$this->title = $model->Result_text;
 $this->params['breadcrumbs'][] = ['label' => 'Quiz Results', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

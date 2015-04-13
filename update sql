@@ -406,7 +406,7 @@ INSERT INTO "ACTIVITY_LOG" VALUES (1, '2015-04-10 05:27:33', 'Membuat kategori b
 -- Name: ACTIVITY_LOG_User_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"ACTIVITY_LOG_User_ID_seq"', 5, false);
+SELECT pg_catalog.setval('"ACTIVITY_LOG_User_ID_seq"', 1, false);
 
 
 --
@@ -791,66 +791,66 @@ INSERT INTO "CATEGORIZATION" VALUES (29, 'waktu kuliah');
 -- Data for Name: CATEGORY; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-INSERT INTO "CATEGORY" VALUES (1, 'Kehidupan');
-INSERT INTO "CATEGORY" VALUES (2, 'Pekerjaan');
-INSERT INTO "CATEGORY" VALUES (3, 'Kompetensi');
-INSERT INTO "CATEGORY" VALUES (4, 'Kesuksesan');
-INSERT INTO "CATEGORY" VALUES (5, 'Kesenangan');
-INSERT INTO "CATEGORY" VALUES (6, 'Masa Depan');
-INSERT INTO "CATEGORY" VALUES (7, 'Pengembangan Diri');
-INSERT INTO "CATEGORY" VALUES (8, 'Aktualisasi Diri');
-INSERT INTO "CATEGORY" VALUES (9, 'Tujuan');
-INSERT INTO "CATEGORY" VALUES (10, 'Tujuan Ekonomi');
-INSERT INTO "CATEGORY" VALUES (11, 'Rutinitas');
-INSERT INTO "CATEGORY" VALUES (12, 'Mengandung Value');
-INSERT INTO "CATEGORY" VALUES (13, 'Penghasilan');
-INSERT INTO "CATEGORY" VALUES (14, 'Pemenuhan Kebutuhan Hidup');
-INSERT INTO "CATEGORY" VALUES (15, 'Karir');
-INSERT INTO "CATEGORY" VALUES (16, 'Aktivitas');
-INSERT INTO "CATEGORY" VALUES (17, 'Jabatan');
-INSERT INTO "CATEGORY" VALUES (18, 'Value');
-INSERT INTO "CATEGORY" VALUES (19, 'Tujuan/Goal');
-INSERT INTO "CATEGORY" VALUES (20, 'Usia Perkembangan');
-INSERT INTO "CATEGORY" VALUES (21, 'Akhir Pendidikan');
-INSERT INTO "CATEGORY" VALUES (22, 'Pendidikan Tinggi');
-INSERT INTO "CATEGORY" VALUES (23, 'Pengalaman Kerja');
-INSERT INTO "CATEGORY" VALUES (24, 'Waktu');
-INSERT INTO "CATEGORY" VALUES (25, 'Awal Karir');
-INSERT INTO "CATEGORY" VALUES (26, 'Pendidikan Menengah');
-INSERT INTO "CATEGORY" VALUES (27, 'Uncategorized');
-INSERT INTO "CATEGORY" VALUES (28, 'Kesempatan');
-INSERT INTO "CATEGORY" VALUES (29, 'Proses Pendidikan');
-INSERT INTO "CATEGORY" VALUES (30, 'Jenjang Pendidikan');
-INSERT INTO "CATEGORY" VALUES (31, 'Awal Kerja');
-INSERT INTO "CATEGORY" VALUES (32, 'Remaja');
-INSERT INTO "CATEGORY" VALUES (33, 'Teman');
-INSERT INTO "CATEGORY" VALUES (34, 'Orang yang Berpengalaman');
-INSERT INTO "CATEGORY" VALUES (35, 'Kerabat');
-INSERT INTO "CATEGORY" VALUES (36, 'Keluarga');
-INSERT INTO "CATEGORY" VALUES (37, 'Pasangan');
-INSERT INTO "CATEGORY" VALUES (38, 'Internal');
-INSERT INTO "CATEGORY" VALUES (39, 'Guru');
-INSERT INTO "CATEGORY" VALUES (40, 'Senior');
-INSERT INTO "CATEGORY" VALUES (41, 'Kesempatan');
-INSERT INTO "CATEGORY" VALUES (42, 'Tidak Ada');
-INSERT INTO "CATEGORY" VALUES (43, 'Spiritual');
-INSERT INTO "CATEGORY" VALUES (44, 'Awal Pendidikan');
-INSERT INTO "CATEGORY" VALUES (45, 'Puncak Kerja');
-INSERT INTO "CATEGORY" VALUES (46, 'Tuntutan');
-INSERT INTO "CATEGORY" VALUES (47, 'Kebutuhan hidup');
-INSERT INTO "CATEGORY" VALUES (48, 'Dewasa');
-INSERT INTO "CATEGORY" VALUES (49, 'Usia Produktif');
-INSERT INTO "CATEGORY" VALUES (50, 'Usia Lanjut');
-INSERT INTO "CATEGORY" VALUES (51, 'Situasional');
-INSERT INTO "CATEGORY" VALUES (52, 'Awal Berkeluarga');
-INSERT INTO "CATEGORY" VALUES (53, 'Kebutuhan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Kehidupan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Pekerjaan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Kompetensi');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Kesuksesan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Kesenangan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Masa Depan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Pengembangan Diri');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Aktualisasi Diri');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Tujuan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Tujuan Ekonomi');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Rutinitas');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Mengandung Value');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Penghasilan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Pemenuhan Kebutuhan Hidup');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Karir');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Aktivitas');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Jabatan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Value');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Tujuan/Goal');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Usia Perkembangan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Akhir Pendidikan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Pendidikan Tinggi');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Pengalaman Kerja');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Waktu');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Awal Karir');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Pendidikan Menengah');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Uncategorized');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Kesempatan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Proses Pendidikan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Jenjang Pendidikan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Awal Kerja');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Remaja');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Teman');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Orang yang Berpengalaman');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Kerabat');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Keluarga');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Pasangan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Internal');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Guru');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Senior');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Kesempatan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Tidak Ada');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Spiritual');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Awal Pendidikan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Puncak Kerja');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Tuntutan');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Kebutuhan hidup');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Dewasa');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Usia Produktif');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Usia Lanjut');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Situasional');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Awal Berkeluarga');
+INSERT INTO "CATEGORY" ("Category_text") VALUES ('Kebutuhan');
 
 
 --
 -- Name: CATEGORY_Category_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"CATEGORY_Category_ID_seq"', 54, false);
+SELECT pg_catalog.setval('"CATEGORY_Category_ID_seq"', 1, false);
 
 
 --
@@ -864,25 +864,25 @@ INSERT INTO "HISTORY" VALUES (1, '2015-04-09 16:33:36', 1, 1);
 -- Data for Name: QUESTION; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-INSERT INTO "QUESTION" VALUES (1, 'Menurut saya, karir adalah', 0, 1);
-INSERT INTO "QUESTION" VALUES (2, 'Menurut saya , pekerjaan adalah', 0, 2);
-INSERT INTO "QUESTION" VALUES (3, 'Menurut saya, waktu yang paling tepat untuk mulai memikirkan karir adalah', 0, 3);
-INSERT INTO "QUESTION" VALUES (4, ' ', 0, 4);
-INSERT INTO "QUESTION" VALUES (5, 'Orang-orang yang saya mintai pendapat/masukan sebelum saya memutuskan pilihan karir saya adalah', 0, 5);
+INSERT INTO "QUESTION" ("Question_text","Weight","Category_ID") VALUES ('Menurut saya, karir adalah', 0, 1);
+INSERT INTO "QUESTION" ("Question_text","Weight","Category_ID") VALUES ('Menurut saya , pekerjaan adalah', 0, 2);
+INSERT INTO "QUESTION" ("Question_text","Weight","Category_ID") VALUES ('Menurut saya, waktu yang paling tepat untuk mulai memikirkan karir adalah', 0, 3);
+INSERT INTO "QUESTION" ("Question_text","Weight","Category_ID") VALUES (' ', 0, 4);
+INSERT INTO "QUESTION" ("Question_text","Weight","Category_ID") VALUES ('Orang-orang yang saya mintai pendapat/masukan sebelum saya memutuskan pilihan karir saya adalah', 0, 5);
 
 
 --
 -- Name: QUESTION_Question_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"QUESTION_Question_ID_seq"', 6, false);
+SELECT pg_catalog.setval('"QUESTION_Question_ID_seq"', 1, false);
 
 
 --
 -- Data for Name: QUIZ; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-INSERT INTO "QUIZ" VALUES (1, 'Kuesioner Kesiapan Karir', 'Lorem ipsum dolor sit amet');
+INSERT INTO "QUIZ" ("Title","Description") VALUES ('Kuesioner Kesiapan Karir', 'Lorem ipsum dolor sit amet');
 
 
 --
@@ -900,21 +900,21 @@ INSERT INTO "QUIZ_CONTENT" VALUES (1, 5);
 -- Name: QUIZ_Quiz_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"QUIZ_Quiz_ID_seq"', 2, false);
+SELECT pg_catalog.setval('"QUIZ_Quiz_ID_seq"', 1, false);
 
 
 --
 -- Data for Name: QUIZ_RESULT; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-INSERT INTO "QUIZ_RESULT" VALUES (1, 1, 'Sukses', 'Selamat! Anda merupakan pengunjung yang pertama');
+INSERT INTO "QUIZ_RESULT" ("Quiz_ID","Classification_result","Result_text")  VALUES (1, 'Sukses', 'Selamat! Anda merupakan pengunjung yang pertama');
 
 
 --
 -- Name: QUIZ_RESULT_Result_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"QUIZ_RESULT_Result_ID_seq"', 2, false);
+SELECT pg_catalog.setval('"QUIZ_RESULT_Result_ID_seq"', 1, false);
 
 
 --
@@ -1313,15 +1313,15 @@ INSERT INTO "TESTIMONY" VALUES (1, '2015-04-09 16:28:12', 'lorem ipsum dolor sit
 -- Data for Name: USER; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-INSERT INTO "USER" VALUES (1, 'Admin', 'de7804989ad9c5f4d39e0ad1c29c1bff00000000000000000000000000000000', NULL, NULL, 'A', 'lorem@ipsum.dolor', 0, '2015-04-09 16:24:18', '2015-04-09 16:25:20', '1993-02-07', 'lorem ipsum', 'lorem ipsum', 'M', '08123456789', 'SD', 'Admin');
-INSERT INTO "USER" VALUES (2, 'anonim', 'f2b0a1c07ccefc2d6763c8815e8a794600000000000000000000000000000000', NULL, NULL, 'M', 'anonim@anon.im', 0, '2015-04-09 16:24:18', '2015-04-09 16:25:20', '2012-09-09', 'unknown', 'unknown', 'F', '08155555555', 'S3', 'NEET');
+INSERT INTO "USER" ("Username","Password_hash","Password_reset_token","Auth_key","Role","Email","Status","Created_at","Updated_at","Date_of_birth","Place_of_birth","Address","Gender","Phone","Education","Occupation") VALUES ('Admin', 'de7804989ad9c5f4d39e0ad1c29c1bff00000000000000000000000000000000', NULL, NULL, 'A', 'lorem@ipsum.dolor', 0, '2015-04-09 16:24:18', '2015-04-09 16:25:20', '1993-02-07', 'lorem ipsum', 'lorem ipsum', 'M', '08123456789', 'SD', 'Admin');
+INSERT INTO "USER" ("Username","Password_hash","Password_reset_token","Auth_key","Role","Email","Status","Created_at","Updated_at","Date_of_birth","Place_of_birth","Address","Gender","Phone","Education","Occupation") VALUES ('anonim', 'f2b0a1c07ccefc2d6763c8815e8a794600000000000000000000000000000000', NULL, NULL, 'M', 'anonim@anon.im', 0, '2015-04-09 16:24:18', '2015-04-09 16:25:20', '2012-09-09', 'unknown', 'unknown', 'F', '08155555555', 'S3', 'NEET');
 
 
 --
 -- Name: USER_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"USER_ID_seq"', 3, true);
+SELECT pg_catalog.setval('"USER_ID_seq"', 1, true);
 
 
 --
