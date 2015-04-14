@@ -1,5 +1,5 @@
 <?php
-
+use yii\helpers\Html;
 use rmrevin\yii\fontawesome\FA;
 $this->title = 'Pusat Perencanaan Karir';
 ?>
@@ -12,8 +12,8 @@ $this->title = 'Pusat Perencanaan Karir';
 			<div class="col-md-12 text-center">
 				<?php
 				if (Yii::$app->user->isGuest){
-					echo '<button class="btn btn-primary btn-lg main-button">Daftar</button>';
-					echo '<button class="btn btn-success btn-lg main-button">Masuk</button>';
+					echo Html::a('<button class="btn btn-primary btn-lg main-button">Daftar</button>', ['site/signup']);
+					echo Html::a('<button class="btn btn-success btn-lg main-button">Masuk</button>', ['site/login']);
 				}else{
 					echo '<h1 class="title MuseoSlab-500">Halo, '.Yii::$app->user->identity->username.'!</h1>';
 				}
