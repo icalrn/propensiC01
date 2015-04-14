@@ -41,8 +41,8 @@ class Testimony extends \yii\db\ActiveRecord
     {
         return [
             'User_ID' => 'User  ID',
-            'Timestamp' => 'Timestamp',
-            'Testimony_text' => 'Testimony Text',
+            'Timestamp' => 'Waktu',
+            'Testimony_text' => 'Testimoni',
         ];
     }
 }

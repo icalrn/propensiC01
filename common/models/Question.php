@@ -45,8 +45,8 @@ class Question extends \yii\db\ActiveRecord
     {
         return [
             'Question_ID' => 'Question  ID',
-            'Question_text' => 'Question Text',
-            'Weight' => 'Weight',
+            'Question_text' => 'Pertanyaan',
+            'Weight' => 'Bobot',
             'Category_ID' => 'Category  ID',
         ];
     }

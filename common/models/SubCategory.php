@@ -42,8 +42,8 @@ class SubCategory extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'Subcategory_text' => 'Subcategory Text',
-            'Counter' => 'Counter',
+            'Subcategory_text' => 'Sub-kategori',
+            'Counter' => 'Bobot',
         ];
     }
 

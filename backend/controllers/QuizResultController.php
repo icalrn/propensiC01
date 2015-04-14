@@ -6,6 +6,8 @@ use Yii;
 use yii\filters\AccessControl;
 use common\models\QuizResult;
 use common\models\QuizResultSearch;
+use common\models\Quiz;
+use common\models\QuizSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -49,6 +51,14 @@ class QuizResultController extends Controller
     {
         $searchModel = new QuizResultSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        /*$dataProvider = new SqlDataProvider([
+            'sql' => 'SELECT a."Title", b."Classification_result", b."Result_text"
+                        from "QUIZ" a, "QUIZ_RESULT" b
+                        where a."Quiz_ID" = b."Quiz_ID"',
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);*/
 
         return $this->render('index', [
             'searchModel' => $searchModel,

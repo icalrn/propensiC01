@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\QuizResult */
 
-$this->title = 'Create Quiz Result';
-$this->params['breadcrumbs'][] = ['label' => 'Quiz Results', 'url' => ['index']];
+$this->title = 'Membuat Kesimpulan';
+$this->params['breadcrumbs'][] = ['label' => 'Kesimpulan', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="quiz-result-create">

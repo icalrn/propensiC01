@@ -40,8 +40,8 @@ class ActivityLog extends \yii\db\ActiveRecord
     {
         return [
             'User_ID' => 'User  ID',
-            'Timestamp' => 'Timestamp',
-            'Activity' => 'Activity',
+            'Timestamp' => 'Waktu',
+            'Activity' => 'Kegiatan',
         ];
     }
 }

@@ -47,9 +47,9 @@ class Answer extends \yii\db\ActiveRecord
             'User_ID' => 'User  ID',
             'Quiz_ID' => 'Quiz  ID',
             'Question_ID' => 'Question  ID',
-            'Timestamp' => 'Timestamp',
-            'Answer_text' => 'Answer Text',
-            'Subcategory_text' => 'Subcategory Text',
+            'Timestamp' => 'Waktu',
+            'Answer_text' => 'Jawaban',
+            'Subcategory_text' => 'Sub-kategori',
         ];
     }
 }

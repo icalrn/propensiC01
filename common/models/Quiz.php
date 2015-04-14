@@ -45,9 +45,9 @@ class Quiz extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'Quiz_ID' => 'Quiz  ID',
-            'Title' => 'Title',
-            'Description' => 'Description',
+            'Quiz_ID' => 'Quiz ID',
+            'Title' => 'Judul',
+            'Description' => 'Deskripsi',
         ];
     }
 

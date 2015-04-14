@@ -41,7 +41,7 @@ class History extends \yii\db\ActiveRecord
     {
         return [
             'User_ID' => 'User  ID',
-            'Timestamp' => 'Timestamp',
+            'Timestamp' => 'Waktu',
             'Quiz_ID' => 'Quiz  ID',
             'Result_ID' => 'Result  ID',
         ];
