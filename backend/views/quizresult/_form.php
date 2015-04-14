@@ -12,8 +12,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'Result_ID')->textInput() ?>
-
     <?= $form->field($model, 'Quiz_ID')->textInput() ?>
 
     <?= $form->field($model, 'Classification_result')->textInput(['maxlength' => 20]) ?>

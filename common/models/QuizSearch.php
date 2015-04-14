@@ -41,7 +41,7 @@ class QuizSearch extends Quiz
      */
     public function search($params)
     {
-        $query = Quiz::find();
+        $query = Quiz::find()->joinWith('qUIZCONTENTs','questions');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

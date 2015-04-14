@@ -62,10 +62,10 @@ class Question extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getQUIZCONTENTs()
+    /*public function getQUIZCONTENTs()
     {
         return $this->hasMany(QUIZCONTENT::className(), ['Question_ID' => 'Question_ID']);
-    }
+    }*/
 
     /**
      * @return \yii\db\ActiveQuery
@@ -73,5 +73,10 @@ class Question extends \yii\db\ActiveRecord
     public function getQuizzes()
     {
         return $this->hasMany(QUIZ::className(), ['Quiz_ID' => 'Quiz_ID'])->viaTable('QUIZ_CONTENT', ['Question_ID' => 'Question_ID']);
+    }
+
+    public function getCategory()
+    {
+        return $this->hasOne(CATEGORY::className(),['Category_ID' => 'Category_ID']);
     }
 }
