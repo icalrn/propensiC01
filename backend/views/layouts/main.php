@@ -28,6 +28,7 @@ AppAsset::register($this);
 		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Pertanyaan</div>', ['question/index']) ?>
 		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Kesimpulan</div>', ['quizresult/index']) ?>
 		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Kategori</div>', ['category/index']) ?>
+		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Kuis Konten</div>', ['quizcontent/index']) ?>
 		<?= Html::a('<div class="logout-element text-right MuseoSans">'.FA::icon('sign-out').'Logout</div>', ['site/logout'], ['data-method' => 'post'])?>
 		
 	</div>

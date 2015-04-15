@@ -78,9 +78,9 @@ class Quiz extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getQuestions()
+   public function getQuestions()
     {
-        return $this->hasMany(QUESTION::className(), ['Question_ID' => 'Question_ID'])->viaTable('QUIZ_CONTENT', ['Quiz_ID' => 'Quiz_ID']);
+        return $this->hasMany(QUESTION::className(), ['Question_ID' => 'Question_ID'])->viaTable('propensi.QUIZ_CONTENT', ['Quiz_ID' => 'Quiz_ID']);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\QuizResult */
@@ -12,7 +13,10 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'Quiz_ID')->textInput() ?>
+    <?php 
+    	$listData=ArrayHelper::map(\common\models\QuizResult::find()->asArray()->all(), 'Result_ID', 'Quiz_ID');
+        echo $form->field($model, 'Quiz_ID')->dropDownList($listData, ['prompt'=>'Pilih Kuesioner']);
+    ?>
 
     <?= $form->field($model, 'Classification_result')->textInput(['maxlength' => 20]) ?>
 

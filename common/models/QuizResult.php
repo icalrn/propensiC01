@@ -44,7 +44,7 @@ class QuizResult extends \yii\db\ActiveRecord
     {
         return [
             'Result_ID' => 'Result  ID',
-            'Quiz_ID' => 'Quiz  ID',
+            'Quiz_ID' => 'Kuesioner',
             'Classification_result' => 'Hasil klasifikasi',
             'Result_text' => 'Hasil',
         ];
