@@ -47,7 +47,7 @@ class Question extends \yii\db\ActiveRecord
             'Question_ID' => 'Question  ID',
             'Question_text' => 'Pertanyaan',
             'Weight' => 'Bobot',
-            'Category_ID' => 'Category  ID',
+            'Category_ID' => 'Kategori',
         ];
     }
 

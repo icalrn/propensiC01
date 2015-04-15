@@ -46,7 +46,7 @@ class Quiz extends \yii\db\ActiveRecord
     {
         return [
             'Quiz_ID' => 'Quiz ID',
-            'Title' => 'Judul',
+            'Title' => 'Nama Kuesioner',
             'Description' => 'Deskripsi',
         ];
     }

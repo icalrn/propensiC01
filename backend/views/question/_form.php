@@ -18,7 +18,7 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'Weight')->textInput() ?>
     <?php 
-    	$listData=ArrayHelper::map(\common\models\Question::find()->asArray()->all(), 'Question_ID', 'Category_ID');
+    	$listData=ArrayHelper::map(\common\models\Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
         echo $form->field($model, 'Category_ID')->dropDownList($listData, ['prompt'=>'Pilih Kategori']);
     ?>
 

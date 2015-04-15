@@ -14,7 +14,7 @@ use yii\helpers\ArrayHelper;
     <?php $form = ActiveForm::begin(); ?>
 
     <?php 
-    	$listData=ArrayHelper::map(\common\models\QuizResult::find()->asArray()->all(), 'Result_ID', 'Quiz_ID');
+    	$listData=ArrayHelper::map(\common\models\Quiz::find()->asArray()->all(), 'Quiz_ID', 'Title');
         echo $form->field($model, 'Quiz_ID')->dropDownList($listData, ['prompt'=>'Pilih Kuesioner']);
     ?>
 
