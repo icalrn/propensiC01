@@ -11,6 +11,7 @@ use common\models\QuizSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * QuizResultController implements the CRUD actions for QuizResult model.
@@ -86,6 +87,7 @@ class QuizResultController extends Controller
     public function actionCreate()
     {
         $model = new QuizResult();
+        $listData=ArrayHelper::map(\common\models\Quiz::find()->asArray()->all(), 'Quiz_ID', 'Title');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->Result_ID]);
@@ -105,12 +107,14 @@ class QuizResultController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $listData=ArrayHelper::map(\common\models\Quiz::find()->asArray()->all(), 'Quiz_ID', 'Title');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->Result_ID]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'listData' => $listData,
             ]);
         }
     }

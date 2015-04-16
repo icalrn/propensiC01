@@ -9,6 +9,7 @@ use common\models\QuestionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * QuestionController implements the CRUD actions for Question model.
@@ -76,6 +77,7 @@ class QuestionController extends Controller
     public function actionCreate()
     {
         $model = new Question();
+        $listData=ArrayHelper::map(\common\models\Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->Question_ID]);
@@ -95,12 +97,14 @@ class QuestionController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $listData=ArrayHelper::map(\common\models\Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->Question_ID]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'listData' => $listData,
             ]);
         }
     }
