@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Question */
@@ -15,11 +17,13 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'Question_text')->textInput(['maxlength' => 100]) ?>
 
     <?= $form->field($model, 'Weight')->textInput() ?>
-
-    <?= $form->field($model, 'Category_text')->textInput(['maxlength' => 20]) ?>
+    <?php 
+    	$listData=ArrayHelper::map(\common\models\Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
+        echo $form->field($model, 'Category_ID')->dropDownList($listData, ['prompt'=>'Pilih Kategori']);
+    ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Buat' : 'Ubah', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -406,7 +406,7 @@ INSERT INTO "ACTIVITY_LOG" VALUES (1, '2015-04-10 05:27:33', 'Membuat kategori b
 -- Name: ACTIVITY_LOG_User_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"ACTIVITY_LOG_User_ID_seq"', 1, false);
+SELECT pg_catalog.setval('"ACTIVITY_LOG_User_ID_seq"', 5, false);
 
 
 --
@@ -850,7 +850,7 @@ INSERT INTO "CATEGORY" VALUES (53, 'Kebutuhan');
 -- Name: CATEGORY_Category_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"CATEGORY_Category_ID_seq"', 1, false);
+SELECT pg_catalog.setval('"CATEGORY_Category_ID_seq"', 54, false);
 
 
 --
@@ -875,7 +875,7 @@ INSERT INTO "QUESTION" VALUES (5, 'Orang-orang yang saya mintai pendapat/masukan
 -- Name: QUESTION_Question_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"QUESTION_Question_ID_seq"', 1, false);
+SELECT pg_catalog.setval('"QUESTION_Question_ID_seq"', 6, false);
 
 
 --
@@ -900,7 +900,7 @@ INSERT INTO "QUIZ_CONTENT" VALUES (1, 5);
 -- Name: QUIZ_Quiz_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"QUIZ_Quiz_ID_seq"', 1, false);
+SELECT pg_catalog.setval('"QUIZ_Quiz_ID_seq"', 2, false);
 
 
 --
@@ -914,7 +914,7 @@ INSERT INTO "QUIZ_RESULT" VALUES (1, 1, 'Sukses', 'Selamat! Anda merupakan pengu
 -- Name: QUIZ_RESULT_Result_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"QUIZ_RESULT_Result_ID_seq"', 1, false);
+SELECT pg_catalog.setval('"QUIZ_RESULT_Result_ID_seq"', 2, false);
 
 
 --
@@ -1321,7 +1321,7 @@ INSERT INTO "USER" VALUES (2, 'anonim', 'f2b0a1c07ccefc2d6763c8815e8a79460000000
 -- Name: USER_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"USER_ID_seq"', 1, true);
+SELECT pg_catalog.setval('"USER_ID_seq"', 3, true);
 
 
 --

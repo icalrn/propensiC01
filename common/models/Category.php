@@ -5,13 +5,14 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "category".
+ * This is the model class for table "propensi.CATEGORY".
  *
+ * @property integer $Category_ID
  * @property string $Category_text
- * @property string $Subcategory_text
  *
- * @property SubCategory $subcategoryText
- * @property Question[] $questions
+ * @property CATEGORIZATION[] $cATEGORIZATIONs
+ * @property SUBCATEGORY[] $subcategoryTexts
+ * @property QUESTION[] $qUESTIONs
  */
 class Category extends \yii\db\ActiveRecord
 {
@@ -20,7 +21,7 @@ class Category extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'category';
+        return 'propensi.CATEGORY';
     }
 
     /**
@@ -29,9 +30,8 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Category_text', 'Subcategory_text'], 'required'],
-            [['Category_text'], 'string', 'max' => 20],
-            [['Subcategory_text'], 'string', 'max' => 50]
+            [['Category_text'], 'required'],
+            [['Category_text'], 'string', 'max' => 30]
         ];
     }
 
@@ -41,24 +41,32 @@ class Category extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'Category_text' => 'Category Text',
-            'Subcategory_text' => 'Subcategory Text',
+            'Category_ID' => 'Category  ID',
+            'Category_text' => 'Kategori',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSubcategoryText()
+    public function getCATEGORIZATIONs()
     {
-        return $this->hasOne(SubCategory::className(), ['Subcategory_text' => 'Subcategory_text']);
+        return $this->hasMany(CATEGORIZATION::className(), ['Category_ID' => 'Category_ID']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getQuestions()
+    public function getSubcategoryTexts()
     {
-        return $this->hasMany(Question::className(), ['Category_text' => 'Category_text']);
+        return $this->hasMany(SUBCATEGORY::className(), ['Subcategory_text' => 'Subcategory_text'])->viaTable('CATEGORIZATION', ['Category_ID' => 'Category_ID']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQUESTIONs()
+    {
+        return $this->hasMany(QUESTION::className(), ['Category_ID' => 'Category_ID']);
     }
 }

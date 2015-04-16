@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\QuizResult;
+use common\models\Quiz;
 
 /**
  * QuizResultSearch represents the model behind the search form about `common\models\QuizResult`.
@@ -15,11 +16,17 @@ class QuizResultSearch extends QuizResult
     /**
      * @inheritdoc
      */
+
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['quiz.Title']);
+    }
+
     public function rules()
     {
         return [
             [['Result_ID', 'Quiz_ID'], 'integer'],
-            [['Classification_result', 'Result_text'], 'safe'],
+            [['Classification_result', 'Result_text', 'quiz.Title'], 'safe'],
         ];
     }
 
@@ -47,6 +54,13 @@ class QuizResultSearch extends QuizResult
             'query' => $query,
         ]);
 
+        $query->joinWith(['quiz' => function($query) { $query->from(['propensi.QUIZ']);}]);
+
+        $dataProvider->sort->attributes['quiz.Title'] = [
+            'asc' => ['propensi.QUIZ.Title' => SORT_ASC],
+            'desc'=> ['propensi.QUIZ.Title' => SORT_DESC],
+        ];
+
         $this->load($params);
 
         if (!$this->validate()) {
@@ -61,7 +75,8 @@ class QuizResultSearch extends QuizResult
         ]);
 
         $query->andFilterWhere(['like', 'Classification_result', $this->Classification_result])
-            ->andFilterWhere(['like', 'Result_text', $this->Result_text]);
+            ->andFilterWhere(['like', 'Result_text', $this->Result_text])
+            ->andFilterWhere(['like', 'propensi.QUIZ.Title', $this->getAttribute('quiz.Title')]);
 
         return $dataProvider;
     }

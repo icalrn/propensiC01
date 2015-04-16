@@ -47,6 +47,9 @@ class QuizSearch extends Quiz
             'query' => $query,
         ]);
 
+        //$query->joinWith(['qUIZCONTENTs' => function($query) { $query->from(['propensi.QUIZ_CONTENT']);}]);
+        $query->joinWith(['questions' => function($query) { $query->from(['propensi.QUESTION']);}]);
+
         $this->load($params);
 
         if (!$this->validate()) {

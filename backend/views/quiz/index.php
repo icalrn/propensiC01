@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\QuizSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Quizzes';
+$this->title = 'Kuesioner';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="quiz-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Quiz', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Buat Kuesioner', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -25,7 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'Quiz_ID',
             'Title',
             'Description:ntext',
 

@@ -5,17 +5,17 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "quiz".
+ * This is the model class for table "propensi.QUIZ".
  *
  * @property integer $Quiz_ID
  * @property string $Title
  * @property string $Description
  *
- * @property Answer[] $answers
- * @property History[] $histories
- * @property QuizContent[] $quizContents
- * @property Question[] $questions
- * @property QuizResult[] $quizResults
+ * @property HISTORY[] $hISTORies
+ * @property ANSWER[] $aNSWERs
+ * @property QUIZCONTENT[] $qUIZCONTENTs
+ * @property QUESTION[] $questions
+ * @property QUIZRESULT[] $qUIZRESULTs
  */
 class Quiz extends \yii\db\ActiveRecord
 {
@@ -24,7 +24,7 @@ class Quiz extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'quiz';
+        return 'propensi.QUIZ';
     }
 
     /**
@@ -45,49 +45,49 @@ class Quiz extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'Quiz_ID' => 'Quiz  ID',
-            'Title' => 'Title',
-            'Description' => 'Description',
+            'Quiz_ID' => 'Quiz ID',
+            'Title' => 'Nama Kuesioner',
+            'Description' => 'Deskripsi',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAnswers()
+    public function getHISTORies()
     {
-        return $this->hasMany(Answer::className(), ['Quiz_ID' => 'Quiz_ID']);
+        return $this->hasMany(HISTORY::className(), ['Quiz_ID' => 'Quiz_ID']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getHistories()
+    public function getANSWERs()
     {
-        return $this->hasMany(History::className(), ['Quiz_ID' => 'Quiz_ID']);
+        return $this->hasMany(ANSWER::className(), ['Quiz_ID' => 'Quiz_ID']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getQuizContents()
+    public function getQUIZCONTENTs()
     {
-        return $this->hasMany(QuizContent::className(), ['Quiz_ID' => 'Quiz_ID']);
+        return $this->hasMany(QUIZCONTENT::className(), ['Quiz_ID' => 'Quiz_ID']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getQuestions()
+   public function getQuestions()
     {
-        return $this->hasMany(Question::className(), ['Question_ID' => 'Question_ID'])->viaTable('quiz_content', ['Quiz_ID' => 'Quiz_ID']);
+        return $this->hasMany(QUESTION::className(), ['Question_ID' => 'Question_ID'])->viaTable('propensi.QUIZ_CONTENT', ['Quiz_ID' => 'Quiz_ID']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getQuizResults()
+    public function getQUIZRESULTs()
     {
-        return $this->hasMany(QuizResult::className(), ['Quiz_ID' => 'Quiz_ID']);
+        return $this->hasMany(QUIZRESULT::className(), ['Quiz_ID' => 'Quiz_ID']);
     }
 }

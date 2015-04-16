@@ -5,17 +5,16 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "question".
+ * This is the model class for table "propensi.QUESTION".
  *
  * @property integer $Question_ID
  * @property string $Question_text
  * @property integer $Weight
- * @property string $Category_text
+ * @property integer $Category_ID
  *
- * @property Answer[] $answers
- * @property Category $categoryText
- * @property QuizContent[] $quizContents
- * @property Quiz[] $quizzes
+ * @property ANSWER[] $aNSWERs
+ * @property QUIZCONTENT[] $qUIZCONTENTs
+ * @property QUIZ[] $quizzes
  */
 class Question extends \yii\db\ActiveRecord
 {
@@ -24,7 +23,7 @@ class Question extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'question';
+        return 'propensi.QUESTION';
     }
 
     /**
@@ -33,10 +32,9 @@ class Question extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Question_text', 'Category_text'], 'required'],
-            [['Weight'], 'integer'],
-            [['Question_text'], 'string', 'max' => 100],
-            [['Category_text'], 'string', 'max' => 20]
+            [['Question_text', 'Category_ID'], 'required'],
+            [['Weight', 'Category_ID'], 'integer'],
+            [['Question_text'], 'string', 'max' => 100]
         ];
     }
 
@@ -47,41 +45,38 @@ class Question extends \yii\db\ActiveRecord
     {
         return [
             'Question_ID' => 'Question  ID',
-            'Question_text' => 'Question Text',
-            'Weight' => 'Weight',
-            'Category_text' => 'Category Text',
+            'Question_text' => 'Pertanyaan',
+            'Weight' => 'Bobot',
+            'Category_ID' => 'Kategori',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAnswers()
+    public function getANSWERs()
     {
-        return $this->hasMany(Answer::className(), ['Question_ID' => 'Question_ID']);
+        return $this->hasMany(ANSWER::className(), ['Question_ID' => 'Question_ID']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCategoryText()
+    /*public function getQUIZCONTENTs()
     {
-        return $this->hasOne(Category::className(), ['Category_text' => 'Category_text']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getQuizContents()
-    {
-        return $this->hasMany(QuizContent::className(), ['Question_ID' => 'Question_ID']);
-    }
+        return $this->hasMany(QUIZCONTENT::className(), ['Question_ID' => 'Question_ID']);
+    }*/
 
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getQuizzes()
     {
-        return $this->hasMany(Quiz::className(), ['Quiz_ID' => 'Quiz_ID'])->viaTable('quiz_content', ['Question_ID' => 'Question_ID']);
+        return $this->hasMany(QUIZ::className(), ['Quiz_ID' => 'Quiz_ID'])->viaTable('QUIZ_CONTENT', ['Question_ID' => 'Question_ID']);
+    }
+
+    public function getCategory()
+    {
+        return $this->hasOne(CATEGORY::className(),['Category_ID' => 'Category_ID']);
     }
 }

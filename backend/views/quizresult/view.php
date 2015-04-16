@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\QuizResult */
 
-$this->title = $model->Result_ID;
-$this->params['breadcrumbs'][] = ['label' => 'Quiz Results', 'url' => ['index']];
+$this->title = $model->Classification_result;
+$this->params['breadcrumbs'][] = ['label' => 'Kesimpulan', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="quiz-result-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->Result_ID], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->Result_ID], [
+        <?= Html::a('Ubah', ['update', 'id' => $model->Result_ID], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Hapus', ['delete', 'id' => $model->Result_ID], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Apakah Anda yakin ingin menghapus kesimpulan ini?',
                 'method' => 'post',
             ],
         ]) ?>
