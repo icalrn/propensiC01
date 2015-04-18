@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use common\models\Question;
 use common\models\QuestionSearch;
+use common\models\Category;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -64,8 +65,10 @@ class QuestionController extends Controller
      */
     public function actionView($id)
     {
+        $categorytext = Question::find()->joinWith('category')->onCondition(['Question_ID' => $id]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'categorytext' => $categorytext,
         ]);
     }
 
@@ -77,7 +80,7 @@ class QuestionController extends Controller
     public function actionCreate()
     {
         $model = new Question();
-        $listData=ArrayHelper::map(\common\models\Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
+        $listData=ArrayHelper::map(Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->Question_ID]);
@@ -98,7 +101,7 @@ class QuestionController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $listData=ArrayHelper::map(\common\models\Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
+        $listData=ArrayHelper::map(Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->Question_ID]);

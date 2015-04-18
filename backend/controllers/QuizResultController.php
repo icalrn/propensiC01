@@ -52,14 +52,6 @@ class QuizResultController extends Controller
     {
         $searchModel = new QuizResultSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        /*$dataProvider = new SqlDataProvider([
-            'sql' => 'SELECT a."Title", b."Classification_result", b."Result_text"
-                        from "QUIZ" a, "QUIZ_RESULT" b
-                        where a."Quiz_ID" = b."Quiz_ID"',
-            'pagination' => [
-                'pageSize' => 20,
-            ],
-        ]);*/
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -74,8 +66,10 @@ class QuizResultController extends Controller
      */
     public function actionView($id)
     {
+        $quiztitle = QuizResult::find()->joinWith('quiz')->onCondition(['QUIZ.Quiz_ID' => $id]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'quiztitle' => $quiztitle,
         ]);
     }
 
@@ -87,7 +81,7 @@ class QuizResultController extends Controller
     public function actionCreate()
     {
         $model = new QuizResult();
-        $listData=ArrayHelper::map(\common\models\Quiz::find()->asArray()->all(), 'Quiz_ID', 'Title');
+        $listData=ArrayHelper::map(Quiz::find()->asArray()->all(), 'Quiz_ID', 'Title');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->Result_ID]);
@@ -108,7 +102,7 @@ class QuizResultController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $listData=ArrayHelper::map(\common\models\Quiz::find()->asArray()->all(), 'Quiz_ID', 'Title');
+        $listData=ArrayHelper::map(Quiz::find()->asArray()->all(), 'Quiz_ID', 'Title');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->Result_ID]);
