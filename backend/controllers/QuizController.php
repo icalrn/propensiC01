@@ -6,9 +6,13 @@ use Yii;
 use yii\filters\AccessControl;
 use common\models\Quiz;
 use common\models\QuizSearch;
+use common\models\Question;
+use common\models\QuestionSearch;
+use common\models\QuizContent;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * QuizController implements the CRUD actions for Quiz model.
@@ -63,13 +67,13 @@ class QuizController extends Controller
      */
     public function actionView($id)
     {
+        $listData=ArrayHelper::map(Quiz::find()->joinWith('questions')->onCondition(['propensi.QUIZ.Quiz_ID' => $id])->asArray()->all(), 'Quiz_ID', 'questions.Question_text');
         $searchModel = new QuizSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'listData' => $listData,
         ]);
     }
 
@@ -81,12 +85,16 @@ class QuizController extends Controller
     public function actionCreate()
     {
         $model = new Quiz();
+        $question = Question::find()->all();
+        $listData = ArrayHelper::map(Question::find()->asArray()->all(), 'Question_ID', 'Question_text');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->Quiz_ID]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'question' => $question,
+                'listData' => $listData,
             ]);
         }
     }
@@ -100,12 +108,17 @@ class QuizController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $question = Question::find()->all();
+        $listData = ArrayHelper::map(Question::find()->asArray()->all(), 'Question_ID', 'Question_text');
+        $model->question_field = ArrayHelper::getColumn($model->getQuestions()->asArray()->all(),'Question_ID');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->Quiz_ID]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'question' => $question,
+                'listData' => $listData,
             ]);
         }
     }

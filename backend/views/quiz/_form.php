@@ -16,8 +16,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Description')->textarea(['rows' => 6]) ?>
 
+    <?= $form->field($model, 'question_field')->checkboxList($listData) ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Buat' : 'Ubah', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+
     </div>
 
     <?php ActiveForm::end(); ?>

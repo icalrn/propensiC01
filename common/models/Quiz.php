@@ -19,6 +19,8 @@ use Yii;
  */
 class Quiz extends \yii\db\ActiveRecord
 {
+
+    public $question_field;
     /**
      * @inheritdoc
      */
@@ -35,7 +37,8 @@ class Quiz extends \yii\db\ActiveRecord
         return [
             [['Title', 'Description'], 'required'],
             [['Description'], 'string'],
-            [['Title'], 'string', 'max' => 50]
+            [['Title'], 'string', 'max' => 50],
+            [['question_field'], 'safe'],
         ];
     }
 
@@ -45,9 +48,10 @@ class Quiz extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'Quiz_ID' => 'Quiz ID',
+            'Quiz_ID' => 'Pertanyaan',
             'Title' => 'Nama Kuesioner',
             'Description' => 'Deskripsi',
+            'question_field' => 'Daftar Pertanyaan :'
         ];
     }
 
@@ -89,5 +93,15 @@ class Quiz extends \yii\db\ActiveRecord
     public function getQUIZRESULTs()
     {
         return $this->hasMany(QUIZRESULT::className(), ['Quiz_ID' => 'Quiz_ID']);
+    }
+
+    public function afterSave($insert, $changedAttributes){
+        Yii::$app->db->createCommand()->delete('propensi.QUIZ_CONTENT', '"Quiz_ID" = '.(int) $this->Quiz_ID)->execute(); //Delete existing value
+        foreach ($this->question_field as $id) { //Write new values
+            $tc = new QuizContent();
+            $tc->Quiz_ID = $this->Quiz_ID;
+            $tc->Question_ID = $id;
+            $tc->save();
+        }
     }
 }

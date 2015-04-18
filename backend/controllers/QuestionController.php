@@ -84,6 +84,7 @@ class QuestionController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'listData' => $listData,
             ]);
         }
     }

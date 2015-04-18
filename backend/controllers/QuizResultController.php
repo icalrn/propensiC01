@@ -94,6 +94,7 @@ class QuizResultController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'listData' => $listData,
             ]);
         }
     }
