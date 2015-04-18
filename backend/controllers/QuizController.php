@@ -9,6 +9,8 @@ use common\models\QuizSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\db\query;
+use yii\helpers\ArrayHelper;
 
 /**
  * QuizController implements the CRUD actions for Quiz model.
@@ -65,11 +67,31 @@ class QuizController extends Controller
     {
         $searchModel = new QuizSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		
+		$query = new Query;
+		$query->select('Question_text');
+		$query->from('propensi.QUESTION');
+		$query->innerJoin('propensi.QUIZ_CONTENT', '"propensi"."QUESTION"."Question_ID"="propensi"."QUIZ_CONTENT"."Question_ID"');
+		$query->where(['Quiz_ID' => $id]);
+		$result = ArrayHelper::getColumn($query->all(), 'Question_text');
+		$count = count ($result);
+		
+		$query2 = new Query;
+		$query2->select('Classification_result');
+		$query2->from('propensi.QUIZ_RESULT');
+		$query2->where(['Quiz_ID' => $id]);
+		$result2 = ArrayHelper::getColumn($query2->all(), 'Classification_result');
+		$count2 = count ($result2);
 
         return $this->render('view', [
             'model' => $this->findModel($id),
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+			'id' => $id,
+			'result' => $result,
+			'count' => $count,
+			'result2' => $result2,
+			'count2' => $count2,
         ]);
     }
 
