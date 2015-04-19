@@ -18,7 +18,7 @@ class QuizSearch extends Quiz
     public function rules()
     {
         return [
-            [['Quiz_ID'], 'integer'],
+            [['Quiz_ID', 'flag'], 'integer'],
             [['Title', 'Description'], 'safe'],
         ];
     }
@@ -46,10 +46,10 @@ class QuizSearch extends Quiz
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
-
-        //$query->joinWith(['qUIZCONTENTs' => function($query) { $query->from(['propensi.QUIZ_CONTENT']);}]);
-        $query->joinWith(['questions' => function($query) { $query->from(['propensi.QUESTION']);}]);
-
+		
+		//$query->joinWith(['qUIZCONTENTs' => function($query) { $query->from(['propensi.QUIZ_CONTENT']);}]);
+		$query->joinWith(['questions' => function($query) { $query->from(['propensi.QUESTION']);}]);
+		
         $this->load($params);
 
         if (!$this->validate()) {
@@ -60,6 +60,7 @@ class QuizSearch extends Quiz
 
         $query->andFilterWhere([
             'Quiz_ID' => $this->Quiz_ID,
+            'flag' => $this->flag,
         ]);
 
         $query->andFilterWhere(['like', 'Title', $this->Title])

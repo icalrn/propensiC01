@@ -32,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'Title',
             'Description:ntext',
+			'flag'
         ],
     ]) ?>
 	
