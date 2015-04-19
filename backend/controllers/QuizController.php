@@ -9,6 +9,7 @@ use common\models\QuizSearch;
 use common\models\Question;
 use common\models\QuestionSearch;
 use common\models\QuizContent;
+use yii\db\query;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -67,13 +68,27 @@ class QuizController extends Controller
      */
     public function actionView($id)
     {
-        $listData=ArrayHelper::map(Quiz::find()->joinWith('questions')->onCondition(['propensi.QUIZ.Quiz_ID' => $id])->asArray()->all(), 'Quiz_ID', 'questions.Question_text');
-        $searchModel = new QuizSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+       $query = new Query;
+		$query->select('Question_text');
+		$query->from('propensi.QUESTION');
+		$query->innerJoin('propensi.QUIZ_CONTENT', '"propensi"."QUESTION"."Question_ID"="propensi"."QUIZ_CONTENT"."Question_ID"');
+		$query->where(['Quiz_ID' => $id]);
+		$result = ArrayHelper::getColumn($query->all(), 'Question_text');
+		$count = count ($result);
+		
+		$query2 = new Query;
+		$query2->select('Classification_result');
+		$query2->from('propensi.QUIZ_RESULT');
+		$query2->where(['Quiz_ID' => $id]);
+		$result2 = ArrayHelper::getColumn($query2->all(), 'Classification_result');
+		$count2 = count ($result2);
 
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'listData' => $listData,
+			'result' => $result,
+			'count' => $count,
+			'result2' => $result2,
+			'count2' => $count2,
         ]);
     }
 
