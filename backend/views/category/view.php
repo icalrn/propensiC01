@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Category */
@@ -31,5 +32,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'Category_text',
         ],
     ]) ?>
+
+    <h3><?= Html::encode('Daftar Pertanyaan') ?></h3>
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'Question_text',
+
+        ],
+    ]); ?>
 
 </div>

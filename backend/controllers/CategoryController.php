@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use common\models\Category;
 use common\models\CategorySearch;
+use common\models\QuestionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -63,8 +64,13 @@ class CategoryController extends Controller
      */
     public function actionView($id)
     {
+        $searchModel = new QuestionSearch();
+        $dataProvider = $searchModel->searchId(Yii::$app->request->queryParams, $id);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 

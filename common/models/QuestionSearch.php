@@ -79,4 +79,31 @@ class QuestionSearch extends Question
 
         return $dataProvider;
     }
+
+    public function searchId($params, $id)
+    {
+        $query = Question::find()->onCondition(['Category_ID' => $id]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'Question_ID' => $this->Question_ID,
+            'Weight' => $this->Weight,
+            'Category_ID' => $this->Category_ID,
+        ]);
+
+        $query->andFilterWhere(['like', 'Question_text', $this->Question_text]);
+
+        return $dataProvider;
+    }
 }
