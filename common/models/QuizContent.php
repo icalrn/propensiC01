@@ -46,4 +46,9 @@ class QuizContent extends \yii\db\ActiveRecord
     {
         return $this->hasMany(QUIZ::className(), ['Quiz_ID' => 'Quiz_ID']);
     }
+
+    public function getQuestions()
+    {
+        return $this->hasOne(QUESTION::className(), ['Question_ID' => 'Question_ID']);
+    }
 }

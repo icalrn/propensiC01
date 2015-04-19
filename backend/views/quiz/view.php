@@ -34,4 +34,29 @@ $this->params['breadcrumbs'][] = $this->title;
             'Description:ntext',
         ],
     ]) ?>
+	
+	<h3><?= Html::encode('Daftar Pertanyaan') ?></h3>
+	<?= GridView::widget([
+        'dataProvider' => $dataProviderQuestion,
+        'filterModel' => $searchModelQuestion,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'questions.Question_text',
+
+        ],
+    ]); ?><br>
+
+    <h3><?= Html::encode('Daftar Kesimpulan') ?></h3>
+    <?= GridView::widget([
+        'dataProvider' => $dataProviderQuizResult,
+        'filterModel' => $searchModelQuizResult,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'Classification_result',
+
+        ],
+    ]); ?>
+
 </div>

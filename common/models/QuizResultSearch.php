@@ -80,4 +80,30 @@ class QuizResultSearch extends QuizResult
 
         return $dataProvider;
     }
+
+    public function searchId($params, $id)
+    {
+        $query = QuizResult::find()->onCondition(['Quiz_ID' => $id]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'Result_ID' => $this->Result_ID,
+            'Quiz_ID' => $this->Quiz_ID,
+        ]);
+
+        $query->andFilterWhere(['like', 'Classification_result', $this->Classification_result]);
+
+        return $dataProvider;
+    }
 }
