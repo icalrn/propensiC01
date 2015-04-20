@@ -3,6 +3,9 @@ namespace frontend\controllers;
 
 use Yii;
 use common\models\LoginForm;
+use common\models\Quiz;
+use common\models\QuizContent;
+use common\models\Question;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -67,7 +70,8 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $model = new Quiz();
+        return $this->render('index', ['model' => $model,]);
     }
 
     public function actionLogin()
@@ -167,5 +171,19 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
+    }
+
+    /*
+    **
+    */
+    public function actionQuiz($id){
+        $ids = \yii\helpers\ArrayHelper::getColumn(QuizContent::find()->where('"Quiz_ID" = :id', [':id'=>$id])->all(), 'Quiz_ID');
+        $quizTitle = Quiz::findOne($id)->Title;
+        $model = Question::findAll($ids);
+
+        return $this->render('quiz', [
+                'model' => $model,
+                'quizTitle' => $quizTitle,
+            ]);
     }
 }

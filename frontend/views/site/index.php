@@ -25,14 +25,14 @@ $this->title = 'Pusat Perencanaan Karir';
 
 <div class="container">
 	<div class="row text-center" id="main-menu">
-		<div class="col-md-4" id="kuesioner-kesiapan">
-			<button class="btn btn-main-menu btn-circle btn-outline"><?php echo FA::icon('briefcase')->size(FA::SIZE_2X); ?></button>
-		</div>
-		<div class="col-md-4" id="kuesioner-karir">
-			<button class="btn btn-main-menu btn-circle btn-outline"><?php echo FA::icon('check')->size(FA::SIZE_2X); ?></button>
-		</div>
-		<div class="col-md-4" id="kuesioner-kepribadian">
-			<button class="btn btn-main-menu btn-circle btn-outline"><?php echo FA::icon('pie-chart')->size(FA::SIZE_2X); ?></button>
-		</div>
+		<?php foreach ($model->find()->all() as $record) {
+			echo '<div class="col-md-4"><div class="row">';
+			echo '<div class="col-md-12">';
+			echo Html::a('<button class="btn btn-main-menu btn-circle btn-outline">'.FA::icon('question')->size(FA::SIZE_2X).'</button>', ['site/quiz/', 'id' => $record->Quiz_ID]);
+			echo '</div></div><div class="row">';
+			echo Html::a('<div class="col-md-12 quiz-title" id="kuesioner-'.$record->Quiz_ID.'">'.$record->Title.'</div>', ['site/quiz/', 'id' => $record->Quiz_ID]);
+			echo '</div></div></div>';
+
+		}?>
 	</div>
 </div>

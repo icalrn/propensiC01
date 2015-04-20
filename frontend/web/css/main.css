@@ -126,3 +126,11 @@
 	font-weight: normal;
 	font-style: normal;
 }
+
+.quiz-title{
+	margin-top: 30px;
+	margin-bottom:30px;
+	font-family: 'Museo-700';
+	font-size: 18pt;
+	color:#79BD9A;
+}
