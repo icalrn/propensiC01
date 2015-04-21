@@ -28,7 +28,7 @@ $this->title = 'Pusat Perencanaan Karir';
 		<?php foreach ($model->find()->all() as $record) {
 			echo '<div class="col-md-4"><div class="row">';
 			echo '<div class="col-md-12">';
-			echo Html::a('<button class="btn btn-main-menu btn-circle btn-outline">'.FA::icon('question')->size(FA::SIZE_2X).'</button>', ['site/quiz/', 'id' => $record->Quiz_ID]);
+			echo Html::a('<button class="btn btn-main-menu btn-circle btn-outline" id="button-kuesioner-'.$record->Quiz_ID.'">'.FA::icon('question')->size(FA::SIZE_2X).'</button>', ['site/quiz/', 'id' => $record->Quiz_ID]);
 			echo '</div></div><div class="row">';
 			echo Html::a('<div class="col-md-12 quiz-title" id="kuesioner-'.$record->Quiz_ID.'">'.$record->Title.'</div>', ['site/quiz/', 'id' => $record->Quiz_ID]);
 			echo '</div></div></div>';

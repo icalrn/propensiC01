@@ -178,12 +178,17 @@ class SiteController extends Controller
     */
     public function actionQuiz($id){
         $ids = \yii\helpers\ArrayHelper::getColumn(QuizContent::find()->where('"Quiz_ID" = :id', [':id'=>$id])->all(), 'Quiz_ID');
-        $quizTitle = Quiz::findOne($id)->Title;
-        $model = Question::findAll($ids);
+        $quizModel = Quiz::findOne($id);
+        $model = Question::find($ids)->all();
 
-        return $this->render('quiz', [
+        return $this->render('attemptQuiz', [
                 'model' => $model,
-                'quizTitle' => $quizTitle,
+                'quizModel' => $quizModel,
+                'ids' => $ids,
             ]);
+    }
+
+    public function actionPost($ids){
+        return $this->render('index');
     }
 }
