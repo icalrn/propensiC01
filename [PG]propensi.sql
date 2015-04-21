@@ -203,7 +203,8 @@ ALTER SEQUENCE "QUESTION_Question_ID_seq" OWNED BY "QUESTION"."Question_ID";
 CREATE TABLE "QUIZ" (
     "Quiz_ID" integer NOT NULL,
     "Title" character varying(50) NOT NULL,
-    "Description" text NOT NULL
+    "Description" text NOT NULL,
+	"flag" integer DEFAULT 0 NOT NULL
 );
 
 
@@ -882,7 +883,7 @@ SELECT pg_catalog.setval('"QUESTION_Question_ID_seq"', 6, false);
 -- Data for Name: QUIZ; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-INSERT INTO "QUIZ" VALUES (1, 'Kuesioner Kesiapan Karir', 'Lorem ipsum dolor sit amet');
+INSERT INTO "QUIZ" VALUES (1, 'Kuesioner Kesiapan Karir', 'Lorem ipsum dolor sit amet', 0);
 
 
 --

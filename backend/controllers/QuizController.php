@@ -11,7 +11,6 @@ use common\models\QuestionSearch;
 use common\models\QuizContent;
 use common\models\QuizContentSearch;
 use common\models\QuizResultSearch;
-use yii\db\query;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -24,7 +23,7 @@ class QuizController extends Controller
 {
     public function behaviors()
     {
-        return [
+         return [
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
@@ -70,7 +69,7 @@ class QuizController extends Controller
      */
     public function actionView($id)
     {
-       /*$query = new Query;
+               /*$query = new Query;
         $query->select('Question_text');
         $query->from('propensi.QUESTION');
         $query->innerJoin('propensi.QUIZ_CONTENT', '"propensi"."QUESTION"."Question_ID"="propensi"."QUIZ_CONTENT"."Question_ID"');
@@ -100,8 +99,7 @@ class QuizController extends Controller
             'dataProviderQuestion' => $dataProviderQuestion,
             'searchModelQuizResult' => $searchModelQuizResult,
             'dataProviderQuizResult' => $dataProviderQuizResult,
-
-        ]);
+		]);
     }
 
     /**
@@ -162,8 +160,8 @@ class QuizController extends Controller
 
         return $this->redirect(['index']);
     }
-
-    public function actionDeny(){
+	
+	public function actionDeny(){
         return $this->goHome;
     }
 
