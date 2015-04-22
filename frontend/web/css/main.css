@@ -204,3 +204,23 @@
 .tombols{
 	padding-bottom: 30px;
 }
+
+.hasilbox{
+	width: 500px;
+	position:absolute;
+	border: 1px #222 solid;
+	padding: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 150px;
+}
+
+.hasil-head{
+	font-size: 30pt;
+	color: #444;
+}
+
+.hasil-subtitle{
+	color: #444;
+	font-size: 16pt;
+}

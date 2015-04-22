@@ -32,8 +32,8 @@ $this->title = $quizModel->Title;
 	}?>
 
 	<div class="tombols text-center">
-		<?= Html::a('<button class="btn btn-lg btn-primary" type="submit">Submit</button>', ['site/post'])?>
-		<?= Html::a('<button class="btn btn-lg btn-danger">Cancel</button>', ['site/index'])?>		
+		<?= Html::a('<button class="btn btn-lg btn-primary" type="submit">Kirim</button>', ['site/post'])?>
+		<?= Html::a('<button class="btn btn-lg btn-danger">Batal</button>', ['site/index'])?>		
 	</div>
 </form>
 

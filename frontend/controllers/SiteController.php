@@ -39,6 +39,11 @@ class SiteController extends Controller
                         'roles' => ['?'],
                     ],
                     [
+                        'actions' => ['quiz', 'post'],
+                        'allow' => false,
+                        'roles' => ['?'],
+                        ],
+                    [
                         'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
@@ -204,7 +209,7 @@ class SiteController extends Controller
             $answer->Subcategory_text = 'Pekerjaan';
             $answer->save();
         }
-        return $this->render('coba', ['a' => $a]);
+        return $this->render('hasil');
         /*$a = Yii::$app->request->post('pertanyaan[]');
         $forms = var_dump($a);
         return $this->render('coba', ['forms' => $forms,]);*/

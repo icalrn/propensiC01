@@ -37,7 +37,6 @@ MuseoAsset::register($this);
 		$menuItems = [
 			['label' => 'Home', 'url' => ['/site/index']],
 			['label' => 'About', 'url' => ['/site/about']],
-			['label' => 'TEST', 'url' => ['/answer/index']],
 		];
 		if (Yii::$app->user->isGuest) {
 			$menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
