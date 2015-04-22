@@ -19,6 +19,7 @@ $this->title = $quizModel->Title;
 		</div>
 	</div>
 
+	<form method="post" action="index.php?r=site/post">
 	<?php foreach ($model as $quest) {
 		# code...
 	echo '
@@ -26,12 +27,14 @@ $this->title = $quizModel->Title;
 		'.$quest->Question_text.'
 	</div>
 	<div>';
-    echo '<textarea class="answer" name="pertanyaan-'.$quest->Question_ID.'"></textarea>';
+    echo '<textarea class="answer" name="Pertanyaan['.$quest->Question_ID.']"></textarea>';
 	echo '</div>';
 	}?>
 
 	<div class="tombols text-center">
-		<?= Html::a('<button class="btn btn-lg btn-primary">Submit</button>', ['site/post', 'ids' => $ids])?>
-		<?= Html::a('<button class="btn btn-lg btn-danger">Cancel</button>', ['site/index'])?>
+		<?= Html::a('<button class="btn btn-lg btn-primary" type="submit">Submit</button>', ['site/post'])?>
+		<?= Html::a('<button class="btn btn-lg btn-danger">Cancel</button>', ['site/index'])?>		
 	</div>
+</form>
+
 </div>

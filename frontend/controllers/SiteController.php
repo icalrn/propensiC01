@@ -21,6 +21,7 @@ use yii\filters\AccessControl;
  */
 class SiteController extends Controller
 {
+    public $enableCsrfValidation = false;
     /**
      * @inheritdoc
      */
@@ -177,10 +178,9 @@ class SiteController extends Controller
     **
     */
     public function actionQuiz($id){
-        $ids = \yii\helpers\ArrayHelper::getColumn(QuizContent::find()->where('"Quiz_ID" = :id', [':id'=>$id])->all(), 'Quiz_ID');
+        $ids = \yii\helpers\ArrayHelper::getColumn(QuizContent::find()->where('"Quiz_ID" = :id', [':id'=>$id])->all(), 'Question_ID');
         $quizModel = Quiz::findOne($id);
-        $model = Question::find($ids)->all();
-
+        $model = Question::find()->where(['IN', '"Question_ID"', $ids])->all();
         return $this->render('attemptQuiz', [
                 'model' => $model,
                 'quizModel' => $quizModel,
@@ -188,7 +188,12 @@ class SiteController extends Controller
             ]);
     }
 
-    public function actionPost($ids){
-        return $this->render('index');
+    public function actionPost(){
+        $a = Yii::$app->request->post('Pertanyaan');
+
+        return $this->render('coba', ['a' => $a]);
+        /*$a = Yii::$app->request->post('pertanyaan[]');
+        $forms = var_dump($a);
+        return $this->render('coba', ['forms' => $forms,]);*/
     }
 }
