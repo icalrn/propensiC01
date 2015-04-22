@@ -19,7 +19,7 @@ $this->title = $quizModel->Title;
 		</div>
 	</div>
 
-	<form method="post" action="index.php?r=site/post">
+	<form method="post" action="index.php?r=site/post&id=<?= $quizModel->Quiz_ID?>">
 	<?php foreach ($model as $quest) {
 		# code...
 	echo '

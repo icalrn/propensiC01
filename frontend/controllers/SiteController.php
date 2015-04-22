@@ -188,7 +188,7 @@ class SiteController extends Controller
             ]);
     }
 
-    public function actionPost(){
+    public function actionPost($id){
         $a = Yii::$app->request->post('Pertanyaan');
 
         return $this->render('coba', ['a' => $a]);
