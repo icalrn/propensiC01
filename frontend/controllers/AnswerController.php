@@ -64,10 +64,12 @@ class AnswerController extends Controller
     public function actionCreate()
     {
         $model = new Answer();
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            var_dump($model->validate());
+        return;
             return $this->redirect(['view', 'User_ID' => $model->User_ID, 'Quiz_ID' => $model->Quiz_ID, 'Question_ID' => $model->Question_ID, 'Timestamp' => $model->Timestamp]);
         } else {
+
             return $this->render('create', [
                 'model' => $model,
             ]);

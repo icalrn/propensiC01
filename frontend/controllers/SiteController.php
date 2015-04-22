@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use common\models\Answer;
 use common\models\LoginForm;
 use common\models\Quiz;
 use common\models\QuizContent;
@@ -190,7 +191,19 @@ class SiteController extends Controller
 
     public function actionPost($id){
         $a = Yii::$app->request->post('Pertanyaan');
-
+        $quizID = $id;
+        $uid = $this->user->id;
+        
+        foreach ($a as $k => $jawaban) {
+            $answer = new Answer();
+            $answer->Quiz_ID = $id;
+            $answer->User_ID = $uid;
+            $answer->Timestamp = date('Y-m-d H:i:s');
+            $answer->Question_ID = $k;
+            $answer->Answer_text = $jawaban;
+            $answer->Subcategory_text = 'Pekerjaan';
+            $answer->save();
+        }
         return $this->render('coba', ['a' => $a]);
         /*$a = Yii::$app->request->post('pertanyaan[]');
         $forms = var_dump($a);

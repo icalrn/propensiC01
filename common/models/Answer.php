@@ -32,7 +32,7 @@ class Answer extends \yii\db\ActiveRecord
         return [
             [['User_ID', 'Quiz_ID', 'Question_ID', 'Timestamp', 'Answer_text', 'Subcategory_text'], 'required'],
             [['User_ID', 'Quiz_ID', 'Question_ID'], 'integer'],
-            [['Timestamp'], 'safe'],
+            [['Timestamp', 'Subcategory_text'], 'safe'],
             [['Answer_text'], 'string'],
             [['Subcategory_text'], 'string', 'max' => 50]
         ];
