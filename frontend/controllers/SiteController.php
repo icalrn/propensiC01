@@ -22,7 +22,6 @@ use yii\filters\AccessControl;
  */
 class SiteController extends Controller
 {
-    public $enableCsrfValidation = false;
     /**
      * @inheritdoc
      */
@@ -38,11 +37,6 @@ class SiteController extends Controller
                         'allow' => true,
                         'roles' => ['?'],
                     ],
-                    [
-                        'actions' => ['quiz', 'post'],
-                        'allow' => false,
-                        'roles' => ['?'],
-                        ],
                     [
                         'actions' => ['logout'],
                         'allow' => true,
@@ -178,40 +172,5 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
-    }
-
-    /*
-    **
-    */
-    public function actionQuiz($id){
-        $ids = \yii\helpers\ArrayHelper::getColumn(QuizContent::find()->where('"Quiz_ID" = :id', [':id'=>$id])->all(), 'Question_ID');
-        $quizModel = Quiz::findOne($id);
-        $model = Question::find()->where(['IN', '"Question_ID"', $ids])->all();
-        return $this->render('attemptQuiz', [
-                'model' => $model,
-                'quizModel' => $quizModel,
-                'ids' => $ids,
-            ]);
-    }
-
-    public function actionPost($id){
-        $a = Yii::$app->request->post('Pertanyaan');
-        $quizID = $id;
-        $uid = $this->user->id;
-        
-        foreach ($a as $k => $jawaban) {
-            $answer = new Answer();
-            $answer->Quiz_ID = $id;
-            $answer->User_ID = $uid;
-            $answer->Timestamp = date('Y-m-d H:i:s');
-            $answer->Question_ID = $k;
-            $answer->Answer_text = $jawaban;
-            $answer->Subcategory_text = 'Pekerjaan';
-            $answer->save();
-        }
-        return $this->render('hasil');
-        /*$a = Yii::$app->request->post('pertanyaan[]');
-        $forms = var_dump($a);
-        return $this->render('coba', ['forms' => $forms,]);*/
     }
 }

@@ -19,9 +19,8 @@ $this->title = $quizModel->Title;
 		</div>
 	</div>
 
-	<form method="post" action="index.php?r=site/post&id=<?= $quizModel->Quiz_ID?>">
+	<form method="post" action="index.php?r=quiz/submit&id=<?= $quizModel->Quiz_ID?>">
 	<?php foreach ($model as $quest) {
-		# code...
 	echo '
 	<div class="question Museo-300">
 		'.$quest->Question_text.'
@@ -31,7 +30,7 @@ $this->title = $quizModel->Title;
 	echo '</div>';
 	}?>
 	<div class="tombols text-center">
-		<?= Html::a('<button class="btn btn-lg btn-primary" type="submit">Kirim</button>', ['site/post'])?>		
+		<?= Html::a('<button class="btn btn-lg btn-primary" type="submit">Kirim</button>', ['quiz/submit'])?>		
 	</div>
 </form>
 	<div class="tombols text-center">

@@ -31,13 +31,13 @@ $this->title = 'Pusat Perencanaan Karir';
 			if (Yii::$app->user->isGuest){
 				echo Html::a('<button class="btn btn-main-menu btn-circle btn-outline" id="button-kuesioner-'.$record->Quiz_ID.'">'.FA::icon('question')->size(FA::SIZE_2X).'</button>', ['site/signup/']);
 			}else{
-				echo Html::a('<button class="btn btn-main-menu btn-circle btn-outline" id="button-kuesioner-'.$record->Quiz_ID.'">'.FA::icon('question')->size(FA::SIZE_2X).'</button>', ['site/quiz/', 'id' => $record->Quiz_ID]);
+				echo Html::a('<button class="btn btn-main-menu btn-circle btn-outline" id="button-kuesioner-'.$record->Quiz_ID.'">'.FA::icon('question')->size(FA::SIZE_2X).'</button>', ['quiz/attempt/', 'id' => $record->Quiz_ID]);
 			}
 			echo '</div></div><div class="row">';
 			if (Yii::$app->user->isGuest){
 				echo Html::a('<div class="col-md-12 quiz-title" id="kuesioner-'.$record->Quiz_ID.'">'.$record->Title.'</div>', ['site/signup/']);
 			}else{
-				echo Html::a('<div class="col-md-12 quiz-title" id="kuesioner-'.$record->Quiz_ID.'">'.$record->Title.'</div>', ['site/quiz/', 'id' => $record->Quiz_ID]);
+				echo Html::a('<div class="col-md-12 quiz-title" id="kuesioner-'.$record->Quiz_ID.'">'.$record->Title.'</div>', ['quiz/attempt/', 'id' => $record->Quiz_ID]);
 			}
 			echo '</div></div>';
 
