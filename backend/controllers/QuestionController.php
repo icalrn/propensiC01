@@ -7,6 +7,7 @@ use yii\filters\AccessControl;
 use common\models\Question;
 use common\models\QuestionSearch;
 use common\models\Category;
+use common\models\ActivityLog;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -83,6 +84,11 @@ class QuestionController extends Controller
         $listData=ArrayHelper::map(Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $activitylog = new ActivityLog();
+            $activitylog->User_ID = Yii::$app->user->id;
+            $activitylog->Timestamp = date('Y-m-d H:i:s');
+            $activitylog->Activity = 'Membuat pertanyaan baru';
+            $activitylog->save();
             return $this->redirect(['view', 'id' => $model->Question_ID]);
         } else {
             return $this->render('create', [
@@ -104,6 +110,11 @@ class QuestionController extends Controller
         $listData=ArrayHelper::map(Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $activitylog = new ActivityLog();
+            $activitylog->User_ID = Yii::$app->user->id;
+            $activitylog->Timestamp = date('Y-m-d H:i:s');
+            $activitylog->Activity = 'Mengubah sebuah pertanyaan';
+            $activitylog->save();
             return $this->redirect(['view', 'id' => $model->Question_ID]);
         } else {
             return $this->render('update', [
@@ -122,6 +133,11 @@ class QuestionController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        $activitylog = new ActivityLog();
+        $activitylog->User_ID = Yii::$app->user->id;
+        $activitylog->Timestamp = date('Y-m-d H:i:s');
+        $activitylog->Activity = 'Menghapus sebuah pertanyaan';
+        $activitylog->save();
 
         return $this->redirect(['index']);
     }

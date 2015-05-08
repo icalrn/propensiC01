@@ -8,6 +8,7 @@ use common\models\QuizResult;
 use common\models\QuizResultSearch;
 use common\models\Quiz;
 use common\models\QuizSearch;
+use common\models\ActivityLog;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -84,6 +85,11 @@ class QuizResultController extends Controller
         $listData=ArrayHelper::map(Quiz::find()->asArray()->all(), 'Quiz_ID', 'Title');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $activitylog = new ActivityLog();
+            $activitylog->User_ID = Yii::$app->user->id;
+            $activitylog->Timestamp = date('Y-m-d H:i:s');
+            $activitylog->Activity = 'Membuat kesimpulan baru';
+            $activitylog->save();
             return $this->redirect(['view', 'id' => $model->Result_ID]);
         } else {
             return $this->render('create', [
@@ -105,6 +111,11 @@ class QuizResultController extends Controller
         $listData=ArrayHelper::map(Quiz::find()->asArray()->all(), 'Quiz_ID', 'Title');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $activitylog = new ActivityLog();
+            $activitylog->User_ID = Yii::$app->user->id;
+            $activitylog->Timestamp = date('Y-m-d H:i:s');
+            $activitylog->Activity = 'Mengubah sebuah kesimpulan';
+            $activitylog->save();
             return $this->redirect(['view', 'id' => $model->Result_ID]);
         } else {
             return $this->render('update', [
@@ -123,6 +134,11 @@ class QuizResultController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        $activitylog = new ActivityLog();
+        $activitylog->User_ID = Yii::$app->user->id;
+        $activitylog->Timestamp = date('Y-m-d H:i:s');
+        $activitylog->Activity = 'Menghapus sebuah kesimpulan';
+        $activitylog->save();
 
         return $this->redirect(['index']);
     }

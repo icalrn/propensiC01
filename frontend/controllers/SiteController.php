@@ -7,6 +7,7 @@ use common\models\LoginForm;
 use common\models\Quiz;
 use common\models\QuizContent;
 use common\models\Question;
+use common\models\ActivityLog;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -83,6 +84,11 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            $activitylog = new ActivityLog();
+            $activitylog->User_ID = Yii::$app->user->id;
+            $activitylog->Timestamp = date('Y-m-d H:i:s');
+            $activitylog->Activity = 'Login ke dalam sistem';
+            $activitylog->save();
             return $this->goBack();
         } else {
             return $this->render('login', [
@@ -93,6 +99,11 @@ class SiteController extends Controller
 
     public function actionLogout()
     {
+        //$activitylog = new ActivityLog();
+        //$activitylog->User_ID = Yii::$app->user->id;
+        //$activitylog->Timestamp = date('Y-m-d H:i:s');
+        //$activitylog->Activity = 'Logout dari sistem';
+        //$activitylog->save();
         Yii::$app->user->logout();
 
         return $this->goHome();
@@ -131,6 +142,11 @@ class SiteController extends Controller
                 }
             }
         }
+        $activitylog = new ActivityLog();
+        $activitylog->User_ID = Yii::$app->user->id;
+        $activitylog->Timestamp = date('Y-m-d H:i:s');
+        $activitylog->Activity = 'Melakukan registrasi';
+        $activitylog->save();
 
         return $this->render('signup', [
             'model' => $model,

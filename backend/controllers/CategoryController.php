@@ -7,6 +7,7 @@ use yii\filters\AccessControl;
 use common\models\Category;
 use common\models\CategorySearch;
 use common\models\QuestionSearch;
+use common\models\ActivityLog;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -84,6 +85,11 @@ class CategoryController extends Controller
         $model = new Category();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $activitylog = new ActivityLog();
+            $activitylog->User_ID = Yii::$app->user->id;
+            $activitylog->Timestamp = date('Y-m-d H:i:s');
+            $activitylog->Activity = 'Membuat kategori baru';
+            $activitylog->save();
             return $this->redirect(['view', 'id' => $model->Category_ID]);
         } else {
             return $this->render('create', [
@@ -103,6 +109,11 @@ class CategoryController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $activitylog = new ActivityLog();
+            $activitylog->User_ID = Yii::$app->user->id;
+            $activitylog->Timestamp = date('Y-m-d H:i:s');
+            $activitylog->Activity = 'Mengubah sebuah kategori';
+            $activitylog->save();
             return $this->redirect(['view', 'id' => $model->Category_ID]);
         } else {
             return $this->render('update', [
@@ -120,7 +131,11 @@ class CategoryController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
+        $activitylog = new ActivityLog();
+        $activitylog->User_ID = Yii::$app->user->id;
+        $activitylog->Timestamp = date('Y-m-d H:i:s');
+        $activitylog->Activity = 'Menghapus sebuah kategori';
+        $activitylog->save();
         return $this->redirect(['index']);
     }
 

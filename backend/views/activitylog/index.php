@@ -7,17 +7,13 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\ActivityLogSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Activity Logs';
+$this->title = 'Riwayat Penggunaan Sistem';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="activity-log-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Activity Log', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -28,8 +24,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'User_ID',
             'Timestamp',
             'Activity',
-
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

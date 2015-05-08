@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\SubCategory */
 
-$this->title = 'Update Sub Category: ' . ' ' . $model->Subcategory_text;
-$this->params['breadcrumbs'][] = ['label' => 'Sub Categories', 'url' => ['index']];
+$this->title = 'Mengubah Subkategori: ' . ' ' . $model->Subcategory_text;
+$this->params['breadcrumbs'][] = ['label' => 'Subkategori', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->Subcategory_text, 'url' => ['view', 'id' => $model->Subcategory_text]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Ubah';
 ?>
 <div class="sub-category-update">
 

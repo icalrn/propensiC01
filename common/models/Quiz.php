@@ -99,9 +99,9 @@ class Quiz extends \yii\db\ActiveRecord
     }
 	
 	public function afterSave($insert, $changedAttributes){
-        Yii::$app->db->createCommand()->delete('propensi.QUIZ_CONTENT', '"Quiz_ID" = '.(int) $this->Quiz_ID)->execute(); //Delete existing value
+        Yii::$app->db->createCommand()->delete('propensi.QUIZ_CONTENT', '"Quiz_ID" = '.(int) $this->Quiz_ID)->execute();
         if ($this->question_field!=NULL){
-        foreach ($this->question_field as $id) { //Write new values
+        foreach ($this->question_field as $id) {
             $tc = new QuizContent();
             $tc->Quiz_ID = $this->Quiz_ID;
             $tc->Question_ID = $id;

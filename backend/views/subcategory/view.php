@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\SubCategory */
 
 $this->title = $model->Subcategory_text;
-$this->params['breadcrumbs'][] = ['label' => 'Sub Categories', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Subkategori', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="sub-category-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->Subcategory_text], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->Subcategory_text], [
+        <?= Html::a('Ubah', ['update', 'id' => $model->Subcategory_text], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Hapus', ['delete', 'id' => $model->Subcategory_text], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Apakah Anda yakin ingin menghapus subkategori ini?',
                 'method' => 'post',
             ],
         ]) ?>

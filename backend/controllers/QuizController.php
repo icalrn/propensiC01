@@ -11,6 +11,7 @@ use common\models\QuestionSearch;
 use common\models\QuizContent;
 use common\models\QuizContentSearch;
 use common\models\QuizResultSearch;
+use common\models\ActivityLog;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -69,20 +70,6 @@ class QuizController extends Controller
      */
     public function actionView($id)
     {
-               /*$query = new Query;
-        $query->select('Question_text');
-        $query->from('propensi.QUESTION');
-        $query->innerJoin('propensi.QUIZ_CONTENT', '"propensi"."QUESTION"."Question_ID"="propensi"."QUIZ_CONTENT"."Question_ID"');
-        $query->where(['Quiz_ID' => $id]);
-        $result = ArrayHelper::getColumn($query->all(), 'Question_text');
-        $count = count ($result);
-        
-        $query2 = new Query;
-        $query2->select('Classification_result');
-        $query2->from('propensi.QUIZ_RESULT');
-        $query2->where(['Quiz_ID' => $id]);
-        $result2 = ArrayHelper::getColumn($query2->all(), 'Classification_result');
-        $count2 = count ($result2);*/
         $searchModelQuestion = new QuizContentSearch();
         $dataProviderQuestion = $searchModelQuestion->searchId(Yii::$app->request->queryParams, $id);
         $searchModelQuizResult = new QuizResultSearch();
@@ -91,10 +78,6 @@ class QuizController extends Controller
 
         return $this->render('view', [
             'model' => $this->findModel($id),
-            //'result' => $result,
-            //'count' => $count,
-            //'result2' => $result2,
-            //'count2' => $count2,
             'searchModelQuestion' => $searchModelQuestion,
             'dataProviderQuestion' => $dataProviderQuestion,
             'searchModelQuizResult' => $searchModelQuizResult,
@@ -114,6 +97,11 @@ class QuizController extends Controller
         $listData = ArrayHelper::map(Question::find()->asArray()->all(), 'Question_ID', 'Question_text');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $activitylog = new ActivityLog();
+            $activitylog->User_ID = Yii::$app->user->id;
+            $activitylog->Timestamp = date('Y-m-d H:i:s');
+            $activitylog->Activity = 'Membuat kuesioner baru';
+            $activitylog->save();
             return $this->redirect(['view', 'id' => $model->Quiz_ID]);
         } else {
             return $this->render('create', [
@@ -138,6 +126,11 @@ class QuizController extends Controller
         $model->question_field = ArrayHelper::getColumn($model->getQuestions()->asArray()->all(),'Question_ID');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $activitylog = new ActivityLog();
+            $activitylog->User_ID = Yii::$app->user->id;
+            $activitylog->Timestamp = date('Y-m-d H:i:s');
+            $activitylog->Activity = 'Mengubah sebuah kuesioner';
+            $activitylog->save();
             return $this->redirect(['view', 'id' => $model->Quiz_ID]);
         } else {
             return $this->render('update', [
@@ -157,6 +150,11 @@ class QuizController extends Controller
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
+        $activitylog = new ActivityLog();
+        $activitylog->User_ID = Yii::$app->user->id;
+        $activitylog->Timestamp = date('Y-m-d H:i:s');
+        $activitylog->Activity = 'Menghapus sebuah kuesioner';
+        $activitylog->save();
 
         return $this->redirect(['index']);
     }
