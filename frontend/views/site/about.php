@@ -15,5 +15,5 @@ $this->params['breadcrumbs'][] = $this->title;
 	<p>jawaban pengguna berdasarkan teori yang dikembangkan dari penelitian tersebut. Dengan adanya </p>
 	<p>sistem ini, diharapkan pengguna dapat lebih mudah untuk membuat keputusan-keputusan dalam karirnya. </p>
 
-    <code><?= __FILE__ ?></code>
+
 </div>

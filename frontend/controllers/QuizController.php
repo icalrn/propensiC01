@@ -7,6 +7,7 @@ use common\models\Quiz;
 use common\models\Question;
 use common\models\QuizContent;
 use common\models\ActivityLog;
+use common\models\History;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -41,6 +42,14 @@ class QuizController extends Controller
         $activitylog->Timestamp = date('Y-m-d H:i:s');
         $activitylog->Activity = 'Mengisi kuesioner';
         $activitylog->save();
+		
+		$history = new History();
+		$history->User_ID = Yii::$app->user->id;
+		$history->Timestamp = date('Y-m-d H:i:s');
+		$history->Quiz_ID = $id;
+		$history->Result_ID = '1';
+		$history->save();
+		
 
         $answers = Yii::$app->request->post('Pertanyaan');
         $quizID = $id;

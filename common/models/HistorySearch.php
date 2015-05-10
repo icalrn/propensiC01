@@ -15,11 +15,17 @@ class HistorySearch extends History
     /**
      * @inheritdoc
      */
+	 
+	public function attributes()
+    {
+        return array_merge(parent::attributes(), ['quiz.Title', 'result.Classification_result']);
+    }
+	 
     public function rules()
     {
         return [
             [['User_ID', 'Quiz_ID', 'Result_ID'], 'integer'],
-            [['Timestamp'], 'safe'],
+            [['Timestamp', 'quiz.Title', 'result.Classification_result'], 'safe'],
         ];
     }
 
@@ -47,6 +53,17 @@ class HistorySearch extends History
             'query' => $query,
         ]);
 
+		$query->joinWith(['quiz' => function($query) { $query->from(['propensi.QUIZ']);}]);
+		$query->joinWith(['result' => function($query) { $query->from(['propensi.QUIZ_RESULT']);}]);
+		$dataProvider->sort->attributes['quiz.Title'] = [
+            'asc' => ['propensi.QUIZ.Title' => SORT_ASC],
+            'desc'=> ['propensi.QUIZ.Title' => SORT_DESC],
+        ];
+		$dataProvider->sort->attributes['result.Classification_result'] = [
+            'asc' => ['propensi.QUIZ_RESULT.Classification_result' => SORT_ASC],
+            'desc'=> ['propensi.QUIZ_RESULT.Classification_result' => SORT_DESC],
+        ];
+		
         $this->load($params);
 
         if (!$this->validate()) {
@@ -61,6 +78,8 @@ class HistorySearch extends History
             'Quiz_ID' => $this->Quiz_ID,
             'Result_ID' => $this->Result_ID,
         ]);
+		$query->andFilterWhere(['like', 'propensi.QUIZ.Title', $this->getAttribute('quiz.Title')])
+            ->andFilterWhere(['like', 'propensi.QUIZ_RESULT.Classification_result', $this->getAttribute('result.Classification_result')]);
 
         return $dataProvider;
     }

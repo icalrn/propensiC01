@@ -28,7 +28,7 @@ class History extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['User_ID', 'Timestamp', 'Quiz_ID', 'Result_ID'], 'required'],
+            [['User_ID', 'Timestamp', 'Quiz_ID'], 'required'],
             [['User_ID', 'Quiz_ID', 'Result_ID'], 'integer'],
             [['Timestamp'], 'safe']
         ];
@@ -45,5 +45,14 @@ class History extends \yii\db\ActiveRecord
             'Quiz_ID' => 'Quiz  ID',
             'Result_ID' => 'Result  ID',
         ];
+    }
+	public function getQuiz()
+    {
+        return $this->hasOne(QUIZ::className(), ['Quiz_ID' => 'Quiz_ID']);
+    }
+	
+	public function getResult()
+    {
+        return $this->hasOne(QUIZRESULT::className(), ['Result_ID' => 'Result_ID']);
     }
 }
