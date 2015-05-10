@@ -18,7 +18,7 @@ class HistorySearch extends History
 	 
 	public function attributes()
     {
-        return array_merge(parent::attributes(), ['quiz.Title', 'result.Classification_result']);
+        return array_merge(parent::attributes(), ['quiz.Title', 'result.Classification_result', 'username']);
     }
 	 
     public function rules()
@@ -47,12 +47,13 @@ class HistorySearch extends History
      */
     public function search($params)
     {
-        $query = History::find();
+        $query = History::find()->where(['User_ID' => $params]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
 
+		$query->joinWith(['user' => function($query) { $query->from(['public.tbl_user']);}]);
 		$query->joinWith(['quiz' => function($query) { $query->from(['propensi.QUIZ']);}]);
 		$query->joinWith(['result' => function($query) { $query->from(['propensi.QUIZ_RESULT']);}]);
 		$dataProvider->sort->attributes['quiz.Title'] = [
@@ -63,8 +64,12 @@ class HistorySearch extends History
             'asc' => ['propensi.QUIZ_RESULT.Classification_result' => SORT_ASC],
             'desc'=> ['propensi.QUIZ_RESULT.Classification_result' => SORT_DESC],
         ];
+		$dataProvider->sort->attributes['username'] = [
+            'asc' => ['public.tbl_user.username' => SORT_ASC],
+            'desc'=> ['public.tbl_user.username' => SORT_DESC],
+        ];
 		
-        $this->load($params);
+        //$this->load($params);
 
         if (!$this->validate()) {
             // uncomment the following line if you do not want to any records when validation fails
@@ -79,7 +84,8 @@ class HistorySearch extends History
             'Result_ID' => $this->Result_ID,
         ]);
 		$query->andFilterWhere(['like', 'propensi.QUIZ.Title', $this->getAttribute('quiz.Title')])
-            ->andFilterWhere(['like', 'propensi.QUIZ_RESULT.Classification_result', $this->getAttribute('result.Classification_result')]);
+            ->andFilterWhere(['like', 'propensi.QUIZ_RESULT.Classification_result', $this->getAttribute('result.Classification_result')])
+			->andFilterWhere(['like', 'public.tbl_user.username', $this->getAttribute('username')]);
 
         return $dataProvider;
     }

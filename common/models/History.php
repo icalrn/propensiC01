@@ -55,4 +55,9 @@ class History extends \yii\db\ActiveRecord
     {
         return $this->hasOne(QUIZRESULT::className(), ['Result_ID' => 'Result_ID']);
     }
+	
+	public function getUser()
+    {
+        return $this->hasOne(user::className(), ['id' => 'User_ID']);
+    }
 }

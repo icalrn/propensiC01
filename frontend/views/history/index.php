@@ -9,6 +9,7 @@ use yii\grid\GridView;
 
 $this->title = 'Daftar Riwayat Hasil Kuesioner';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="history-index">
 
@@ -24,10 +25,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'Timestamp',
             'quiz.Title',
-            'result.Classification_result',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            'result.Classification_result',			
+			[	
+				'class' => 'yii\grid\ActionColumn',
+				'template' => '{view}',
+			],
         ],
     ]); ?>
+	
+	<?= Html::a('<button class="btn btn-success btn-lg main-button">Kembali</button>', ['site/index']); ?>
 
 </div>

@@ -46,7 +46,7 @@ class QuizResult extends \yii\db\ActiveRecord
             'Result_ID' => 'Result  ID',
             'Quiz_ID' => 'Kuesioner',
             'Classification_result' => 'Hasil klasifikasi',
-            'Result_text' => 'Hasil',
+            'Result_text' => 'Keterangan',
         ];
     }
 
