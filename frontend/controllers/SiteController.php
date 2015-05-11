@@ -138,16 +138,17 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
+                    $activitylog = new ActivityLog();
+                    $activitylog->User_ID = Yii::$app->user->id;
+                    $activitylog->Timestamp = date('Y-m-d H:i:s');
+                    $activitylog->Activity = 'Melakukan registrasi';
+                    $activitylog->save();
+
                     return $this->goHome();
                 }
             }
         }
-        $activitylog = new ActivityLog();
-        $activitylog->User_ID = Yii::$app->user->id;
-        $activitylog->Timestamp = date('Y-m-d H:i:s');
-        $activitylog->Activity = 'Melakukan registrasi';
-        $activitylog->save();
-
+        
         return $this->render('signup', [
             'model' => $model,
         ]);
