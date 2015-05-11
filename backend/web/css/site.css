@@ -89,3 +89,22 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+
+.panel-green {
+  border-color: #47B56C;
+}
+.panel-green > .panel-heading {
+  color: #fff;
+  background-color: #47B56C;
+  border-color: #47B56C;
+}
+.panel-green > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #47B56C;
+}
+.panel-green > .panel-heading .badge {
+  color: #47B56C;
+  background-color: #fff;
+}
+.panel-green > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: #47B56C;
+}

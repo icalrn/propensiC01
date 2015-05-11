@@ -23,6 +23,7 @@ class AppAsset extends AssetBundle
         'css/fontkit-museosans.css',
     ];
     public $js = [
+        'currentTime.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

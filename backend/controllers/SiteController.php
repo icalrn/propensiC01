@@ -6,6 +6,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use common\models\LoginForm;
 use yii\filters\VerbFilter;
+use yii\data\SqlDataProvider;
 
 /**
  * Site controller
@@ -55,7 +56,17 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        /* Data Provider for database export functionality */
+        $count = Yii::$app->db->createCommand('SELECT COUNT(*) FROM "ANSWER"')->queryScalar();
+        $dataProvider = new SqlDataProvider([
+            'sql' => 'SELECT U."username" AS "Username", Q."Title", E."Question_text", A."Timestamp", A."Answer_text", A."Subcategory_text"  
+                FROM "ANSWER" A, "user" U, "QUIZ" Q, "QUESTION" E
+                WHERE A."User_ID" = U."id" AND A."Quiz_ID" = Q."Quiz_ID" AND A."Question_ID" = E."Question_ID"',
+            'totalCount' => $count,
+            'pagination' => ['pageSize' => $count,],
+        ]);
+        
+        return $this->render('index', ['dataProvider' => $dataProvider,]);
     }
 
     public function actionLogin()
