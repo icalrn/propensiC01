@@ -45,6 +45,7 @@ class SubCategorySearch extends SubCategory
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => ['defaultOrder' => ['Subcategory_text'=>SORT_ASC]]
         ]);
 
         $this->load($params);

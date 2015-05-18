@@ -12,6 +12,11 @@ use common\models\ActivityLog;
  */
 class ActivityLogSearch extends ActivityLog
 {
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['user.username']);
+    }
+
     /**
      * @inheritdoc
      */
@@ -19,7 +24,7 @@ class ActivityLogSearch extends ActivityLog
     {
         return [
             [['User_ID'], 'integer'],
-            [['Timestamp', 'Activity'], 'safe'],
+            [['Timestamp', 'Activity', 'user.username'], 'safe'],
         ];
     }
 
@@ -41,11 +46,17 @@ class ActivityLogSearch extends ActivityLog
      */
     public function search($params)
     {
-        $query = ActivityLog::find();
+        $query = ActivityLog::find()->joinWith('user');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => ['defaultOrder' => ['Timestamp'=>SORT_DESC]]
         ]);
+
+        $dataProvider->sort->attributes['user.username'] = [
+            'asc' => ['public.user.username' => SORT_ASC],
+            'desc'=> ['public.user.username' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -60,7 +71,8 @@ class ActivityLogSearch extends ActivityLog
             'Timestamp' => $this->Timestamp,
         ]);
 
-        $query->andFilterWhere(['like', 'Activity', $this->Activity]);
+        $query->andFilterWhere(['like', 'Activity', $this->Activity])
+            ->andFilterWhere(['like', 'public.user.username', $this->getAttribute('user.username')]);
 
         return $dataProvider;
     }

@@ -12,6 +12,11 @@ use common\models\Testimony;
  */
 class TestimonySearch extends Testimony
 {
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['user.username']);
+    }
+
     /**
      * @inheritdoc
      */
@@ -19,7 +24,7 @@ class TestimonySearch extends Testimony
     {
         return [
             [['User_ID'], 'integer'],
-            [['Timestamp', 'Testimony_text'], 'safe'],
+            [['Timestamp', 'Testimony_text', 'user.username'], 'safe'],
         ];
     }
 
@@ -41,11 +46,18 @@ class TestimonySearch extends Testimony
      */
     public function search($params)
     {
-        $query = Testimony::find();
+        $query = Testimony::find()->joinWith('user');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => ['defaultOrder' => ['Timestamp'=>SORT_DESC]]
         ]);
+
+        $dataProvider->sort->attributes['user.username'] = [
+            'asc' => ['public.user.username' => SORT_ASC],
+            'desc'=> ['public.user.username' => SORT_DESC],
+        ];
+
 
         $this->load($params);
 
@@ -60,7 +72,9 @@ class TestimonySearch extends Testimony
             'Timestamp' => $this->Timestamp,
         ]);
 
-        $query->andFilterWhere(['like', 'Testimony_text', $this->Testimony_text]);
+        $query->andFilterWhere(['like', 'Testimony_text', $this->Testimony_text])
+             ->andFilterWhere(['like', 'public.user.username', $this->getAttribute('user.username')]);
+;
 
         return $dataProvider;
     }

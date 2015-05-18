@@ -36,7 +36,7 @@ class Quiz extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Title', 'Description'], 'required'],
+            [['Title', 'Description', 'flag'], 'required'],
             [['Description'], 'string'],
             [['flag'], 'integer'],
             [['Title'], 'string', 'max' => 50],

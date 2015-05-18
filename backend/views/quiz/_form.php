@@ -15,8 +15,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'Title')->textInput(['maxlength' => 50]) ?>
 
     <?= $form->field($model, 'Description')->textarea(['rows' => 6]) ?>
-	
-	<?= $form->field($model, 'flag')->textInput() ?>
+
+    <?= $form->field($model, 'flag')->dropDownList(['Tidak Aktif','Aktif'], ['prompt'=>'Pilih Status Deploy']) ?>
 
     <?= $form->field($model, 'question_field')->checkboxList($listData, array('separator' => '<br>')) ?>
 

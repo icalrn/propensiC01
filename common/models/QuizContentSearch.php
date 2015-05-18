@@ -16,7 +16,7 @@ class QuizContentSearch extends QuizContent
      * @inheritdoc
      */
 
-     public function attributes()
+    public function attributes()
     {
         return array_merge(parent::attributes(), ['questions.Question_text']);
     }

@@ -45,4 +45,9 @@ class Testimony extends \yii\db\ActiveRecord
             'Testimony_text' => 'Testimoni',
         ];
     }
+
+    public function getUser()
+    {
+        return $this->hasOne(USER::className(), ['id' => 'User_ID']);
+    }
 }

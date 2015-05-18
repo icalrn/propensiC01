@@ -44,4 +44,9 @@ class ActivityLog extends \yii\db\ActiveRecord
             'Activity' => 'Kegiatan',
         ];
     }
+
+    public function getUser()
+    {
+        return $this->hasOne(USER::className(), ['id' => 'User_ID']);
+    }
 }
