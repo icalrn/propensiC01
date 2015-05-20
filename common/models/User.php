@@ -31,7 +31,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function tableName()
     {
-        return '{{%propensi.user}}';
+        return 'propensi.user';
     }
 
     /**
@@ -52,13 +52,46 @@ class User extends ActiveRecord implements IdentityInterface
         return [
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+			
+			['email', 'filter', 'filter' => 'trim'],
+            ['email', 'required'],
+            ['email', 'email'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+			
+			['place_of_birth', 'filter', 'filter' => 'trim'],
+            ['place_of_birth', 'string', 'max' => 30],
+			
+			['date_of_birth', 'filter', 'filter' => 'trim'],
+            ['date_of_birth', 'string', 'max' => 10],
+			
+			['address', 'filter', 'filter' => 'trim'],
+            ['address', 'string', 'max' => 50],
+			
+			['phone', 'filter', 'filter' => 'trim'],
+            ['phone', 'string', 'max' => 13],
+			
+			['gender', 'filter', 'filter' => 'trim'],
+            ['gender', 'string', 'max' => 6],
+			
+			['education', 'filter', 'filter' => 'trim'],
+            ['education', 'string', 'max' => 4],
+			
+			['occupation', 'filter', 'filter' => 'trim'],
+            ['occupation', 'string', 'max' => 30],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'username' => 'Username'
+            'username' => 'Username',
+			'place_of_birth' => 'Tempat lahir',
+			'date_of_birth' => 'Tanggal lahir',
+			'address' => 'Alamat',
+			'phone' => 'Nomor telepon',
+			'gender' => 'Jenis kelamin',
+			'education' => 'Pendidikan terakhir',
+			'occupation' => 'Pekerjaan',			
         ];
     }
 
@@ -192,7 +225,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
-
+	
     public function upgrade()
     {
         $this->role = 'b';

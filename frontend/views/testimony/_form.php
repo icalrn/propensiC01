@@ -18,9 +18,9 @@ use yii\widgets\ActiveForm;
     <div class="form-group">
 	
         <?= Html::submitButton('Submit', ['class' => 'btn btn-success']) ?>
-		<?= Html::a('<button class="btn btn-lg btn-danger">Batal</button>', ['site/index'])?>
+		
     </div>
 
     <?php ActiveForm::end(); ?>
-
+<?= Html::a('<button class="btn btn-lg btn-danger">Batal</button>', ['site/index'])?>
 </div>
