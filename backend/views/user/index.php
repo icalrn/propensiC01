@@ -43,7 +43,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'education',
             'occupation',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template' => '{view} {delete}'],
         ],
     ]); ?>
 
