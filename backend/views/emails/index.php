@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\EmailSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Emails';
+$this->title = 'Kelola Email';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="email-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Email', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Kirim email', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -25,11 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'ID',
             'receiver_email:email',
-            'message:ntext',
-            'attachment:ntext',
             'subject',
+            'timestamp',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

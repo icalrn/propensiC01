@@ -29,9 +29,10 @@ class Email extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['receiver_email'], 'required'],
-            [['message', 'attachment'], 'string'],
-            [['receiver_email', 'subject'], 'string', 'max' => 100]
+            [['receiver_email'], 'required', 'message' => 'Email Penerima tidak boleh kosong'],
+            [['message', 'attachment'], 'string'],            
+            [['subject'], 'string', 'max' => 100],
+            [['receiver_email'], 'email', 'message' => 'Email Penerima tidak valid']
         ];
     }
 
@@ -42,10 +43,11 @@ class Email extends \yii\db\ActiveRecord
     {
         return [
             'ID' => 'ID',
-            'receiver_email' => 'Receiver Email',
+            'receiver_email' => 'Email Penerima',
             'message' => 'Message',
             'attachment' => 'Attachment',
-            'subject' => 'Subject',
+            'subject' => 'Subyek',
+            'timestamp' => 'Timestamp',
         ];
     }
 }

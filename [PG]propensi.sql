@@ -156,7 +156,8 @@ CREATE TABLE "EMAIL" (
     receiver_email character varying(100) NOT NULL,
     message text,
     attachment text,
-    subject character varying(100)
+    subject character varying(100),
+    "timestamp" timestamp without time zone NOT NULL
 );
 
 
@@ -447,6 +448,62 @@ ALTER TABLE user_id_seq OWNER TO postgres;
 ALTER SEQUENCE user_id_seq OWNED BY "user".id;
 
 
+SET search_path = public, pg_catalog;
+
+--
+-- Name: migration; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE migration (
+    version character varying(180) NOT NULL,
+    apply_time integer
+);
+
+
+ALTER TABLE migration OWNER TO postgres;
+
+--
+-- Name: user; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "user" (
+    id integer NOT NULL,
+    username character varying(255) NOT NULL,
+    auth_key character varying(32) NOT NULL,
+    password_hash character varying(255) NOT NULL,
+    password_reset_token character varying(255),
+    email character varying(255) NOT NULL,
+    status smallint DEFAULT 10 NOT NULL,
+    created_at integer NOT NULL,
+    updated_at integer NOT NULL
+);
+
+
+ALTER TABLE "user" OWNER TO postgres;
+
+--
+-- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE user_id_seq OWNER TO postgres;
+
+--
+-- Name: user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE user_id_seq OWNED BY "user".id;
+
+
+SET search_path = propensi, pg_catalog;
+
 --
 -- Name: User_ID; Type: DEFAULT; Schema: propensi; Owner: postgres
 --
@@ -503,6 +560,17 @@ ALTER TABLE ONLY "USER" ALTER COLUMN "ID" SET DEFAULT nextval('"USER_ID_seq"'::r
 ALTER TABLE ONLY "user" ALTER COLUMN id SET DEFAULT nextval('user_id_seq'::regclass);
 
 
+SET search_path = public, pg_catalog;
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "user" ALTER COLUMN id SET DEFAULT nextval('user_id_seq'::regclass);
+
+
+SET search_path = propensi, pg_catalog;
+
 --
 -- Data for Name: ACTIVITY_LOG; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
@@ -554,6 +622,9 @@ INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:32:07', 'Mengisi kuesioner
 INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:35:48', 'Mengisi kuesioner');
 INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:36:30', 'Mengisi kuesioner');
 INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:38:44', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (12, '2015-05-20 22:56:41', 'Melakukan registrasi');
+INSERT INTO "ACTIVITY_LOG" VALUES (13, '2015-05-20 22:59:05', 'Melakukan registrasi');
+INSERT INTO "ACTIVITY_LOG" VALUES (14, '2015-05-20 23:02:54', 'Melakukan registrasi');
 
 
 --
@@ -1623,14 +1694,48 @@ INSERT INTO "user" VALUES (3, 'admin4', 'Dt7fYOS8bDX6uX7O5E2u_dmIl7Fn37ZD', '$2y
 INSERT INTO "user" VALUES (4, 'admin5', 'nFfiQuG4Uk4HXs5LTmsONlHeZ4v1WiyE', '$2y$13$mNB3XuczfFAUQXOH/pYFCOJ98h7wFHj90nTe74yx3r8fy7oqbKHBy', NULL, 'adm@in5.com', 10, 1431325230, 1431325230, 'a', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO "user" VALUES (6, 'nitto', 'djs9zDb90yyyaeDer1FC2zxua61rD48T', '$2y$13$OHyi.LX9EEkjt1B89yBQYOfjH6FRe67ZS4hJgcckDhQfQNI9cziOO', NULL, 'nitto.sahadi@ui.ac.id', 10, 1432106304, 1432126295, 'b', '1991-07-02', 'cilacap', 'N/A', 'Pria', '08122090083', '2', 'Mahasiswa');
 INSERT INTO "user" VALUES (11, 'william', '6QHnIHelSbFjMrPvQMqoeNFr8VNo95VO', '$2y$13$M66F1EaJz/KRvqNZc9mms.GOQGbEXPKKFI3atYeouMzMqTQIvBP46', NULL, 'william.suwignyo@ui.ac.id', 10, 1432127299, 1432127340, 'u', NULL, 'Padang', '', 'Pria', '', 'SMA', 'Mahasiswa');
+INSERT INTO "user" VALUES (12, 'coba', 'U5BvwKiXmWUl4QBzlDK1Wsdg2zCQYqi7', '$2y$13$dQc9SxhZKBW2yfmMwN.M1uP4W8bHYqXOfZQwPoSrHz7XfyYyaqENG', NULL, 'coba@gmail.com', 10, 1432137401, 1432137401, 'u', NULL, '2000-02-12', '', 'Pria', '', '', '');
+INSERT INTO "user" VALUES (13, 'coba2', 'DS6BwdLs6qcgJgw0JqNF8tPRQyk1T3wi', '$2y$13$J0/DikiJfzThVcnduDbwgumBCwFA/EZcz.kxGqX3pCXcKSG5yED3u', NULL, 'coba2@gmail.com', 10, 1432137545, 1432137545, 'u', '2000-12-20', '', '', 'Pria', '', '', '');
+INSERT INTO "user" VALUES (14, 'coba3', 'LQCFLly27FVkh2FA8VICCg-ddgEwjr6b', '$2y$13$4i1pZ5HoYfmuoZ/CSbawY.jM/TqQky./EZBePlHgVh9xvZqjLDx4W', NULL, 'coba3@gmail.com', 10, 1432137774, 1432137774, 'u', '2000-12-20', '', '', 'Pria', '', '', '');
 
 
 --
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('user_id_seq', 11, true);
+SELECT pg_catalog.setval('user_id_seq', 14, true);
 
+
+SET search_path = public, pg_catalog;
+
+--
+-- Data for Name: migration; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO migration VALUES ('m000000_000000_base', 1428937792);
+INSERT INTO migration VALUES ('m130524_201442_init', 1428937793);
+
+
+--
+-- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "user" VALUES (1, 'coba', '0cHsaTNEAHCYm-s9gXlkyfMHXYaSU-9-', '$2y$13$afKAWACD9SY4EJAFBHCHgu60twpEC7XubutFJ.egPcX0qadJKRxhC', NULL, 'coba@gmail.com', 10, 1428937825, 1428937825);
+INSERT INTO "user" VALUES (2, 'coba2', 'doujBMuwNe7hhTlQZhNNqDnC-K382_5P', '$2y$13$W4SyXwHqv/h4gBW0GOMmb.bgWbEfGaxpCrv4AiXQ6coFk1fjcaXpq', NULL, 'coba2@gmail.com', 10, 1431093926, 1431093926);
+INSERT INTO "user" VALUES (3, 'coba3', 'clrJ9DXYe5veTECgKZUQ2grR_jv5Sc5E', '$2y$13$yaPiAzmT3H2EdmCrmEaDbOZ/zIKPgMD5q1CqoJkFeXUIZ5uNZ71PG', NULL, 'coba3@gmail.com', 10, 1431096066, 1431096066);
+INSERT INTO "user" VALUES (4, 'coba4', 'n5Gc09KTbpx2mQXglCrRoTKWQwBQ2Qy_', '$2y$13$ete0f2TYSef2wcKav3l01.yT5ai.whDwCxbYz/ckJBEp.kxuflHqy', NULL, 'coba4@gmail.com', 10, 1431320278, 1431320278);
+INSERT INTO "user" VALUES (5, 'coba5', 'phdKdVvnsAu2rBWb9cQa_MZH3AdF3g4I', '$2y$13$DDBPm2BjGGA5CNx.y4xrcODsjUM7ZgvYHYbc0YOIlJOBOVzc0Kq0y', NULL, 'coba5@gmail.com', 10, 1431323683, 1431323683);
+INSERT INTO "user" VALUES (6, 'coba6', 'AO4NyekZY6G_jADBFzRiNLcgog3Tp0Vd', '$2y$13$SgeRhUsZgTSbhk/W4vWXU.dD.DC91vjT0cgFo6y/YptSqe1Yz5x06', NULL, 'coba6@gmail.com', 10, 1431862333, 1431862333);
+
+
+--
+-- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('user_id_seq', 6, true);
+
+
+SET search_path = propensi, pg_catalog;
 
 --
 -- Name: ACTIVITY_LOG_pkey; Type: CONSTRAINT; Schema: propensi; Owner: postgres; Tablespace: 
@@ -1752,6 +1857,26 @@ ALTER TABLE ONLY "user"
     ADD CONSTRAINT user_pkey PRIMARY KEY (id);
 
 
+SET search_path = public, pg_catalog;
+
+--
+-- Name: migration_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY migration
+    ADD CONSTRAINT migration_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "user"
+    ADD CONSTRAINT user_pkey PRIMARY KEY (id);
+
+
+SET search_path = propensi, pg_catalog;
+
 --
 -- Name: ACTIVITY_LOG_User_ID_fkey; Type: FK CONSTRAINT; Schema: propensi; Owner: postgres
 --
@@ -1870,6 +1995,16 @@ ALTER TABLE ONLY "QUIZ_RESULT"
 
 ALTER TABLE ONLY "TESTIMONY"
     ADD CONSTRAINT "TESTIMONY_User_ID_fkey" FOREIGN KEY ("User_ID") REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
 --

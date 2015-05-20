@@ -19,7 +19,7 @@ class EmailSearch extends Email
     {
         return [
             [['ID'], 'integer'],
-            [['receiver_email', 'message', 'attachment', 'subject'], 'safe'],
+            [['receiver_email', 'message', 'attachment', 'subject', 'timestamp'], 'safe'],
         ];
     }
 

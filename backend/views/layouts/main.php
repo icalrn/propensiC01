@@ -32,6 +32,7 @@ AppAsset::register($this);
 		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Riwayat Sistem</div>', ['activitylog/index']) ?>
 		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Lihat Testimoni</div>', ['testimony/index']) ?>
 		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Kirim email</div>', ['email/index']) ?>
+		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Kirim email versi model</div>', ['emails/index']) ?>
 		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Pengguna</div>', ['user/index']) ?>
 		<?= Html::a('<div class="logout-element text-right MuseoSans">'.FA::icon('sign-out').'Logout</div>', ['site/logout'], ['data-method' => 'post'])?>
 		

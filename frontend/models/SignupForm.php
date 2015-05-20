@@ -45,7 +45,7 @@ class SignupForm extends Model
             ['place_of_birth', 'string', 'max' => 30],
 			
 			['date_of_birth', 'filter', 'filter' => 'trim'],
-            ['date_of_birth', 'string', 'max' => 10],
+            ['date_of_birth', 'date', 'format' => 'yyyy-M-d'],
 			
 			['address', 'filter', 'filter' => 'trim'],
             ['address', 'string', 'max' => 50],
