@@ -60,7 +60,7 @@ class SiteController extends Controller
         $count = Yii::$app->db->createCommand('SELECT COUNT(*) FROM "propensi"."ANSWER"')->queryScalar();
         $dataProvider = new SqlDataProvider([
             'sql' => 'SELECT U."username" AS "Username", Q."Title", E."Question_text", A."Timestamp", A."Answer_text", A."Subcategory_text"  
-                FROM "propensi"."ANSWER" A, "public"."user" U, "propensi"."QUIZ" Q, "propensi"."QUESTION" E
+                FROM "propensi"."ANSWER" A, "propensi"."user" U, "propensi"."QUIZ" Q, "propensi"."QUESTION" E
                 WHERE A."User_ID" = U."id" AND A."Quiz_ID" = Q."Quiz_ID" AND A."Question_ID" = E."Question_ID"',
             'totalCount' => $count,
             'pagination' => ['pageSize' => $count,],
