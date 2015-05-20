@@ -60,7 +60,8 @@ class QuizController extends Controller
 
         $listData = ArrayHelper::map(SubCategory::find()->asArray()->all(), 'Subcategory_text', 'Counter');
         
-        foreach ($answers as $k => $jawaban) {
+        foreach ($answers as $k => $jawaban) 
+        {
             $answer = new Answer();
             $answer->Quiz_ID = $id;
             $answer->User_ID = $uid;
@@ -73,15 +74,20 @@ class QuizController extends Controller
             $coba = explode(" ",$jawaban);
             for ($x = 0; $x < count($coba); $x++)
             {
-                foreach ($listData as $subcategory => $counter)
+                $temp = "";
+                for ($y = $x; ($y + $x) < count($coba); $y++)
                 {
-                    if ($coba[$x] == $subcategory)
+                    $temp = $temp." ".$coba[$y];
+                    foreach ($listData as $subcategory => $counter)
                     {
-                        $answer->Subcategory_text = $subcategory; 
-                        $submodel = SubCategory::findOne($subcategory);
-                        $submodel->Counter = $submodel->Counter+1;
-                        $submodel->save();
-                        $answer->save();
+                        if(strtolower(trim($temp)) == strtolower(trim($subcategory))) 
+                        {
+                            $answer->Subcategory_text = $subcategory; 
+                            $submodel = SubCategory::findOne($subcategory);
+                            $submodel->Counter = $submodel->Counter+1;
+                            $submodel->save();
+                            $answer->save();
+                        }
                     }
                 }
             }

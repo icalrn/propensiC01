@@ -32,9 +32,9 @@ class Question extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Question_text', 'Category_ID'], 'required'],
-            [['Weight', 'Category_ID'], 'integer'],
-            [['Question_text'], 'string', 'max' => 100]
+            [['Question_text', 'Category_ID'], 'required', 'message' => 'Pertanyaan tidak boleh kosong'],
+            [['Weight', 'Category_ID'], 'integer', 'message' => 'Bobot harus berupa angka'],
+            [['Question_text'], 'string', 'max' => 100, 'message' => 'Panjang pertanyaan tidak boleh lebih dari 100 karakter']
         ];
     }
 

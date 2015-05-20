@@ -44,8 +44,8 @@ class Email extends \yii\db\ActiveRecord
         return [
             'ID' => 'ID',
             'receiver_email' => 'Email Penerima',
-            'message' => 'Message',
-            'attachment' => 'Attachment',
+            'message' => 'Pesan',
+            'attachment' => 'Lampiran',
             'subject' => 'Subyek',
             'timestamp' => 'Timestamp',
         ];

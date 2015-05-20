@@ -29,32 +29,38 @@ class SignupForm extends Model
     {
         return [
             ['username', 'filter', 'filter' => 'trim'],
-            ['username', 'required'],
+            ['username', 'required', 'message' => 'Username tidak boleh kosong'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            ['username', 'string', 'min' => 2, 'max' => 255, 'message' => 'Panjang username tidak boleh kurang dari 2 karakter dan lebih dari 255 karakter'],
 
             ['email', 'filter', 'filter' => 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
+            ['email', 'required', 'message' => 'Email tidak boleh kosong'],
+            ['email', 'email', 'message' => 'Alamat email tidak valid'],
             ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
 
-            ['password', 'required'],
-            ['password', 'string', 'min' => 6],
+            ['password', 'required', 'message' => 'Password tidak boleh kosong'],
+            ['password', 'string', 'min' => 6, 'message' => 'Panjang password tidak boleh kurang dari 6 karakter'],
 			
 			['place_of_birth', 'filter', 'filter' => 'trim'],
-            ['place_of_birth', 'string', 'max' => 30],
+            ['place_of_birth', 'string', 'max' => 30, 'message' => 'Panjang tempat lahir tidak boleh lebih dari 30 karakter'],
 			
 			['date_of_birth', 'filter', 'filter' => 'trim'],
-            ['date_of_birth', 'date', 'format' => 'yyyy-M-d'],
+            ['date_of_birth', 'date', 'format' => 'yyyy-M-d', 'message' => 'Tanggal lahir dengan format yyyy-M-d'],
 			
 			['address', 'filter', 'filter' => 'trim'],
-            ['address', 'string', 'max' => 50],
+            ['address', 'string', 'max' => 50, 'message' => 'Panjang alamat tidak boleh lebih dari 50 karakter'],
+
+            ['gender', 'filter', 'filter' => 'trim'],
+            ['gender', 'string', 'max' => 6],
+			
+			['education', 'filter', 'filter' => 'trim'],
+            ['education', 'string', 'max' => 4],
 			
 			['phone', 'filter', 'filter' => 'trim'],
-            ['phone', 'string', 'max' => 13],
+            ['phone', 'string', 'max' => 13, 'message' => 'Panjang nomor telepon tidak boleh lebih dari 13 karakter'],
 			
 			['occupation', 'filter', 'filter' => 'trim'],
-            ['occupation', 'string', 'max' => 30],
+            ['occupation', 'string', 'max' => 30, 'message' => 'Panjang pekerjaan tidak boleh lebih dari 30 karakter'],
             
         ];
     }

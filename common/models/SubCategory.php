@@ -30,9 +30,10 @@ class SubCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Subcategory_text', 'Counter'], 'required'],
-            [['Counter'], 'integer'],
-            [['Subcategory_text'], 'string', 'max' => 50]
+            [['Subcategory_text'], 'required', 'message' => 'Subkategori tidak boleh kosong'],
+            [['Counter'], 'required', 'message' => 'Jumlah tidak boleh kosong, silahkan isi dengan "0" untuk inisialisasi'],
+            [['Counter'], 'integer', 'message' => 'Jumlah harus berupa angka'],
+            [['Subcategory_text'], 'string', 'max' => 50, 'message' => 'Panjang subkategori tidak boleh lebih dari 50 karakter'],
         ];
     }
 

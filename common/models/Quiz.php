@@ -36,10 +36,11 @@ class Quiz extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Title', 'Description', 'flag'], 'required'],
+            [['Title'], 'required', 'message' => 'Judul tidak boleh kosong'],
+            [['Description'], 'required', 'message' => 'Deskripsi tidak boleh kosong'],
             [['Description'], 'string'],
             [['flag'], 'integer'],
-            [['Title'], 'string', 'max' => 50],
+            [['Title'], 'string', 'max' => 50, 'message' => 'Panjang judul tidak boleh lebh dari 50 karakter'],
 			[['question_field'], 'safe'],
         ];
     }
