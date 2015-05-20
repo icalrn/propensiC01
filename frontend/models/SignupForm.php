@@ -59,6 +59,20 @@ class SignupForm extends Model
         ];
     }
 
+	public function attributeLabels()
+    {
+        return [
+            'username' => 'Username',
+			'place_of_birth' => 'Tempat lahir',
+			'date_of_birth' => 'Tanggal lahir',
+			'address' => 'Alamat',
+			'phone' => 'Nomor telepon',
+			'gender' => 'Jenis kelamin',
+			'education' => 'Pendidikan terakhir',
+			'occupation' => 'Pekerjaan',			
+        ];
+    }
+	
     /**
      * Signs user up.
      *
@@ -75,9 +89,36 @@ class SignupForm extends Model
 			$user->date_of_birth = $this->date_of_birth;
 			$user->place_of_birth = $this->place_of_birth;
 			$user->address = $this->address;
-			$user->gender = $this->gender;
+			if ($this->gender == 0)
+				$user->gender = 'Pria';
+			else $userl->gender = 'Wanita';
 			$user->phone = $this->phone;
-			$user->education = $this->education;
+			
+			switch ($this->education) 
+			{
+				case "0":
+					$user->education = "SD";
+					break;
+				case "1":
+					$user->education = "SMP";
+					break;
+				case "2":
+					$user->education = "SMA";
+					break;
+				case "3":
+					$user->education = "D3";
+					break;
+				case "4":
+					$user->education = "S1";
+					break;
+				case "5":
+					$user->education = "S2";
+					break;
+				case "6":
+					$user->education = "S3";
+					break;
+			}
+			
 			$user->occupation = $this->occupation;
 			
             $user->generateAuthKey();

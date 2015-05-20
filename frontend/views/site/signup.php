@@ -23,9 +23,9 @@ $this->params['breadcrumbs'][] = $this->title;
 				<?= $form->field($model, 'place_of_birth') ?>
 				<?= $form->field($model, 'date_of_birth') ?>
 				<?= $form->field($model, 'address') ?>
-				<?= $form->field($model, 'gender')->dropDownList(['Pria','Wanita'], ['prompt'=>'Jenis kelamin']) ?>
+				<?= $form->field($model, 'gender')->dropDownList(['Pria','Wanita'], ['prompt'=>'Pilih gender']) ?>
 				<?= $form->field($model, 'phone') ?>
-				<?= $form->field($model, 'education')->dropDownList(['SD','SMP','SMA','D3','S1','S2','S3'], ['prompt'=>'Pendidikan terakhir']) ?>
+				<?= $form->field($model, 'education')->dropDownList(['SD','SMP','SMA','D3','S1','S2','S3'], ['prompt'=>'Pilih jenjang']) ?>
 				<?= $form->field($model, 'occupation') ?>
                 <div class="form-group">
                     <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
