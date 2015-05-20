@@ -42,6 +42,10 @@ MuseoAsset::register($this);
 			$menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
 			$menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
 		} else {
+			$menuItems[] = ['label' => 'Profil', 'url' => ['user/view', 'User_ID' => Yii::$app->user->id]];
+			$menuItems[] = ['label' => 'Riwayat', 'url' => ['history/index', 'User_ID' => Yii::$app->user->id]];
+			$menuItems[] = ['label' => 'Testimoni', 'url' => ['testimony/create']];
+
 			$menuItems[] = [
 			'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
 			'url' => ['/site/logout'],

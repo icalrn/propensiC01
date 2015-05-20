@@ -5,8 +5,10 @@ namespace backend\controllers;
 use Yii;
 use common\models\Email;
 use common\models\EmailSearch;
+use common\models\ActivityLog;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
 
 /**
@@ -62,9 +64,44 @@ class EmailsController extends Controller
     {
         $model = new Email();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()))
+        {
+            $model->attachment = UploadedFile::getInstance($model, 'attachment');
+            if($model->attachment)
+            {
+                $time = time();
+                $model->attachment->saveAs('attachments/'.$time.'.'.$model->attachment->extension);
+                $model->attachment = 'attachments/'.$time.'.'.$model->attachment->extension;
+            }
+            if($model->attachment)
+            {
+                Yii::$app->mailer->compose()
+                    ->setFrom(['si.perencanaankarir@gmail.com' => 'Pusat Perencanaan Karir'])
+                    ->setTo($model->receiver_email)
+                    ->setSubject($model->subject)
+                    ->setHtmlBody($model->message)
+                    ->attach($model->attachment)
+                    ->send();
+            }
+            else
+            {
+                Yii::$app->mailer->compose()
+                    ->setFrom(['si.perencanaankarir@gmail.com' => 'Pusat Perencanaan Karir'])
+                    ->setTo($model->receiver_email)
+                    ->setSubject($model->subject)
+                    ->setHtmlBody($model->message)
+                    ->send();
+            }
+            $model->timestamp = date('Y-m-d H:i:s');
+            $model->save();
+            $activitylog = new ActivityLog();
+            $activitylog->User_ID = Yii::$app->user->id;
+            $activitylog->Timestamp = date('Y-m-d H:i:s');
+            $activitylog->Activity = 'Mengirim email';
+            $activitylog->save();
             return $this->redirect(['view', 'id' => $model->ID]);
-        } else {
+        } 
+        else {
             return $this->render('create', [
                 'model' => $model,
             ]);

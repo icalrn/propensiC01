@@ -45,6 +45,7 @@ class EmailSearch extends Email
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => ['defaultOrder' => ['timestamp'=>SORT_DESC]]
         ]);
 
         $this->load($params);

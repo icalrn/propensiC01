@@ -42,12 +42,6 @@ $this->title = 'Pusat Perencanaan Karir';
 			echo '</div></div>';
 
 		}
-		if (!Yii::$app->user->isGuest)
-		{
-			echo Html::a('<button class="btn btn-success btn-lg main-button">Beri Testimoni</button>', ['testimony/create']);
-			echo Html::a('<button class="btn btn-success btn-lg main-button">Lihat Riwayat</button>', ['history/index', 'User_ID' => Yii::$app->user->id]);
-			echo Html::a('<button class="btn btn-success btn-lg main-button">Lihat Profil</button>', ['user/view', 'User_ID' => Yii::$app->user->id]);
-		}
 		?>	
 	</div>
 </div>

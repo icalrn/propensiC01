@@ -29,7 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'subject',
             'timestamp',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+            'template' => '{view} {delete}'],
         ],
     ]); ?>
 
