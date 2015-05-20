@@ -7,6 +7,7 @@ use common\models\ActivityLog;
 use common\models\ActivityLogSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
 
 /**
@@ -37,13 +38,21 @@ class EmailController extends Controller
         $notif = "0";
         $error = " ";
         if(Yii::$app->request->post()){
-            if (empty($_POST["tujuan"])) {
+            if (empty($_POST['tujuan'])) {
                 $error = "Tujuan harus diisi";
             }else{
                 $tujuan = $_POST['tujuan'];
                 if (!filter_var($tujuan, FILTER_VALIDATE_EMAIL)) {
                     $error = "Alamat tujuan tidak valid"; 
                 }else{
+                    $subject = $_POST['subject'];
+                    $pesan = $_POST['pesan'];
+                    Yii::$app->mailer->compose()
+                        ->setFrom(['si.perencanaankarir@gmail.com' => 'Pusat Perencanaan Karir'])
+                        ->setTo($tujuan)
+                        ->setSubject($subject)
+                        ->setHtmlBody($pesan)
+                        ->send();
                     $notif = "1";
                 }
             }
