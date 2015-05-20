@@ -30,7 +30,7 @@ class SubCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Subcategory_text'], 'required'],
+            [['Subcategory_text', 'Counter'], 'required'],
             [['Counter'], 'integer'],
             [['Subcategory_text'], 'string', 'max' => 50]
         ];
@@ -43,7 +43,7 @@ class SubCategory extends \yii\db\ActiveRecord
     {
         return [
             'Subcategory_text' => 'Sub-kategori',
-            'Counter' => 'Bobot',
+            'Counter' => 'Jumlah',
         ];
     }
 
