@@ -31,7 +31,9 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function tableName()
     {
+<<<<<<< HEAD
         return 'propensi.user';
+>>>>>>> 822dced480aed554d600a5a30f2086595cdc038d
     }
 
     /**
@@ -191,5 +193,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function upgrade()
+    {
+        $this->role = 'b';
+        $this->save();
     }
 }

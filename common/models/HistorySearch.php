@@ -53,7 +53,7 @@ class HistorySearch extends History
             'query' => $query,
         ]);
 
-		$query->joinWith(['user' => function($query) { $query->from(['public.tbl_user']);}]);
+		$query->joinWith(['user' => function($query) { $query->from(['propensi.user']);}]);
 		$query->joinWith(['quiz' => function($query) { $query->from(['propensi.QUIZ']);}]);
 		$query->joinWith(['result' => function($query) { $query->from(['propensi.QUIZ_RESULT']);}]);
 		$dataProvider->sort->attributes['quiz.Title'] = [
@@ -65,8 +65,8 @@ class HistorySearch extends History
             'desc'=> ['propensi.QUIZ_RESULT.Classification_result' => SORT_DESC],
         ];
 		$dataProvider->sort->attributes['username'] = [
-            'asc' => ['public.tbl_user.username' => SORT_ASC],
-            'desc'=> ['public.tbl_user.username' => SORT_DESC],
+            'asc' => ['propensi.user.username' => SORT_ASC],
+            'desc'=> ['propensi.user.username' => SORT_DESC],
         ];
 		
         //$this->load($params);

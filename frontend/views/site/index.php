@@ -42,12 +42,10 @@ $this->title = 'Pusat Perencanaan Karir';
 			echo '</div></div>';
 
 		}
-		echo '<p>';
 		echo Html::a('<button class="btn btn-success btn-lg main-button">Beri Testimoni</button>', ['testimony/create']);
-		echo '</p>';
-		echo '<p>';
 		echo Html::a('<button class="btn btn-success btn-lg main-button">Lihat Riwayat</button>', ['history/index', 'User_ID' => Yii::$app->user->id]);
-		echo '</p>';
 		?>	
 	</div>
+</div>
+<div class="container" id="testimonies">
 </div>
