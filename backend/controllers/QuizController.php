@@ -16,6 +16,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\data\Pagination;
 
 /**
  * QuizController implements the CRUD actions for Quiz model.
@@ -93,8 +94,12 @@ class QuizController extends Controller
     public function actionCreate()
     {
         $model = new Quiz();
-        $question = Question::find()->all();
+        $searchModel = new QuestionSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        //$question = Question::find()->all();
         $listData = ArrayHelper::map(Question::find()->asArray()->all(), 'Question_ID', 'Question_text');
+        //$pages = new Pagination(['totalCount' => count($query)]);
+        //$listData = $query->offset($pages->offset)->limit($pages->limit)->all();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $activitylog = new ActivityLog();
@@ -102,11 +107,14 @@ class QuizController extends Controller
             $activitylog->Timestamp = date('Y-m-d H:i:s');
             $activitylog->Activity = 'Membuat kuesioner baru';
             $activitylog->save();
+
             return $this->redirect(['view', 'id' => $model->Quiz_ID]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'question' => $question,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+               // 'question' => $question,
                 'listData' => $listData,
             ]);
         }

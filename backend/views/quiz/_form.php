@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Quiz */
@@ -18,7 +19,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'flag')->dropDownList(['Tidak Aktif','Aktif'], ['prompt'=>'Pilih Status Deploy']) ?>
 
-    <?= $form->field($model, 'question_field')->checkboxList($listData, array('separator' => '<br>')) ?>
+    <?= form->field($model, 'question_field')->checkboxList($listData, array('separator' => '<br>')); ?>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\CheckboxColumn'],
+
+            'Question_text',
+            'category.Category_text',
+
+        ],
+    ]); ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Buat' : 'Ubah', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

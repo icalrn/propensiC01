@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Quiz */
@@ -16,7 +16,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
-        'question' => $question,
+        'searchModel' => $searchModel,
+        'dataProvider' => $dataProvider,
+        //'question' => $question,
         'listData' => $listData,
     ]) ?>
 
