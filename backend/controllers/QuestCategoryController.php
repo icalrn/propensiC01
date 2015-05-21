@@ -3,19 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use common\models\SubCategory;
-use common\models\SubCategorySearch;
-use common\models\CategorizationSearch;
-use common\models\Category;
+use common\models\QuestCategory;
+use common\models\QuestCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\ArrayHelper;
 
 /**
- * SubCategoryController implements the CRUD actions for SubCategory model.
+ * QuestCategoryController implements the CRUD actions for QuestCategory model.
  */
-class SubCategoryController extends Controller
+class QuestCategoryController extends Controller
 {
     public function behaviors()
     {
@@ -30,12 +27,12 @@ class SubCategoryController extends Controller
     }
 
     /**
-     * Lists all SubCategory models.
+     * Lists all QuestCategory models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new SubCategorySearch();
+        $searchModel = new QuestCategorySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,53 +42,49 @@ class SubCategoryController extends Controller
     }
 
     /**
-     * Displays a single SubCategory model.
-     * @param string $id
+     * Displays a single QuestCategory model.
+     * @param integer $Question_ID
+     * @param integer $Category_ID
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($Question_ID, $Category_ID)
     {
-        $searchModel = new CategorizationSearch();
-        $dataProvider = $searchModel->searchCategory(Yii::$app->request->queryParams, $id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'model' => $this->findModel($Question_ID, $Category_ID),
         ]);
     }
 
     /**
-     * Creates a new SubCategory model.
+     * Creates a new QuestCategory model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new SubCategory();
-        $listData=ArrayHelper::map(Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
+        $model = new QuestCategory();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->Subcategory_text]);
+            return $this->redirect(['view', 'Question_ID' => $model->Question_ID, 'Category_ID' => $model->Category_ID]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'listData' => $listData,
             ]);
         }
     }
 
     /**
-     * Updates an existing SubCategory model.
+     * Updates an existing QuestCategory model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
+     * @param integer $Question_ID
+     * @param integer $Category_ID
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($Question_ID, $Category_ID)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($Question_ID, $Category_ID);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->Subcategory_text]);
+            return $this->redirect(['view', 'Question_ID' => $model->Question_ID, 'Category_ID' => $model->Category_ID]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -100,28 +93,30 @@ class SubCategoryController extends Controller
     }
 
     /**
-     * Deletes an existing SubCategory model.
+     * Deletes an existing QuestCategory model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     * @param integer $Question_ID
+     * @param integer $Category_ID
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete($Question_ID, $Category_ID)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($Question_ID, $Category_ID)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the SubCategory model based on its primary key value.
+     * Finds the QuestCategory model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
-     * @return SubCategory the loaded model
+     * @param integer $Question_ID
+     * @param integer $Category_ID
+     * @return QuestCategory the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($Question_ID, $Category_ID)
     {
-        if (($model = SubCategory::findOne($id)) !== null) {
+        if (($model = QuestCategory::findOne(['Question_ID' => $Question_ID, 'Category_ID' => $Category_ID])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

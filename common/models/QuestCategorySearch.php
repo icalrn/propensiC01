@@ -5,12 +5,12 @@ namespace common\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Categorization;
+use common\models\QuestCategory;
 
 /**
- * CategorizationSearch represents the model behind the search form about `common\models\Categorization`.
+ * QuestCategorySearch represents the model behind the search form about `common\models\QuestCategory`.
  */
-class CategorizationSearch extends Categorization
+class QuestCategorySearch extends QuestCategory
 {
     public function attributes()
     {
@@ -22,8 +22,8 @@ class CategorizationSearch extends Categorization
     public function rules()
     {
         return [
-            [['Category_ID'], 'integer'],
-            [['Subcategory_text', 'category.Category_text'], 'safe'],
+            [['Question_ID', 'Category_ID'], 'integer'],
+            [['category.Category_text'], 'safe']
         ];
     }
 
@@ -45,7 +45,7 @@ class CategorizationSearch extends Categorization
      */
     public function search($params)
     {
-        $query = Categorization::find();
+        $query = QuestCategory::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -60,16 +60,16 @@ class CategorizationSearch extends Categorization
         }
 
         $query->andFilterWhere([
+            'Question_ID' => $this->Question_ID,
             'Category_ID' => $this->Category_ID,
         ]);
 
-        $query->andFilterWhere(['like', 'Subcategory_text', $this->Subcategory_text]);
-
         return $dataProvider;
     }
-    public function searchCategory($params, $id)
+
+    public function searchId($params, $id)
     {
-        $query = Categorization::find()->joinWith('category')->onCondition(['Subcategory_text' => $id]);
+        $query = QuestCategory::find()->joinWith('category')->onCondition(['Question_ID' => $id]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -89,11 +89,11 @@ class CategorizationSearch extends Categorization
         }
 
         $query->andFilterWhere([
+            'Question_ID' => $this->Question_ID,
             'Category_ID' => $this->Category_ID,
         ]);
 
-        $query->andFilterWhere(['like', 'Subcategory_text', $this->Subcategory_text])
-            ->andFilterWhere(['like', 'propensi.CATEGORY.Category_text', $this->getAttribute('category.Category_text')]);
+        $query->andFilterWhere(['like', 'propensi.CATEGORY.Category_text', $this->getAttribute('category.Category_text')]);
 
         return $dataProvider;
     }

@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Weight')->textInput() ?>
     
-    <?= $form->field($model, 'Category_ID')->dropDownList($listData, ['prompt'=>'Pilih Kategori']) ?>
+    <?= $form->field($model, 'category_field')->checkboxList($listData, array('separator' => '<br>')) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Buat' : 'Ubah', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
