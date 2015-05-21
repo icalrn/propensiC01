@@ -20,6 +20,7 @@ class SignupForm extends Model
 	public $phone;
 	public $education;
 	public $occupation;
+	public $repeat_password;
 	
 
     /**
@@ -30,16 +31,18 @@ class SignupForm extends Model
         return [
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required', 'message' => 'Username tidak boleh kosong'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Username telah digunakan'],
             ['username', 'string', 'min' => 2, 'max' => 255, 'message' => 'Panjang username tidak boleh kurang dari 2 karakter dan lebih dari 255 karakter'],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required', 'message' => 'Email tidak boleh kosong'],
             ['email', 'email', 'message' => 'Alamat email tidak valid'],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Alamat email ini telah terpakai'],
 
             ['password', 'required', 'message' => 'Password tidak boleh kosong'],
             ['password', 'string', 'min' => 6, 'message' => 'Panjang password tidak boleh kurang dari 6 karakter'],
+            ['repeat_password', 'compare', 'compareAttribute'=>'password', 'message'=>'Password tidak sama'],
+            ['repeat_password', 'required', 'message' => 'Password tidak boleh kosong'],
 			
 			['place_of_birth', 'filter', 'filter' => 'trim'],
             ['place_of_birth', 'string', 'max' => 30, 'message' => 'Panjang tempat lahir tidak boleh lebih dari 30 karakter'],

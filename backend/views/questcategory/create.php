@@ -4,19 +4,18 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Quiz */
+/* @var $model common\models\QuestCategory */
 
-$this->title = 'Membuat Kuesioner';
-$this->params['breadcrumbs'][] = ['label' => 'Kuesioner', 'url' => ['index']];
+$this->title = 'Create Quest Category';
+$this->params['breadcrumbs'][] = ['label' => 'Quest Categories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="quiz-create">
+<div class="quest-category-create">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,
-        'listData' => $listData,
     ]) ?>
 
 </div>

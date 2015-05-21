@@ -5,19 +5,19 @@ namespace common\models;
 use Yii;
 
 /**
- * This is the model class for table "propensi.CATEGORIZATION".
+ * This is the model class for table "propensi.QUEST_CATEGORY".
  *
+ * @property integer $Question_ID
  * @property integer $Category_ID
- * @property string $Subcategory_text
  */
-class Categorization extends \yii\db\ActiveRecord
+class QuestCategory extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'propensi.CATEGORIZATION';
+        return 'propensi.QUEST_CATEGORY';
     }
 
     /**
@@ -26,9 +26,8 @@ class Categorization extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Category_ID', 'Subcategory_text'], 'required'],
-            [['Category_ID'], 'integer'],
-            [['Subcategory_text'], 'string', 'max' => 50]
+            [['Question_ID', 'Category_ID'], 'required'],
+            [['Question_ID', 'Category_ID'], 'integer']
         ];
     }
 
@@ -38,11 +37,10 @@ class Categorization extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'Question_ID' => 'Question  ID',
             'Category_ID' => 'Category  ID',
-            'Subcategory_text' => 'Subcategory Text',
         ];
     }
-
     public function getCategory()
     {
         return $this->hasOne(CATEGORY::className(), ['Category_ID' => 'Category_ID']);
