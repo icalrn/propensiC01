@@ -3,17 +3,16 @@
 namespace common\models;
 
 use Yii;
-use yii\db\Query;
 
 /**
  * This is the model class for table "propensi.SUB_CATEGORY".
  *
  * @property string $Subcategory_text
  * @property integer $Counter
+ * @property integer $Subcategory_ID
  *
  * @property CATEGORIZATION[] $cATEGORIZATIONs
  * @property CATEGORY[] $categories
- * @property ANSWER[] $aNSWERs
  */
 class SubCategory extends \yii\db\ActiveRecord
 {
@@ -32,10 +31,11 @@ class SubCategory extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Subcategory_text'], 'required', 'message' => 'Subkategori tidak boleh kosong'],
-            [['Counter'], 'integer', 'message' => 'Jumlah harus berupa angka'],
-            [['Subcategory_text'], 'string', 'max' => 50, 'message' => 'Panjang subkategori tidak boleh lebih dari 50 karakter'],
-            [['category_field'], 'safe'],
+            [['Subcategory_text'], 'required'],
+            [['Counter'], 'integer'],
+            [['Subcategory_text'], 'string', 'max' => 50],
+            [['Subcategory_text'], 'unique'],
+            [['category_field'], 'safe']
         ];
     }
 
@@ -45,9 +45,10 @@ class SubCategory extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'Subcategory_text' => 'Sub-kategori',
-            'Counter' => 'Jumlah',
-            'category_field' => 'Daftar Kategori :',
+            'Subcategory_text' => 'Subkategori',
+            'Counter' => 'Jumlah Jawaban',
+            'Subcategory_ID' => 'Subcategory  ID',
+            'category_field' => 'Daftar Kategori :'
         ];
     }
 
@@ -56,36 +57,23 @@ class SubCategory extends \yii\db\ActiveRecord
      */
     public function getCATEGORIZATIONs()
     {
-        return $this->hasMany(CATEGORIZATION::className(), ['Subcategory_text' => 'Subcategory_text']);
+        return $this->hasMany(CATEGORIZATION::className(), ['Subcategory_ID' => 'Subcategory_ID']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCategories()
+    public function getCategory()
     {
-        return $this->hasMany(CATEGORY::className(), ['Category_ID' => 'Category_ID'])->viaTable('CATEGORIZATION', ['Subcategory_text' => 'Subcategory_text']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getANSWERs()
-    {
-        return $this->hasMany(ANSWER::className(), ['Subcategory_text' => 'Subcategory_text']);
+        return $this->hasMany(CATEGORY::className(), ['Category_ID' => 'Category_ID'])->viaTable('propensi.CATEGORIZATION', ['Subcategory_ID' => 'Subcategory_ID']);
     }
 
     public function afterSave($insert, $changedAttributes){
-        $query = new Query();
-        $query->select('Category_ID, Subcategory_text')
-            ->from('propensi.CATEGORIZATION')
-            ->where('"propensi"."CATEGORIZATION"."Subcategory_text" = "' .$this->Subcategory_text. '";');
-        $query->all()->delete();
-        //Yii::$app->db->createCommand()->delete('propensi.CATEGORIZATION', '"propensi"."CATEGORIZATION"."Subcategory_text" == "'.$this->Subcategory_text.'"')->execute();
+        Yii::$app->db->createCommand()->delete('propensi.CATEGORIZATION', '"Subcategory_ID" = '.(int) $this->Subcategory_ID)->execute();
         if ($this->category_field!=NULL){
             foreach ($this->category_field as $id) {
                 $tc = new Categorization();
-                $tc->Subcategory_text = $this->Subcategory_text;
+                $tc->Subcategory_ID = $this->Subcategory_ID;
                 $tc->Category_ID = $id;
                 $tc->save();
             }

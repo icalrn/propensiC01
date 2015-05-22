@@ -100,6 +100,7 @@ class QuizController extends Controller
         $listData = ArrayHelper::map(Question::find()->asArray()->all(), 'Question_ID', 'Question_text');
         //$pages = new Pagination(['totalCount' => count($query)]);
         //$listData = $query->offset($pages->offset)->limit($pages->limit)->all();
+        ArrayHelper::multisort($listData, ['Question_text'], [SORT_ASC]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $activitylog = new ActivityLog();

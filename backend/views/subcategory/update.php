@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 $this->title = 'Mengubah Subkategori: ' . ' ' . $model->Subcategory_text;
 $this->params['breadcrumbs'][] = ['label' => 'Subkategori', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->Subcategory_text, 'url' => ['view', 'id' => $model->Subcategory_text]];
+$this->params['breadcrumbs'][] = ['label' => $model->Subcategory_text, 'url' => ['view', 'id' => $model->Subcategory_ID]];
 $this->params['breadcrumbs'][] = 'Ubah';
 ?>
 <div class="sub-category-update">
@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = 'Ubah';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'listData' => $listData,
     ]) ?>
 
 </div>

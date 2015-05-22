@@ -8,9 +8,13 @@ use common\models\Category;
 use common\models\CategorySearch;
 use common\models\QuestionSearch;
 use common\models\ActivityLog;
+use common\models\QuestCategorySearch;
+use common\models\CategorizationSearch;
+use common\models\SubCategory;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * CategoryController implements the CRUD actions for Category model.
@@ -65,13 +69,17 @@ class CategoryController extends Controller
      */
     public function actionView($id)
     {
-        $searchModel = new QuestionSearch();
-        $dataProvider = $searchModel->searchId(Yii::$app->request->queryParams, $id);
+        $searchModelQuestion = new QuestCategorySearch();
+        $dataProviderQuestion = $searchModelQuestion->searchQuestion(Yii::$app->request->queryParams, $id);
+        $searchModelSubcategory = new CategorizationSearch();
+        $dataProviderSubcategory = $searchModelSubcategory->searchSubCategory(Yii::$app->request->queryParams, $id);
 
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'searchModelQuestion' => $searchModelQuestion,
+            'dataProviderQuestion' => $dataProviderQuestion,
+            'searchModelSubcategory' => $searchModelSubcategory,
+            'dataProviderSubcategory' => $dataProviderSubcategory,
         ]);
     }
 
@@ -83,6 +91,7 @@ class CategoryController extends Controller
     public function actionCreate()
     {
         $model = new Category();
+        $listData=ArrayHelper::map(SubCategory::find()->asArray()->all(), 'Subcategory_ID', 'Subcategory_text');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $activitylog = new ActivityLog();
@@ -94,6 +103,7 @@ class CategoryController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'listData' => $listData,
             ]);
         }
     }
@@ -107,6 +117,8 @@ class CategoryController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $listData=ArrayHelper::map(SubCategory::find()->asArray()->all(), 'Subcategory_ID', 'Subcategory_text');
+        $model->subcategory_field = ArrayHelper::getColumn($model->getSubCategory()->asArray()->all(),'Subcategory_ID');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $activitylog = new ActivityLog();
@@ -118,6 +130,7 @@ class CategoryController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'listData' => $listData,
             ]);
         }
     }

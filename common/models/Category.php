@@ -19,6 +19,9 @@ class Category extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+
+    public $subcategory_field;
+
     public static function tableName()
     {
         return 'propensi.CATEGORY';
@@ -31,7 +34,8 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             [['Category_text'], 'required', 'message' => 'Kategori tidak boleh kosong'],
-            [['Category_text'], 'string', 'max' => 30]
+            [['Category_text'], 'string', 'max' => 30],
+            [['subcategory_field'], 'safe']
         ];
     }
 
@@ -43,6 +47,7 @@ class Category extends \yii\db\ActiveRecord
         return [
             'Category_ID' => 'Category  ID',
             'Category_text' => 'Kategori',
+            'subcategory_field' => 'Daftar Subkategori :'
         ];
     }
 
@@ -57,9 +62,9 @@ class Category extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getSubcategoryTexts()
+    public function getSubcategory()
     {
-        return $this->hasMany(SUBCATEGORY::className(), ['Subcategory_text' => 'Subcategory_text'])->viaTable('CATEGORIZATION', ['Category_ID' => 'Category_ID']);
+        return $this->hasMany(SUBCATEGORY::className(), ['Subcategory_ID' => 'Subcategory_ID'])->viaTable('propensi.CATEGORIZATION', ['Category_ID' => 'Category_ID']);
     }
 
     /**
@@ -68,5 +73,17 @@ class Category extends \yii\db\ActiveRecord
     public function getQUESTIONs()
     {
         return $this->hasMany(QUESTION::className(), ['Category_ID' => 'Category_ID']);
+    }
+
+     public function afterSave($insert, $changedAttributes){
+        Yii::$app->db->createCommand()->delete('propensi.CATEGORIZATION', '"Category_ID" = '.(int) $this->Category_ID)->execute();
+        if ($this->subcategory_field!=NULL){
+            foreach ($this->subcategory_field as $id) {
+                $tc = new Categorization();
+                $tc->Category_ID = $this->Category_ID;
+                $tc->Subcategory_ID = $id;
+                $tc->save();
+            }
+        }
     }
 }

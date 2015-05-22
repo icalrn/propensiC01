@@ -67,7 +67,7 @@ class QuestCategorySearch extends QuestCategory
         return $dataProvider;
     }
 
-    public function searchId($params, $id)
+    public function searchCategory($params, $id)
     {
         $query = QuestCategory::find()->joinWith('category')->onCondition(['Question_ID' => $id]);
 
@@ -94,6 +94,37 @@ class QuestCategorySearch extends QuestCategory
         ]);
 
         $query->andFilterWhere(['like', 'propensi.CATEGORY.Category_text', $this->getAttribute('category.Category_text')]);
+
+        return $dataProvider;
+    }
+
+    public function searchQuestion($params, $id)
+    {
+        $query = QuestCategory::find()->joinWith('question')->onCondition(['Category_ID' => $id]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $dataProvider->sort->attributes['question.Question_text'] = [
+            'asc' => ['propensi.QUESTION.Question_text' => SORT_ASC],
+            'desc'=> ['propensi.QUESTION.Question_text' => SORT_DESC],
+        ];
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'Question_ID' => $this->Question_ID,
+            'Category_ID' => $this->Category_ID,
+        ]);
+
+        $query->andFilterWhere(['like', 'propensi.QUESTION.Question_text', $this->getAttribute('questions.Question_text')]);
 
         return $dataProvider;
     }
