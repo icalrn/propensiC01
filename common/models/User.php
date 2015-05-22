@@ -36,7 +36,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function tableName()
     {
-        return '{{%propensi.user}}';
+        return 'propensi.user';
     }
 
     /**
@@ -61,13 +61,46 @@ class User extends ActiveRecord implements IdentityInterface
 
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+			
+			['email', 'filter', 'filter' => 'trim'],
+            ['email', 'required', 'message' => 'Email tidak boleh kosong'],
+            ['email', 'email', 'message' => 'Alamat email tidak valid'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+			
+			['place_of_birth', 'filter', 'filter' => 'trim'],
+            ['place_of_birth', 'string', 'max' => 30, 'message' => 'Panjang tempat lahir tidak boleh lebih dari 30 karakter'],
+			
+			['date_of_birth', 'filter', 'filter' => 'trim'],
+            ['date_of_birth', 'date', 'format' => 'yyyy-M-d', 'message' => 'Tanggal lahir dengan format yyyy-M-d'],
+			
+			['address', 'filter', 'filter' => 'trim'],
+            ['address', 'string', 'max' => 50, 'message' => 'Panjang alamat tidak boleh lebih dari 50 karakter'],
+			
+			['phone', 'filter', 'filter' => 'trim'],
+            ['phone', 'string', 'max' => 13, 'message' => 'Panjang nomor telepon tidak boleh lebih dari 13 karakter'],
+			
+			['gender', 'filter', 'filter' => 'trim'],
+            ['gender', 'string', 'max' => 6],
+			
+			['education', 'filter', 'filter' => 'trim'],
+            ['education', 'string', 'max' => 4],
+			
+			['occupation', 'filter', 'filter' => 'trim'],
+            ['occupation', 'string', 'max' => 30, 'message' => 'Panjang pekerjaan tidak boleh lebih dari 30 karakter'],
         ];
     }
 
     public function attributeLabels()
     {
         return [
-            'username' => 'Username'
+            'username' => 'Username',
+			'place_of_birth' => 'Tempat lahir',
+			'date_of_birth' => 'Tanggal lahir',
+			'address' => 'Alamat',
+			'phone' => 'Nomor telepon',
+			'gender' => 'Jenis kelamin',
+			'education' => 'Pendidikan terakhir',
+			'occupation' => 'Pekerjaan',			
         ];
     }
 
@@ -202,9 +235,6 @@ class User extends ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
-    /**
-    *** RBAC methods
-    ***/
     public function upgrade()
     {
         $this->role = self::ROLE_ADMIN;

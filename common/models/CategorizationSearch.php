@@ -12,6 +12,10 @@ use common\models\Categorization;
  */
 class CategorizationSearch extends Categorization
 {
+    public function attributes()
+    {
+        return array_merge(parent::attributes(), ['category.Category_text']);
+    }
     /**
      * @inheritdoc
      */
@@ -19,7 +23,7 @@ class CategorizationSearch extends Categorization
     {
         return [
             [['Category_ID'], 'integer'],
-            [['Subcategory_text'], 'safe'],
+            [['Subcategory_text', 'category.Category_text'], 'safe'],
         ];
     }
 
@@ -60,6 +64,36 @@ class CategorizationSearch extends Categorization
         ]);
 
         $query->andFilterWhere(['like', 'Subcategory_text', $this->Subcategory_text]);
+
+        return $dataProvider;
+    }
+    public function searchCategory($params, $id)
+    {
+        $query = Categorization::find()->joinWith('category')->onCondition(['Subcategory_text' => $id]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $dataProvider->sort->attributes['category.Category_text'] = [
+            'asc' => ['propensi.CATEGORY.Category_text' => SORT_ASC],
+            'desc'=> ['propensi.CATEGORY.Category_text' => SORT_DESC],
+        ];
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'Category_ID' => $this->Category_ID,
+        ]);
+
+        $query->andFilterWhere(['like', 'Subcategory_text', $this->Subcategory_text])
+            ->andFilterWhere(['like', 'propensi.CATEGORY.Category_text', $this->getAttribute('category.Category_text')]);
 
         return $dataProvider;
     }

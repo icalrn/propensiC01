@@ -9,6 +9,7 @@ use common\models\User;
 use common\models\QuestionSearch;
 use common\models\Category;
 use common\models\ActivityLog;
+use common\models\QuestCategorySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -78,10 +79,13 @@ class QuestionController extends Controller
      */
     public function actionView($id)
     {
-        $categorytext = Question::find()->joinWith('category')->onCondition(['Question_ID' => $id]);
+        $searchModel = new QuestCategorySearch();
+        $dataProvider = $searchModel->searchId(Yii::$app->request->queryParams, $id);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'categorytext' => $categorytext,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -120,6 +124,7 @@ class QuestionController extends Controller
     {
         $model = $this->findModel($id);
         $listData=ArrayHelper::map(Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
+        $model->category_field = ArrayHelper::getColumn($model->getCategory()->asArray()->all(),'Category_ID');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $activitylog = new ActivityLog();

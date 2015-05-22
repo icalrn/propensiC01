@@ -54,8 +54,8 @@ class ActivityLogSearch extends ActivityLog
         ]);
 
         $dataProvider->sort->attributes['user.username'] = [
-            'asc' => ['public.user.username' => SORT_ASC],
-            'desc'=> ['public.user.username' => SORT_DESC],
+            'asc' => ['propensi.user.username' => SORT_ASC],
+            'desc'=> ['propensi.user.username' => SORT_DESC],
         ];
 
         $this->load($params);
@@ -72,7 +72,7 @@ class ActivityLogSearch extends ActivityLog
         ]);
 
         $query->andFilterWhere(['like', 'Activity', $this->Activity])
-            ->andFilterWhere(['like', 'public.user.username', $this->getAttribute('user.username')]);
+            ->andFilterWhere(['like', 'propensi.user.username', $this->getAttribute('user.username')]);
 
         return $dataProvider;
     }

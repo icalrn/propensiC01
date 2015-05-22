@@ -27,7 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'Question_text',
             'Weight',
-            'category.Category_text',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

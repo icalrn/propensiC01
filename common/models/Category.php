@@ -30,7 +30,7 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Category_text'], 'required'],
+            [['Category_text'], 'required', 'message' => 'Kategori tidak boleh kosong'],
             [['Category_text'], 'string', 'max' => 30]
         ];
     }

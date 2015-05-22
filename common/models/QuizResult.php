@@ -30,10 +30,12 @@ class QuizResult extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Quiz_ID', 'Classification_result', 'Result_text'], 'required'],
+            [['Classification_result'], 'required', 'message' => 'Hasil klasifikasi tidak boleh kosong'],
+            [['Quiz_ID'], 'required', 'message' => 'Kuis tidak boleh kosong'],
+            [['Result_text'], 'required', 'message' => 'Keterangan tidak boleh kosong'],
             [['Quiz_ID'], 'integer'],
             [['Result_text'], 'string'],
-            [['Classification_result'], 'string', 'max' => 20]
+            [['Classification_result'], 'string', 'max' => 20, 'message' => 'Panjang hasil klasifikasi tidak boleh lebih dari 20 karakter']
         ];
     }
 

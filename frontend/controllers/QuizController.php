@@ -8,6 +8,8 @@ use common\models\Question;
 use common\models\QuizContent;
 use common\models\ActivityLog;
 use common\models\History;
+use common\models\Subcategory;
+use yii\helpers\ArrayHelper;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -55,15 +57,40 @@ class QuizController extends Controller
         $quizID = $id;
         $uid = Yii::$app->user->id;
         
-        foreach ($answers as $k => $jawaban) {
+
+        $listData = ArrayHelper::map(SubCategory::find()->asArray()->all(), 'Subcategory_text', 'Counter');
+        
+        foreach ($answers as $k => $jawaban) 
+        {
             $answer = new Answer();
             $answer->Quiz_ID = $id;
             $answer->User_ID = $uid;
             $answer->Timestamp = date('Y-m-d H:i:s');
             $answer->Question_ID = $k;
             $answer->Answer_text = $jawaban;
-            $answer->Subcategory_text = 'Pekerjaan';
+            $answer->Subcategory_text = "Uncategorized";
             $answer->save();
+
+            $coba = explode(" ",$jawaban);
+            for ($x = 0; $x < count($coba); $x++)
+            {
+                $temp = "";
+                for ($y = $x; ($y + $x) < count($coba); $y++)
+                {
+                    $temp = $temp." ".$coba[$y];
+                    foreach ($listData as $subcategory => $counter)
+                    {
+                        if(strtolower(trim($temp)) == strtolower(trim($subcategory))) 
+                        {
+                            $answer->Subcategory_text = $subcategory; 
+                            $submodel = SubCategory::findOne($subcategory);
+                            $submodel->Counter = $submodel->Counter+1;
+                            $submodel->save();
+                            $answer->save();
+                        }
+                    }
+                }
+            }
         }
         return $this->render('submit');
     }

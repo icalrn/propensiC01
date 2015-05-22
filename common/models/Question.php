@@ -18,6 +18,7 @@ use Yii;
  */
 class Question extends \yii\db\ActiveRecord
 {
+    public $category_field;
     /**
      * @inheritdoc
      */
@@ -32,9 +33,10 @@ class Question extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Question_text', 'Category_ID'], 'required'],
-            [['Weight', 'Category_ID'], 'integer'],
-            [['Question_text'], 'string', 'max' => 100]
+            [['Question_text'], 'required', 'message' => 'Pertanyaan tidak boleh kosong'],
+            [['Weight'], 'integer', 'message' => 'Bobot harus berupa angka'],
+            [['Question_text'], 'string', 'max' => 100, 'message' => 'Panjang pertanyaan tidak boleh lebih dari 100 karakter'],
+            [['category_field'], 'safe'],
         ];
     }
 
@@ -47,7 +49,7 @@ class Question extends \yii\db\ActiveRecord
             'Question_ID' => 'Question  ID',
             'Question_text' => 'Pertanyaan',
             'Weight' => 'Bobot',
-            'Category_ID' => 'Kategori',
+            'category_field' => 'Daftar Kategori :',
         ];
     }
 
@@ -77,6 +79,18 @@ class Question extends \yii\db\ActiveRecord
 
     public function getCategory()
     {
-        return $this->hasOne(CATEGORY::className(),['Category_ID' => 'Category_ID']);
+        return $this->hasMany(CATEGORY::className(), ['Category_ID' => 'Category_ID'])->viaTable('propensi.QUEST_CATEGORY', ['Question_ID' => 'Question_ID']);
+    }
+
+    public function afterSave($insert, $changedAttributes){
+        Yii::$app->db->createCommand()->delete('propensi.QUEST_CATEGORY', '"Question_ID" = '.(int) $this->Question_ID)->execute();
+        if ($this->category_field!=NULL){
+            foreach ($this->category_field as $id) {
+                $tc = new QuestCategory();
+                $tc->Question_ID = $this->Question_ID;
+                $tc->Category_ID = $id;
+                $tc->save();
+            }
+        }
     }
 }

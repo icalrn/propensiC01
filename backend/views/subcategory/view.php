@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\SubCategory */
@@ -32,5 +33,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'Counter',
         ],
     ]) ?>
+
+     <h3><?= Html::encode('Daftar Kategori') ?></h3>
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'category.Category_text',
+
+        ],
+    ]); ?><br>
 
 </div>

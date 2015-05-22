@@ -54,8 +54,8 @@ class TestimonySearch extends Testimony
         ]);
 
         $dataProvider->sort->attributes['user.username'] = [
-            'asc' => ['public.user.username' => SORT_ASC],
-            'desc'=> ['public.user.username' => SORT_DESC],
+            'asc' => ['propensi.user.username' => SORT_ASC],
+            'desc'=> ['propensi.user.username' => SORT_DESC],
         ];
 
 
@@ -73,7 +73,7 @@ class TestimonySearch extends Testimony
         ]);
 
         $query->andFilterWhere(['like', 'Testimony_text', $this->Testimony_text])
-             ->andFilterWhere(['like', 'public.user.username', $this->getAttribute('user.username')]);
+             ->andFilterWhere(['like', 'propensi.user.username', $this->getAttribute('user.username')]);
 ;
 
         return $dataProvider;

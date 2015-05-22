@@ -148,6 +148,43 @@ ALTER SEQUENCE "CATEGORY_Category_ID_seq" OWNED BY "CATEGORY"."Category_ID";
 
 
 --
+-- Name: EMAIL; Type: TABLE; Schema: propensi; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "EMAIL" (
+    "ID" integer NOT NULL,
+    receiver_email character varying(100) NOT NULL,
+    message text,
+    attachment text,
+    subject character varying(100),
+    "timestamp" timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE "EMAIL" OWNER TO postgres;
+
+--
+-- Name: EMAIL_ID_seq; Type: SEQUENCE; Schema: propensi; Owner: postgres
+--
+
+CREATE SEQUENCE "EMAIL_ID_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "EMAIL_ID_seq" OWNER TO postgres;
+
+--
+-- Name: EMAIL_ID_seq; Type: SEQUENCE OWNED BY; Schema: propensi; Owner: postgres
+--
+
+ALTER SEQUENCE "EMAIL_ID_seq" OWNED BY "EMAIL"."ID";
+
+
+--
 -- Name: HISTORY; Type: TABLE; Schema: propensi; Owner: postgres; Tablespace: 
 --
 
@@ -168,7 +205,7 @@ ALTER TABLE "HISTORY" OWNER TO postgres;
 CREATE TABLE "QUESTION" (
     "Question_ID" integer NOT NULL,
     "Question_text" character varying(100) NOT NULL,
-    "Weight" integer DEFAULT 0 NOT NULL,
+    "Weight" integer DEFAULT 0,
     "Category_ID" integer NOT NULL
 );
 
@@ -284,7 +321,7 @@ ALTER SEQUENCE "QUIZ_RESULT_Result_ID_seq" OWNED BY "QUIZ_RESULT"."Result_ID";
 
 CREATE TABLE "SUB_CATEGORY" (
     "Subcategory_text" character varying(50) NOT NULL,
-    "Counter" integer DEFAULT 0 NOT NULL
+    "Counter" integer DEFAULT 0
 );
 
 
@@ -381,7 +418,7 @@ CREATE TABLE "user" (
     date_of_birth date,
     place_of_birth character varying(30),
     address character varying(50),
-    gender character(1),
+    gender character varying(6),
     phone character varying(13),
     education character varying(4),
     occupation character varying(30)
@@ -411,6 +448,62 @@ ALTER TABLE user_id_seq OWNER TO postgres;
 ALTER SEQUENCE user_id_seq OWNED BY "user".id;
 
 
+SET search_path = public, pg_catalog;
+
+--
+-- Name: migration; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE migration (
+    version character varying(180) NOT NULL,
+    apply_time integer
+);
+
+
+ALTER TABLE migration OWNER TO postgres;
+
+--
+-- Name: user; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE "user" (
+    id integer NOT NULL,
+    username character varying(255) NOT NULL,
+    auth_key character varying(32) NOT NULL,
+    password_hash character varying(255) NOT NULL,
+    password_reset_token character varying(255),
+    email character varying(255) NOT NULL,
+    status smallint DEFAULT 10 NOT NULL,
+    created_at integer NOT NULL,
+    updated_at integer NOT NULL
+);
+
+
+ALTER TABLE "user" OWNER TO postgres;
+
+--
+-- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE user_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE user_id_seq OWNER TO postgres;
+
+--
+-- Name: user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE user_id_seq OWNED BY "user".id;
+
+
+SET search_path = propensi, pg_catalog;
+
 --
 -- Name: User_ID; Type: DEFAULT; Schema: propensi; Owner: postgres
 --
@@ -423,6 +516,13 @@ ALTER TABLE ONLY "ACTIVITY_LOG" ALTER COLUMN "User_ID" SET DEFAULT nextval('"ACT
 --
 
 ALTER TABLE ONLY "CATEGORY" ALTER COLUMN "Category_ID" SET DEFAULT nextval('"CATEGORY_Category_ID_seq"'::regclass);
+
+
+--
+-- Name: ID; Type: DEFAULT; Schema: propensi; Owner: postgres
+--
+
+ALTER TABLE ONLY "EMAIL" ALTER COLUMN "ID" SET DEFAULT nextval('"EMAIL_ID_seq"'::regclass);
 
 
 --
@@ -460,6 +560,17 @@ ALTER TABLE ONLY "USER" ALTER COLUMN "ID" SET DEFAULT nextval('"USER_ID_seq"'::r
 ALTER TABLE ONLY "user" ALTER COLUMN id SET DEFAULT nextval('user_id_seq'::regclass);
 
 
+SET search_path = public, pg_catalog;
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY "user" ALTER COLUMN id SET DEFAULT nextval('user_id_seq'::regclass);
+
+
+SET search_path = propensi, pg_catalog;
+
 --
 -- Data for Name: ACTIVITY_LOG; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
@@ -475,6 +586,45 @@ INSERT INTO "ACTIVITY_LOG" VALUES (5, '2015-05-11 09:03:45', 'Membuat kuesioner 
 INSERT INTO "ACTIVITY_LOG" VALUES (5, '2015-05-11 09:07:22', 'Mengisi kuesioner');
 INSERT INTO "ACTIVITY_LOG" VALUES (2, '2015-05-11 09:14:32', 'Mengisi kuesioner');
 INSERT INTO "ACTIVITY_LOG" VALUES (6, '2015-05-20 09:18:24', 'Melakukan registrasi');
+INSERT INTO "ACTIVITY_LOG" VALUES (6, '2015-05-20 10:18:39', 'Login ke dalam sistem');
+INSERT INTO "ACTIVITY_LOG" VALUES (6, '2015-05-20 10:26:16', 'Login ke dalam sistem');
+INSERT INTO "ACTIVITY_LOG" VALUES (6, '2015-05-20 10:27:57', 'Login ke dalam sistem');
+INSERT INTO "ACTIVITY_LOG" VALUES (6, '2015-05-20 19:26:19', 'Mengubah sebuah kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (6, '2015-05-20 19:27:04', 'Mengubah sebuah kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 20:08:19', 'Melakukan registrasi');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 20:37:51', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 20:38:45', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 20:42:27', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 20:44:38', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 20:47:24', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 20:47:58', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 20:48:30', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 20:49:33', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 20:50:05', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 20:50:33', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 20:51:15', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 20:52:17', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:04:03', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:06:02', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:06:32', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:06:55', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:08:28', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:10:26', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:11:36', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:21:48', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:22:32', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:23:46', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:27:25', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:28:05', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:28:59', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:30:12', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:32:07', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:35:48', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:36:30', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-20 21:38:44', 'Mengisi kuesioner');
+INSERT INTO "ACTIVITY_LOG" VALUES (12, '2015-05-20 22:56:41', 'Melakukan registrasi');
+INSERT INTO "ACTIVITY_LOG" VALUES (13, '2015-05-20 22:59:05', 'Melakukan registrasi');
+INSERT INTO "ACTIVITY_LOG" VALUES (14, '2015-05-20 23:02:54', 'Melakukan registrasi');
 
 
 --
@@ -609,17 +759,24 @@ INSERT INTO "ANSWER" VALUES (2, 1, 1, '2015-04-23 09:08:12', 'hahaha', 'Pekerjaa
 INSERT INTO "ANSWER" VALUES (2, 1, 2, '2015-04-23 09:08:12', 'hihihi', 'Pekerjaan');
 INSERT INTO "ANSWER" VALUES (2, 1, 3, '2015-04-23 09:08:12', 'huhuhu', 'Pekerjaan');
 INSERT INTO "ANSWER" VALUES (2, 1, 5, '2015-04-23 09:08:12', 'hehehe', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (4, 1, 1, '2015-05-11 08:20:50', 'lalala', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (4, 1, 2, '2015-05-11 08:20:50', 'yeyeye', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (4, 1, 3, '2015-05-11 08:20:50', 'hahaha', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (4, 1, 5, '2015-05-11 08:20:50', 'huhuhu', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (5, 1, 1, '2015-05-11 09:07:22', 'TES', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (5, 1, 2, '2015-05-11 09:07:22', 'COBA', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (5, 1, 3, '2015-05-11 09:07:22', 'ASD', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (2, 1, 1, '2015-05-11 09:14:33', 'isi', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (2, 1, 2, '2015-05-11 09:14:33', 'coba', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (2, 1, 3, '2015-05-11 09:14:33', 'deh', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (2, 1, 5, '2015-05-11 09:14:33', 'lagi', 'Pekerjaan');
+INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:21:48', 'Kehidupan kami tidak teratur', 'Uncategorized');
+INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:22:32', 'kehidupan kami sangat tidak jelas', 'Uncategorized');
+INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-20 21:22:32', 'pekerjaan saya gabut', 'Uncategorized');
+INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:23:46', 'Akhir kuliah saya buruk', 'Uncategorized');
+INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-20 21:23:46', 'asdasd', 'Uncategorized');
+INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:27:25', 'qweqwe asdasd', 'Uncategorized');
+INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-20 21:27:25', '2weqeqwe qweqwe', 'Uncategorized');
+INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:28:05', 'q3e qw qsd13e', 'Uncategorized');
+INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-20 21:28:05', 'qwsd qqwd qwd', 'Uncategorized');
+INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:28:59', 'Akhir kuliah saya suram ', 'Uncategorized');
+INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-20 21:28:59', 'bolos terus', 'Uncategorized');
+INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:30:12', 'Aktivitas', 'Aktivitas');
+INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:32:07', 'Aktivitas', 'Aktivitas');
+INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:35:48', 'aktivitas', 'Uncategorized');
+INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-20 21:35:48', 'Aktivitas', 'Aktivitas');
+INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:36:30', 'Aktivitas', 'Aktivitas');
+INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:38:44', 'Aktivitas', 'Aktivitas');
+INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-20 21:38:44', 'aktivitas', 'Uncategorized');
 
 
 --
@@ -922,6 +1079,7 @@ INSERT INTO "CATEGORIZATION" VALUES (20, 'Usia produktif');
 INSERT INTO "CATEGORIZATION" VALUES (49, 'Usia produktif');
 INSERT INTO "CATEGORIZATION" VALUES (8, 'Wadah');
 INSERT INTO "CATEGORIZATION" VALUES (29, 'waktu kuliah');
+INSERT INTO "CATEGORIZATION" VALUES (27, 'Uncategorized');
 
 
 --
@@ -992,6 +1150,19 @@ SELECT pg_catalog.setval('"CATEGORY_Category_ID_seq"', 55, true);
 
 
 --
+-- Data for Name: EMAIL; Type: TABLE DATA; Schema: propensi; Owner: postgres
+--
+
+
+
+--
+-- Name: EMAIL_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
+--
+
+SELECT pg_catalog.setval('"EMAIL_ID_seq"', 1, false);
+
+
+--
 -- Data for Name: HISTORY; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
@@ -999,6 +1170,36 @@ INSERT INTO "HISTORY" VALUES (1, '2015-04-09 16:33:36', 1, 1);
 INSERT INTO "HISTORY" VALUES (4, '2015-05-11 08:20:50', 1, 1);
 INSERT INTO "HISTORY" VALUES (5, '2015-05-11 09:07:22', 1, 1);
 INSERT INTO "HISTORY" VALUES (2, '2015-05-11 09:14:33', 1, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 20:37:51', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 20:38:45', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 20:42:27', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 20:44:38', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 20:47:24', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 20:47:58', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 20:48:30', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 20:49:33', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 20:50:05', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 20:50:33', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 20:51:15', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 20:52:17', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:04:03', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:06:02', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:06:32', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:06:55', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:08:28', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:10:26', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:11:36', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:21:48', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:22:32', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:23:46', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:27:25', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:28:05', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:28:59', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:30:12', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:32:07', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:35:48', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:36:30', 3, 1);
+INSERT INTO "HISTORY" VALUES (11, '2015-05-20 21:38:44', 3, 1);
 
 
 --
@@ -1024,21 +1225,21 @@ SELECT pg_catalog.setval('"QUESTION_Question_ID_seq"', 7, true);
 -- Data for Name: QUIZ; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-INSERT INTO "QUIZ" VALUES (1, 'Kuesioner Kesiapan Karir', 'Lorem ipsum dolor sit amet', 0);
 INSERT INTO "QUIZ" VALUES (3, 'Kuesioner Tes', 'hahahaha ini cuma buat ngetes doang kok', 1);
-INSERT INTO "QUIZ" VALUES (5, 'asdjksajd', 'aaaa', 1);
+INSERT INTO "QUIZ" VALUES (1, 'Kuesioner Kesiapan Karir', 'Lorem ipsum dolor sit amet', 1);
+INSERT INTO "QUIZ" VALUES (5, 'asdjksajd', 'aaaa', 0);
 
 
 --
 -- Data for Name: QUIZ_CONTENT; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
+INSERT INTO "QUIZ_CONTENT" VALUES (3, 1);
+INSERT INTO "QUIZ_CONTENT" VALUES (3, 5);
 INSERT INTO "QUIZ_CONTENT" VALUES (1, 1);
 INSERT INTO "QUIZ_CONTENT" VALUES (1, 2);
 INSERT INTO "QUIZ_CONTENT" VALUES (1, 3);
 INSERT INTO "QUIZ_CONTENT" VALUES (1, 5);
-INSERT INTO "QUIZ_CONTENT" VALUES (3, 1);
-INSERT INTO "QUIZ_CONTENT" VALUES (3, 5);
 INSERT INTO "QUIZ_CONTENT" VALUES (5, 1);
 INSERT INTO "QUIZ_CONTENT" VALUES (5, 2);
 
@@ -1072,7 +1273,6 @@ INSERT INTO "SUB_CATEGORY" VALUES ('Akhir kuliah', 2);
 INSERT INTO "SUB_CATEGORY" VALUES ('Akhir SMA', 2);
 INSERT INTO "SUB_CATEGORY" VALUES ('Akhir SMP', 1);
 INSERT INTO "SUB_CATEGORY" VALUES ('Aktifitas Serius', 2);
-INSERT INTO "SUB_CATEGORY" VALUES ('Aktivitas', 14);
 INSERT INTO "SUB_CATEGORY" VALUES ('Aktivitas Berkesinambungan', 2);
 INSERT INTO "SUB_CATEGORY" VALUES ('Aktivitas Bermanfaat', 1);
 INSERT INTO "SUB_CATEGORY" VALUES ('Aktivitas Ekonomi', 68);
@@ -1447,6 +1647,8 @@ INSERT INTO "SUB_CATEGORY" VALUES ('Usia muda', 24);
 INSERT INTO "SUB_CATEGORY" VALUES ('Usia produktif', 8);
 INSERT INTO "SUB_CATEGORY" VALUES ('Wadah', 10);
 INSERT INTO "SUB_CATEGORY" VALUES ('waktu kuliah', 23);
+INSERT INTO "SUB_CATEGORY" VALUES ('Uncategorized', 0);
+INSERT INTO "SUB_CATEGORY" VALUES ('Aktivitas', 19);
 
 
 --
@@ -1485,20 +1687,55 @@ INSERT INTO migration VALUES ('m130524_201442_init', 1429454815);
 -- Data for Name: user; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-INSERT INTO "user" VALUES (6, 'nitto', 'djs9zDb90yyyaeDer1FC2zxua61rD48T', '$2y$13$OHyi.LX9EEkjt1B89yBQYOfjH6FRe67ZS4hJgcckDhQfQNI9cziOO', NULL, 'nitto.sahadi@ui.ac.id', 10, 1432106304, 1432106304, 'a', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO "user" VALUES (5, 'admin6', 'a7N2kbTnXPD7sNJR2NK-e_kvstrRm1AL', '$2y$13$NWfvvazizWFRqCP93yItNOq7L5oeY17Wa6/NJeiR.cAaztrtYgEf.', NULL, 'adm@in6.com', 10, 1431327752, 1431327752, 'a', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO "user" VALUES (1, 'admin', 'N36n0OjyRxFBOCtQ6EMNYyNxw9Eu9Xr2', '$2y$13$JZrTjLfGaV6F6SqDcYS0RO6eugTXw8TSQIC5tYgI5wGAr/h4lWynK', NULL, 'admin@admin.net', 10, 1429454867, 1429454867, 'a', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO "user" VALUES (2, 'admin3', 'wIhJ57QTbWjoTgxalRA_2vF31m2BAAP5', '$2y$13$/g1C6iJRbD3blI.zy2bzbOmfkzg1u8uJNUvQ6s1dkOO6u.6lileVy', NULL, 'adm@in.com', 10, 1429691385, 1429691385, 'a', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO "user" VALUES (3, 'admin4', 'Dt7fYOS8bDX6uX7O5E2u_dmIl7Fn37ZD', '$2y$13$JbJKbmK4lBXvO1fxA33l5uIUowUTf3Vp2ez51qlAdrHfUtvWifyM2', NULL, 'adm@in4.com', 10, 1431324897, 1431324897, 'a', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO "user" VALUES (4, 'admin5', 'nFfiQuG4Uk4HXs5LTmsONlHeZ4v1WiyE', '$2y$13$mNB3XuczfFAUQXOH/pYFCOJ98h7wFHj90nTe74yx3r8fy7oqbKHBy', NULL, 'adm@in5.com', 10, 1431325230, 1431325230, 'a', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO "user" VALUES (6, 'nitto', 'djs9zDb90yyyaeDer1FC2zxua61rD48T', '$2y$13$OHyi.LX9EEkjt1B89yBQYOfjH6FRe67ZS4hJgcckDhQfQNI9cziOO', NULL, 'nitto.sahadi@ui.ac.id', 10, 1432106304, 1432126295, 'b', '1991-07-02', 'cilacap', 'N/A', 'Pria', '08122090083', '2', 'Mahasiswa');
+INSERT INTO "user" VALUES (11, 'william', '6QHnIHelSbFjMrPvQMqoeNFr8VNo95VO', '$2y$13$M66F1EaJz/KRvqNZc9mms.GOQGbEXPKKFI3atYeouMzMqTQIvBP46', NULL, 'william.suwignyo@ui.ac.id', 10, 1432127299, 1432127340, 'u', NULL, 'Padang', '', 'Pria', '', 'SMA', 'Mahasiswa');
+INSERT INTO "user" VALUES (12, 'coba', 'U5BvwKiXmWUl4QBzlDK1Wsdg2zCQYqi7', '$2y$13$dQc9SxhZKBW2yfmMwN.M1uP4W8bHYqXOfZQwPoSrHz7XfyYyaqENG', NULL, 'coba@gmail.com', 10, 1432137401, 1432137401, 'u', NULL, '2000-02-12', '', 'Pria', '', '', '');
+INSERT INTO "user" VALUES (13, 'coba2', 'DS6BwdLs6qcgJgw0JqNF8tPRQyk1T3wi', '$2y$13$J0/DikiJfzThVcnduDbwgumBCwFA/EZcz.kxGqX3pCXcKSG5yED3u', NULL, 'coba2@gmail.com', 10, 1432137545, 1432137545, 'u', '2000-12-20', '', '', 'Pria', '', '', '');
+INSERT INTO "user" VALUES (14, 'coba3', 'LQCFLly27FVkh2FA8VICCg-ddgEwjr6b', '$2y$13$4i1pZ5HoYfmuoZ/CSbawY.jM/TqQky./EZBePlHgVh9xvZqjLDx4W', NULL, 'coba3@gmail.com', 10, 1432137774, 1432137774, 'u', '2000-12-20', '', '', 'Pria', '', '', '');
 
 
 --
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
+SELECT pg_catalog.setval('user_id_seq', 14, true);
+
+
+SET search_path = public, pg_catalog;
+
+--
+-- Data for Name: migration; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO migration VALUES ('m000000_000000_base', 1428937792);
+INSERT INTO migration VALUES ('m130524_201442_init', 1428937793);
+
+
+--
+-- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO "user" VALUES (1, 'coba', '0cHsaTNEAHCYm-s9gXlkyfMHXYaSU-9-', '$2y$13$afKAWACD9SY4EJAFBHCHgu60twpEC7XubutFJ.egPcX0qadJKRxhC', NULL, 'coba@gmail.com', 10, 1428937825, 1428937825);
+INSERT INTO "user" VALUES (2, 'coba2', 'doujBMuwNe7hhTlQZhNNqDnC-K382_5P', '$2y$13$W4SyXwHqv/h4gBW0GOMmb.bgWbEfGaxpCrv4AiXQ6coFk1fjcaXpq', NULL, 'coba2@gmail.com', 10, 1431093926, 1431093926);
+INSERT INTO "user" VALUES (3, 'coba3', 'clrJ9DXYe5veTECgKZUQ2grR_jv5Sc5E', '$2y$13$yaPiAzmT3H2EdmCrmEaDbOZ/zIKPgMD5q1CqoJkFeXUIZ5uNZ71PG', NULL, 'coba3@gmail.com', 10, 1431096066, 1431096066);
+INSERT INTO "user" VALUES (4, 'coba4', 'n5Gc09KTbpx2mQXglCrRoTKWQwBQ2Qy_', '$2y$13$ete0f2TYSef2wcKav3l01.yT5ai.whDwCxbYz/ckJBEp.kxuflHqy', NULL, 'coba4@gmail.com', 10, 1431320278, 1431320278);
+INSERT INTO "user" VALUES (5, 'coba5', 'phdKdVvnsAu2rBWb9cQa_MZH3AdF3g4I', '$2y$13$DDBPm2BjGGA5CNx.y4xrcODsjUM7ZgvYHYbc0YOIlJOBOVzc0Kq0y', NULL, 'coba5@gmail.com', 10, 1431323683, 1431323683);
+INSERT INTO "user" VALUES (6, 'coba6', 'AO4NyekZY6G_jADBFzRiNLcgog3Tp0Vd', '$2y$13$SgeRhUsZgTSbhk/W4vWXU.dD.DC91vjT0cgFo6y/YptSqe1Yz5x06', NULL, 'coba6@gmail.com', 10, 1431862333, 1431862333);
+
+
+--
+-- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
 SELECT pg_catalog.setval('user_id_seq', 6, true);
 
+
+SET search_path = propensi, pg_catalog;
 
 --
 -- Name: ACTIVITY_LOG_pkey; Type: CONSTRAINT; Schema: propensi; Owner: postgres; Tablespace: 
@@ -1530,6 +1767,14 @@ ALTER TABLE ONLY "CATEGORIZATION"
 
 ALTER TABLE ONLY "CATEGORY"
     ADD CONSTRAINT "CATEGORY_pkey1" PRIMARY KEY ("Category_ID");
+
+
+--
+-- Name: EMAIL_pkey; Type: CONSTRAINT; Schema: propensi; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "EMAIL"
+    ADD CONSTRAINT "EMAIL_pkey" PRIMARY KEY ("ID");
 
 
 --
@@ -1611,6 +1856,26 @@ ALTER TABLE ONLY migration
 ALTER TABLE ONLY "user"
     ADD CONSTRAINT user_pkey PRIMARY KEY (id);
 
+
+SET search_path = public, pg_catalog;
+
+--
+-- Name: migration_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY migration
+    ADD CONSTRAINT migration_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY "user"
+    ADD CONSTRAINT user_pkey PRIMARY KEY (id);
+
+
+SET search_path = propensi, pg_catalog;
 
 --
 -- Name: ACTIVITY_LOG_User_ID_fkey; Type: FK CONSTRAINT; Schema: propensi; Owner: postgres
@@ -1730,6 +1995,16 @@ ALTER TABLE ONLY "QUIZ_RESULT"
 
 ALTER TABLE ONLY "TESTIMONY"
     ADD CONSTRAINT "TESTIMONY_User_ID_fkey" FOREIGN KEY ("User_ID") REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
 --

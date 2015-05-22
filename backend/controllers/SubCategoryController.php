@@ -7,9 +7,12 @@ use yii\filters\AccessControl;
 use common\models\User;
 use common\models\SubCategory;
 use common\models\SubCategorySearch;
+use common\models\CategorizationSearch;
+use common\models\Category;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * SubCategoryController implements the CRUD actions for SubCategory model.
@@ -75,8 +78,12 @@ class SubCategoryController extends Controller
      */
     public function actionView($id)
     {
+        $searchModel = new CategorizationSearch();
+        $dataProvider = $searchModel->searchCategory(Yii::$app->request->queryParams, $id);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -88,12 +95,14 @@ class SubCategoryController extends Controller
     public function actionCreate()
     {
         $model = new SubCategory();
+        $listData=ArrayHelper::map(Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->Subcategory_text]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'listData' => $listData,
             ]);
         }
     }

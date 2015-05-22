@@ -42,4 +42,9 @@ class Categorization extends \yii\db\ActiveRecord
             'Subcategory_text' => 'Subcategory Text',
         ];
     }
+
+    public function getCategory()
+    {
+        return $this->hasOne(CATEGORY::className(), ['Category_ID' => 'Category_ID']);
+    }
 }
