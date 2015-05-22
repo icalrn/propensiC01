@@ -6,7 +6,7 @@ use yii\widgets\ActiveForm;
 $this->title = $quizModel->Title;
 ?>
 
-<div class="quiz-wrapper">
+<div class="inset-wrapper">
 	<div id="quizheader">
 		<div class="row">
 			<div class="col-md-3 text-right" id="header-logo">

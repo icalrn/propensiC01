@@ -6,16 +6,18 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
 
-$this->title = $model->username;
+$this->title = 'Profil';
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="container">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="inset-wrapper">
+    <h1 class="MuseoSlab-500 header-text"><?= Html::encode($this->title) ?></h1>
+    <?= Html::a('Perbarui', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+    <hr>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        
     </p>
 
     <?= DetailView::widget([
@@ -33,5 +35,5 @@ $this->params['breadcrumbs'][] = $this->title;
             'occupation',
         ],
     ]) ?>
-
+</div>
 </div>
