@@ -69,6 +69,7 @@ class SubCategory extends \yii\db\ActiveRecord
     }
 
     public function afterSave($insert, $changedAttributes){
+
         Yii::$app->db->createCommand()->delete('propensi.CATEGORIZATION', '"Subcategory_ID" = '.(int) $this->Subcategory_ID)->execute();
         if ($this->category_field!=NULL){
             foreach ($this->category_field as $id) {
