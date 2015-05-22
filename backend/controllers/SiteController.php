@@ -6,6 +6,7 @@ use common\models\User;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use common\models\LoginForm;
+use common\models\ActivityLog;
 use yii\filters\VerbFilter;
 use yii\data\SqlDataProvider;
 
@@ -101,6 +102,11 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            $activitylog = new ActivityLog();
+            $activitylog->User_ID = Yii::$app->user->id;
+            $activitylog->Timestamp = date('Y-m-d H:i:s');
+            $activitylog->Activity = 'Login ke dalam sistem';
+            $activitylog->save();
             return $this->goBack();
         } else {
             return $this->render('login', [
@@ -111,6 +117,11 @@ class SiteController extends Controller
 
     public function actionLogout()
     {
+        $activitylog = new ActivityLog();
+        $activitylog->User_ID = Yii::$app->user->id;
+        $activitylog->Timestamp = date('Y-m-d H:i:s');
+        $activitylog->Activity = 'Logout dari sistem';
+            $activitylog->save();
         Yii::$app->user->logout();
 
         return $this->goHome();

@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use common\models\Testimony;
 use common\models\TestimonySearch;
+use common\models\ActivityLog;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -49,6 +50,11 @@ class TestimonyController extends Controller
 		$model->User_ID = Yii::$app->user->id;
 		$model->Timestamp = date('Y-m-d H:i:s');
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $activitylog = new ActivityLog();
+            $activitylog->User_ID = Yii::$app->user->id;
+            $activitylog->Timestamp = date('Y-m-d H:i:s');
+            $activitylog->Activity = 'Mengisi testimoni';
+            $activitylog->save();
             return $this->redirect(['submit']);
         } else {
             return $this->render('create', [

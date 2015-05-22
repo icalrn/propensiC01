@@ -174,6 +174,12 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->getPrimaryKey();
     }
 
+    public function delete()
+    {
+        $this->status = 0;
+        $this->save();
+    }
+
     /**
      * @inheritdoc
      */

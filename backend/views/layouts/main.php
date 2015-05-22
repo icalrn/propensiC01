@@ -33,7 +33,8 @@ AppAsset::register($this);
 		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Lihat Testimoni</div>', ['testimony/index']) ?>
 		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Kelola email</div>', ['emails/index']) ?>
 		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Pengguna</div>', ['user/index']) ?>
-		<?= Html::a('<div class="logout-element text-right MuseoSans">'.FA::icon('sign-out').'Logout</div>', ['site/logout'], ['data-method' => 'post'])?>
+		<?= Html::a('<div class="bottom-element text-right MuseoSans">'.FA::icon('sign-out').' Logout</div>', ['site/logout'], ['data-method' => 'post'])?>
+		<?= Html::a('<div class="bottom-element text-right MuseoSans">'.FA::icon('arrow-circle-right').' Go to site</div>', ['site/logout'], ['data-method' => 'post'])?>
 		
 	</div>
 	<div id="page-wrapper">
@@ -45,11 +46,7 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
 		<?= $content ?>
-	</div>
-
-	<script type="text/javascript">
-		
-	</script>
+	</div>	
 	<?php $this->endBody() ?>
 </body>
 <?php $this->endPage() ?>

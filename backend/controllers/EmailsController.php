@@ -135,6 +135,11 @@ class EmailsController extends Controller
      */
     public function actionDelete($id)
     {
+        $activitylog = new ActivityLog();
+        $activitylog->User_ID = Yii::$app->user->id;
+        $activitylog->Timestamp = date('Y-m-d H:i:s');
+        $activitylog->Activity = 'Menghapus sebuah email';
+        $activitylog->save();
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

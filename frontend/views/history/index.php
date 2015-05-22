@@ -11,7 +11,7 @@ $this->title = 'Daftar Riwayat Hasil Kuesioner';
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-<div class="history-index">
+<div class="container">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>

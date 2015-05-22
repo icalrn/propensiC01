@@ -24,6 +24,7 @@ use yii\filters\AccessControl;
  */
 class SiteController extends Controller
 {
+
     /**
      * @inheritdoc
      */
@@ -105,11 +106,11 @@ class SiteController extends Controller
 
     public function actionLogout()
     {
-        //$activitylog = new ActivityLog();
-        //$activitylog->User_ID = Yii::$app->user->id;
-        //$activitylog->Timestamp = date('Y-m-d H:i:s');
-        //$activitylog->Activity = 'Logout dari sistem';
-        //$activitylog->save();
+        $activitylog = new ActivityLog();
+        $activitylog->User_ID = Yii::$app->user->id;
+        $activitylog->Timestamp = date('Y-m-d H:i:s');
+        $activitylog->Activity = 'Logout dari sistem';
+        $activitylog->save();
         Yii::$app->user->logout();
 
         return $this->goHome();

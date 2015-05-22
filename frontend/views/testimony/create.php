@@ -10,7 +10,7 @@ $this->title = 'Beri Testimoni';
 $this->params['breadcrumbs'][] = ['label' => 'Testimonies', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="testimony-create">
+<div class="container">
 
     <h1><?= Html::encode($this->title) ?></h1>
 	<br>

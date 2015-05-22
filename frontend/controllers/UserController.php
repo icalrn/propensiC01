@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use common\models\User;
 use common\models\UserSearch;
+use common\models\ActivityLog;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -79,6 +80,11 @@ class UserController extends Controller
 			else $model->gender = 'Wanita';
 			
 			$model->save();
+            $activitylog = new ActivityLog();
+            $activitylog->User_ID = Yii::$app->user->id;
+            $activitylog->Timestamp = date('Y-m-d H:i:s');
+            $activitylog->Activity = 'Mengubah profil';
+            $activitylog->save();
             return $this->redirect(['view', 'User_ID' => $model->id]);
         } 
 		else 
