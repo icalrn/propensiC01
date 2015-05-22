@@ -68,10 +68,10 @@ class QuizController extends Controller
             $answer->Timestamp = date('Y-m-d H:i:s');
             $answer->Question_ID = $k;
             $answer->Answer_text = $jawaban;
-            $answer->Subcategory_text = "Uncategorized";
+            $answer->Subcategory_ID = "379";
             $answer->save();
 
-            $coba = explode(" ",$jawaban);
+            /*$coba = explode(" ",$jawaban);
             for ($x = 0; $x < count($coba); $x++)
             {
                 $temp = "";
@@ -90,7 +90,7 @@ class QuizController extends Controller
                         }
                     }
                 }
-            }
+            }*/
         }
         return $this->render('submit');
     }

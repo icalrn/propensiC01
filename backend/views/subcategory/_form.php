@@ -14,8 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Subcategory_text')->textInput(['maxlength' => 50]) ?>
 
-    <?= $form->field($model, 'Counter')->textInput() ?>
-    
     <?= $form->field($model, 'category_field')->checkboxList($listData, array('separator' => '<br>')) ?>
 
     <div class="form-group">

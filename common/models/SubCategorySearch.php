@@ -19,7 +19,7 @@ class SubCategorySearch extends SubCategory
     {
         return [
             [['Subcategory_text'], 'safe'],
-            [['Counter'], 'integer'],
+            [['Counter', 'Subcategory_ID'], 'integer'],
         ];
     }
 
@@ -45,7 +45,6 @@ class SubCategorySearch extends SubCategory
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['Subcategory_text'=>SORT_ASC]]
         ]);
 
         $this->load($params);
@@ -58,6 +57,7 @@ class SubCategorySearch extends SubCategory
 
         $query->andFilterWhere([
             'Counter' => $this->Counter,
+            'Subcategory_ID' => $this->Subcategory_ID,
         ]);
 
         $query->andFilterWhere(['like', 'Subcategory_text', $this->Subcategory_text]);

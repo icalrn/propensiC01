@@ -96,7 +96,7 @@ CREATE TABLE "ANSWER" (
     "Question_ID" integer NOT NULL,
     "Timestamp" timestamp without time zone DEFAULT now() NOT NULL,
     "Answer_text" text NOT NULL,
-    "Subcategory_text" character varying(50) NOT NULL
+    "Subcategory_ID" character varying(50) NOT NULL
 );
 
 
@@ -548,52 +548,13 @@ ALTER TABLE ONLY "user" ALTER COLUMN id SET DEFAULT nextval('user_id_seq'::regcl
 -- Data for Name: ACTIVITY_LOG; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-INSERT INTO "ACTIVITY_LOG" VALUES (1, '2015-05-21 17:03:12', 'Melakukan registrasi');
-INSERT INTO "ACTIVITY_LOG" VALUES (1, '2015-05-21 17:03:34', 'Login ke dalam sistem');
-INSERT INTO "ACTIVITY_LOG" VALUES (1, '2015-05-22 12:22:49', 'Mengirim email');
-INSERT INTO "ACTIVITY_LOG" VALUES (1, '2015-05-22 13:41:23', 'Mengisi kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (1, '2015-05-22 13:42:24', 'Mengisi kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (1, '2015-05-22 13:45:00', 'Mengisi kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (2, '2015-05-21 17:07:26', 'Melakukan registrasi');
-INSERT INTO "ACTIVITY_LOG" VALUES (2, '2015-05-21 18:13:33', 'Membuat kuesioner baru');
-INSERT INTO "ACTIVITY_LOG" VALUES (2, '2015-05-21 18:25:51', 'Membuat pertanyaan baru');
-INSERT INTO "ACTIVITY_LOG" VALUES (2, '2015-05-21 18:27:16', 'Membuat pertanyaan baru');
-INSERT INTO "ACTIVITY_LOG" VALUES (2, '2015-05-21 19:34:33', 'Menghapus sebuah kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 13:55:23', 'Melakukan registrasi');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 13:57:25', 'Login ke dalam sistem');
-INSERT INTO "ACTIVITY_LOG" VALUES (1, '2015-05-22 13:58:52', 'Login ke dalam sistem');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 15:07:55', 'Login ke dalam sistem');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 15:08:08', 'Mengisi kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 18:07:29', 'Login ke dalam sistem');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 20:16:35', 'Login ke dalam sistem');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 20:47:57', 'Login ke dalam sistem');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 20:51:10', 'Membuat pertanyaan baru');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 20:52:05', 'Mengubah sebuah pertanyaan');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 20:52:38', 'Menghapus sebuah pertanyaan');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 20:53:58', 'Membuat kuesioner baru');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 20:54:48', 'Mengubah sebuah kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 20:55:11', 'Menghapus sebuah kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 20:56:16', 'Membuat kategori baru');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 20:59:43', 'Membuat kategori baru');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:02:27', 'Mengubah sebuah kategori');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:03:09', 'Menghapus sebuah kategori');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:03:16', 'Menghapus sebuah kategori');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:03:51', 'Membuat kesimpulan baru');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:04:23', 'Mengubah sebuah kesimpulan');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:04:34', 'Menghapus sebuah kesimpulan');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:05:42', 'Mengisi kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:07:52', 'Mengisi kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:08:17', 'Mengisi kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:09:18', 'Mengisi kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:11:23', 'Mengisi kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:13:09', 'Mengisi kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:15:51', 'Mengisi kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:17:32', 'Mengisi kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:18:32', 'Mengisi kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:19:18', 'Mengisi kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:19:39', 'Mengisi kuesioner');
-INSERT INTO "ACTIVITY_LOG" VALUES (11, '2015-05-22 21:43:47', 'Mengisi kuesioner');
-=======
+INSERT INTO "ACTIVITY_LOG" VALUES (13, '2015-05-21 17:03:12', 'Melakukan registrasi');
+INSERT INTO "ACTIVITY_LOG" VALUES (13, '2015-05-21 17:03:34', 'Login ke dalam sistem');
+INSERT INTO "ACTIVITY_LOG" VALUES (14, '2015-05-21 17:07:26', 'Melakukan registrasi');
+INSERT INTO "ACTIVITY_LOG" VALUES (14, '2015-05-21 18:13:33', 'Membuat kuesioner baru');
+INSERT INTO "ACTIVITY_LOG" VALUES (14, '2015-05-21 18:25:51', 'Membuat pertanyaan baru');
+INSERT INTO "ACTIVITY_LOG" VALUES (14, '2015-05-21 18:27:16', 'Membuat pertanyaan baru');
+INSERT INTO "ACTIVITY_LOG" VALUES (14, '2015-05-21 19:34:33', 'Menghapus sebuah kuesioner');
 
 
 --
@@ -607,152 +568,6 @@ SELECT pg_catalog.setval('"ACTIVITY_LOG_User_ID_seq"', 5, false);
 -- Data for Name: ANSWER; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-10 18:00:00', 'Jalan menuju sukses', 'Jalan hidup');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-10 19:00:00', 'Sesuatu yang anda sukai dalam mengerjakannya dan dapat memberikan penghasilan untuk memenuhi kebutuhan harian', 'Penunjang kehidupan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-10 20:00:00', 'Proses mencapai visi diri. Didalamnya terdapat rasa senang hati menjalankannya, pengembangan diri, perbaikan siri terus menerus. Karir tidak selalu sama dengan pekerjaan. Karir dicapai dalam jangka yang panjang.', 'Aktualisasi diri');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-10 21:00:00', 'Merupakan jiwa saya', 'Jati diri');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-10 22:00:00', 'Karir adalah jalur rintisan peningkatan level dalam pekerjaan secara berhierarki vertikal', 'Jenjang pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-10 23:00:00', 'wadah untuk menyalurkan bakat, skill dan passion untuk juga kemudian di asah sehingga menjadi lebih baik.', 'Aktualisasi diri');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 00:00:00', 'Jenjang dalam pekerjaan', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 01:00:00', 'Karir adalah proses menuju pemahaman baru dalam berkarya. Tidak untuk kepuasan batin tetapi berbuat sesuatu untuk orang-orang yang dicintai.', 'Bermanfaat bagi orang lain');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 02:00:00', 'Progress atau jenjang dari pekerjaan berdasarkan prestasi dan kompetensi masing2 individu', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 03:00:00', 'Progres seseorang dalam konteks perkerjaan, dimana ia melalui tahapan/tingkat, yang bersifat hirarki. Mulai dari tingkat bawah, sampai suatu tingkat tertentu dimana perubahan tingkat padanya relevan/koheren dengan tingkat sebelumnya.', 'Jenjang pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 04:00:00', 'tahapan dalam mengembangkan diri dalam lingkup pekerjaan', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 05:00:00', 'Proses menuju sebuah pencapaian diri yang terbaik.', 'Pencapaian diri');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 06:00:00', 'karir adalah kondisi pekerjaan seseorang, dimana karir bisa dimulai dari bawah karena kemampuan atau dimulai dari mana diinginkan karena relasi/warisan', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 07:00:00', 'Jenjang dari suatu pekerjaan', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 08:00:00', 'tujuan dalam mencapai pekerjaan yang ada dalam diri individu. Mulai dari passion dalam pekerjaan, nilai yang kita miliki, dan rasa nyaman. Karier itu sendiri sudah dimiliki oleh setiap individu tanpa kecuali. Kita hanya harus mengembangkan dan mengarahkan ke mana arah tujuan karier kita nantinya.Karier juga bisa berarti cita-cita kita untuk ke depannya.', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 09:00:00', 'Karir: keningkatan sumberdaya manusia, yang mana kenaikan meningkat dari tangga awal sampai tangga kehidupan,', 'Peningkatan diri dalam kehidupan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 10:00:00', 'Jenjang dari pekerjaan', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 11:00:00', 'Jalan hidup', 'Jalan hidup');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 12:00:00', 'Jenjang dari pekerjaan', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 13:00:00', 'suatu jenjang dalam pekerjaan kita dimana yang kita harapkan adalah suatu jenjang karir yang terus meningkat', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 14:00:00', 'Suatu usaha yang dilakukan sendiri, bekerja sama, ataupun bekerja pada orang lain dengan harapan memperoleh imbalan hasil.', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 15:00:00', 'Karir adalah suatu jenjangan dalam pekerjaan. Yang bisa dijalani oleh siapa saja tanpa harus ad kriteria khusus ataupun persyaratan khusus dlm memasukinya. Misalnya ijazah, tinggi bdn dsb.', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 16:00:00', 'suatu bidang dari pekerjaan kita', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 17:00:00', 'Suatu perkembangan pada pekerjaan yang kita jalani dan kita miliki', 'Pencapaian pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 18:00:00', 'kegiatan produktif yang dilakukan individu demi kemajuan finansial dalam hidupnya', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 19:00:00', 'Cara saya mengaktualisasikan diri dan potensi yang saya miliki dan cara saya memberikan manfaat kepada masyarakat banyak', 'Aktualisasi diri');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 20:00:00', 'Karir adalah salah satu dari sekian banyak cara aktualisasi diri.', 'Aktualisasi diri');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 21:00:00', 'karir adalah suatu bidang yang membutuhkan keahlian  profesi tertentu.', 'keahlian');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 22:00:00', 'Karir adalah suatu pekerjaan yg kita lakukan d sebagian besar waktu kehidupan kita.', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-11 23:00:00', 'Karir adalah suatu pekerjaan yg kita lakukan d sebagian besar waktu kehidupan kita.', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 00:00:00', 'Profesi.', 'Profesi');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 01:00:00', 'Karir adalah jenjang dr sebuah pekerjaan', 'Jenjang pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 02:00:00', 'Jalan Yg dijalani sesuai dengan minat, dorongan, dan latar belakang penitipan.', 'Minat');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 03:00:00', 'Sarana/jalan untuk mengembangkan pekerjaan dan keterampilan', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 04:00:00', 'Karir adalah jenjang dalam suatu pekerjaan, maksudnya yaitu perkembangan dan kemajuan yang bersifat baik pada seseorang dalam pekerjaannya.', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 05:00:00', 'Dimana seseorang menyalurkan kemampuan yg ia miliki untuk kepentingan atau kebutuhan orang lain dan mendapatkan reward atasnya', 'Kompetensi');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 06:00:00', 'Karir adalah sesuatu yang harus dimiliki oleh setiap orang baik laki-laki maupun perempuan, entah itu karir yang baik atau pun yang buruk. tetapi sebagai manusia tentunya harus berusaha semaksimal mungkin untuk memiliki karir yang baik', 'Bagian penting dalam hidup');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 07:00:00', 'Karir adalah dimana suatu tingkat/nilai prestasi dari pekerjaan kita', 'Pencapaian pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 08:00:00', 'Karir adalah jenjang perjalanan pekerjaan meliputi jabatan, skill, pengetahuan akan pekerjaan yang telah ataupun yang sedang digeluti', 'Jenjang pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 09:00:00', 'Karir adalah pekerjaan yang ditempuh sesuai dengan jenjang pendidikan yang dipilih', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 10:00:00', 'Karir adalah jenis kegiatan yang dilakukan untuk dapat menopang kehidupan sekaligus mendayagunakan potensi diri', 'Aktualisasi diri');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 11:00:00', 'Pekerjaan yg memiliki jenjang peningkatan dalam waktu yg jelaa', 'Jenjang pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 12:00:00', 'Perkembangan dalam sebuah pekerjaan', 'Jenjang pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 13:00:00', 'Segala apapun jenis bidang profesi yang ditekuni dengan tujuan untuk menjadikan diri lebih baik juga mendapatkan penghasilan. Dan biasanya ada kenikmatan tersendiri disaat karir itu menjadi lebih baik atau naik tingkatannya.', 'Penunjang kehidupan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 14:00:00', 'Segala apapun jenis bidang profesi yang ditekuni dengan tujuan untuk menjadikan diri lebih baik juga mendapatkan penghasilan. Dan biasanya ada kenikmatan tersendiri disaat karir itu menjadi lebih baik atau naik tingkatannya.', 'Jenjang pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 15:00:00', 'pekerjaan utama yang benar-benar ditekuni dan dalam jangka waktu panjang', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 16:00:00', 'Karir adalah jenjang yang bisa dikejar melalui beberapa tahapan dan juga semangat dan niat', 'Jenjang pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 17:00:00', 'Pekerjaan', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 18:00:00', 'Karir ialah suatu capaian pribadi seseorang terhadap apa yg dia dia lakukan dalam suatu target, itu bisa terkait dengan pekerjaaan maupun capaian yang lain lainnya yang mana itu membanggakan dirinya sendiri.', 'Pencapaian pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 19:00:00', 'Pencapaian prestasi dalam bentuk kerja nyata yang saya minati bidangnya bisa berupa jabatan strategis atau income yg besar', 'Pencapaian pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 20:00:00', 'Sesuatu hal yang ditekuni dalam pekerjaan seseorang', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 21:00:00', 'Sebuah perjalanan yang dialami oleh seseorang dalam menggapai impian dan berkarya sesuai dengan passion yang di milikinya', 'Passion');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 22:00:00', 'bidang pekerjaan atau profesi yang dipilih seseorang dengan tingkatan tertentu.', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-12 23:00:00', 'Kesibukan dalam dunia kerja yang kita nyaman berada di dalamnya walaupun dalam kondisi tertekan sekalipun.', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-13 00:00:00', 'Sesuatu yg perlu diraih dan diperjuangkan krna saat ini adalah masa dimana perempuan tidak hanya berpangku pada suami ttp hrus lebih mandiri menghasilkan sesuatu yg mampu menyokong kehidupannya', 'Penunjang kehidupan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-13 01:00:00', 'bentuk apresiasi terhadap peningkatan kinerja seseorang', 'Apresiasi kerja');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-13 02:00:00', 'Pekerjaan yang sedang ditekuni sehingga mendapatkan hasil dan penilaian kepuasan dari diri sendiri maupun orang lain, sehingga dalam kegiatan formal sering dijadikan suatu cara untuk dapat menaikan kepercayaan diri maupun dari orang lain untuk menjadi lebih baik dari sebelumnya baik secara kualitas maupun kuantitas.', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-13 03:00:00', 'Pekerjaan yang dilakukan seseorang untuk memenuhi kebutuhan', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-13 04:00:00', 'sesuatu yang dilakukan karena didasari minat', 'Implementasi Minat');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-13 05:00:00', 'Jenjang2 / tingkatan posisi dalam pekerjaan, dimana semakin tinggi posisi kita semakin besar juga kita bakal dibayar. makanya ada orang yg bilang jenjang karir di perusahaan ini or itu bagus', 'Jenjang pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-13 06:00:00', 'karir adalah suatu jenjang atau tingkatan dalam dunia pekerjaan.', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-13 08:00:00', 'Pekerjaan seseorang yang bertahap maju untuk pekerjaannya', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-13 09:00:00', 'Karir itu, kemajuan dalam pekerjaan seseorang atau bisa juga menjadi jenjang atau acuan untuk suatu pekerjaan seseorang ke depan nya .', 'Jenjang pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-13 10:00:00', 'perkembangan dan kemajuan dalam pekerjaan seseorang.', 'Kemajuan pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-13 11:00:00', 'karir adalah suatu hal yg dijalani mulai kita menginjak anak anak sampai masa tua', 'Proses kehidupan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-13 12:00:00', 'Karir adalah suatu jenjang usaha yang kita geluti baik itu membawa hal baik (keuntungan) atau bahkan sebaliknya. Karir sendiri bisa kita tekuni sesuai apa yang kita inginkan dan apa yang bisa kita kerjakan. Contoh wirausahawan atau artis', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-13 13:00:00', 'Tingkat jabatan yang dijalani..agar mendapat tahta atau semacamnya..', 'Jenjang jabatan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-13 14:00:00', 'kerjaan', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-13 15:00:00', 'Pencapaian dari suatu pekerjaan', 'Pencapaian pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2000-11-13 16:00:00', 'Kegiatan yang menjadi identitas kita di masyarakat.', 'Jati diri');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2015-11-11 09:00:00', 'HAHAHAHAHA', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2015-11-11 09:00:10', 'hahahah', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2015-04-22 09:53:50', 'lol', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 2, '2015-04-22 09:53:50', 'rofl', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 3, '2015-04-22 09:53:50', 'rofllll', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 5, '2015-04-22 09:53:50', 'waawawa', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2015-04-22 10:04:00', 'lol', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 2, '2015-04-22 10:04:00', 'rofl', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 3, '2015-04-22 10:04:00', 'rofllll', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 5, '2015-04-22 10:04:00', 'waawawa', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2015-04-22 10:04:49', 'lol', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 2, '2015-04-22 10:04:49', 'rofl', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 3, '2015-04-22 10:04:49', 'rofllll', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 5, '2015-04-22 10:04:49', 'waawawa', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2015-04-22 10:05:51', 'lol', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 2, '2015-04-22 10:05:51', 'rofl', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 3, '2015-04-22 10:05:51', 'rofllll', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 5, '2015-04-22 10:05:51', 'waawawa', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2015-04-22 10:05:54', 'lol', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 2, '2015-04-22 10:05:54', 'rofl', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 3, '2015-04-22 10:05:54', 'rofllll', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 5, '2015-04-22 10:05:54', 'waawawa', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2015-04-22 10:07:34', 'lol', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 2, '2015-04-22 10:07:35', 'rofl', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 3, '2015-04-22 10:07:35', 'rofllll', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 5, '2015-04-22 10:07:35', 'waawawa', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2015-04-22 10:07:36', 'lol', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 2, '2015-04-22 10:07:36', 'rofl', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 3, '2015-04-22 10:07:36', 'rofllll', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 5, '2015-04-22 10:07:36', 'waawawa', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2015-04-22 10:08:58', 'lol', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 2, '2015-04-22 10:08:58', 'rofl', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 3, '2015-04-22 10:08:58', 'rofllll', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 5, '2015-04-22 10:08:58', 'waawawa', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 1, '2015-04-22 10:11:47', 'hahaha', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 2, '2015-04-22 10:11:47', 'hohoho', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 3, '2015-04-22 10:11:47', 'hiii', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (1, 1, 5, '2015-04-22 10:11:47', 'huuhuhuh', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (2, 1, 1, '2015-04-22 11:29:23', 'test1', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (2, 1, 2, '2015-04-22 11:29:23', 'test2', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (2, 1, 3, '2015-04-22 11:29:23', 'tets3', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (2, 1, 5, '2015-04-22 11:29:23', 'test4', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (2, 1, 1, '2015-04-23 09:05:47', 'hahaha', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (2, 1, 2, '2015-04-23 09:05:47', 'hihihi', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (2, 1, 3, '2015-04-23 09:05:47', 'huhuhu', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (2, 1, 5, '2015-04-23 09:05:47', 'hehehe', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (2, 1, 1, '2015-04-23 09:08:12', 'hahaha', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (2, 1, 2, '2015-04-23 09:08:12', 'hihihi', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (2, 1, 3, '2015-04-23 09:08:12', 'huhuhu', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (2, 1, 5, '2015-04-23 09:08:12', 'hehehe', 'Pekerjaan');
-INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:21:48', 'Kehidupan kami tidak teratur', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:22:32', 'kehidupan kami sangat tidak jelas', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-20 21:22:32', 'pekerjaan saya gabut', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:23:46', 'Akhir kuliah saya buruk', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-20 21:23:46', 'asdasd', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:27:25', 'qweqwe asdasd', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-20 21:27:25', '2weqeqwe qweqwe', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:28:05', 'q3e qw qsd13e', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-20 21:28:05', 'qwsd qqwd qwd', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:28:59', 'Akhir kuliah saya suram ', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-20 21:28:59', 'bolos terus', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:30:12', 'Aktivitas', 'Aktivitas');
-INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:32:07', 'Aktivitas', 'Aktivitas');
-INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:35:48', 'aktivitas', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-20 21:35:48', 'Aktivitas', 'Aktivitas');
-INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:36:30', 'Aktivitas', 'Aktivitas');
-INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-20 21:38:44', 'Aktivitas', 'Aktivitas');
-INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-20 21:38:44', 'aktivitas', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-22 21:15:51', 'saya suka indomie', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-22 21:15:51', 'pekerjaan', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-22 21:17:32', 'coba', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-22 21:17:32', 'aktiVitas', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-22 21:19:39', 'asasd', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 5, '2015-05-22 21:43:47', 'asasd', 'Uncategorized');
-INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-22 21:43:47', 'pekerjaan', 'Pekerjaan');
-=======
 
 
 --
@@ -760,13 +575,9 @@ INSERT INTO "ANSWER" VALUES (11, 3, 1, '2015-05-22 21:43:47', 'pekerjaan', 'Peke
 --
 
 INSERT INTO "CATEGORIZATION" VALUES (22, 1);
-<<<<<<< HEAD
-INSERT INTO "CATEGORIZATION" VALUES (22, 2);
-=======
 INSERT INTO "CATEGORIZATION" VALUES (21, 2);
 INSERT INTO "CATEGORIZATION" VALUES (22, 2);
 INSERT INTO "CATEGORIZATION" VALUES (21, 3);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 INSERT INTO "CATEGORIZATION" VALUES (16, 4);
 INSERT INTO "CATEGORIZATION" VALUES (16, 380);
 INSERT INTO "CATEGORIZATION" VALUES (16, 5);
@@ -847,13 +658,9 @@ INSERT INTO "CATEGORIZATION" VALUES (7, 134);
 INSERT INTO "CATEGORIZATION" VALUES (15, 135);
 INSERT INTO "CATEGORIZATION" VALUES (22, 140);
 INSERT INTO "CATEGORIZATION" VALUES (29, 140);
-<<<<<<< HEAD
-INSERT INTO "CATEGORIZATION" VALUES (22, 141);
-=======
 INSERT INTO "CATEGORIZATION" VALUES (21, 141);
 INSERT INTO "CATEGORIZATION" VALUES (22, 141);
 INSERT INTO "CATEGORIZATION" VALUES (21, 142);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 INSERT INTO "CATEGORIZATION" VALUES (46, 143);
 INSERT INTO "CATEGORIZATION" VALUES (16, 144);
 INSERT INTO "CATEGORIZATION" VALUES (31, 145);
@@ -862,10 +669,6 @@ INSERT INTO "CATEGORIZATION" VALUES (7, 146);
 INSERT INTO "CATEGORIZATION" VALUES (33, 149);
 INSERT INTO "CATEGORIZATION" VALUES (33, 150);
 INSERT INTO "CATEGORIZATION" VALUES (35, 151);
-<<<<<<< HEAD
-INSERT INTO "CATEGORIZATION" VALUES (20, 158);
-INSERT INTO "CATEGORIZATION" VALUES (22, 160);
-=======
 INSERT INTO "CATEGORIZATION" VALUES (21, 155);
 INSERT INTO "CATEGORIZATION" VALUES (21, 156);
 INSERT INTO "CATEGORIZATION" VALUES (21, 157);
@@ -874,7 +677,6 @@ INSERT INTO "CATEGORIZATION" VALUES (21, 159);
 INSERT INTO "CATEGORIZATION" VALUES (21, 160);
 INSERT INTO "CATEGORIZATION" VALUES (22, 160);
 INSERT INTO "CATEGORIZATION" VALUES (21, 161);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 INSERT INTO "CATEGORIZATION" VALUES (26, 161);
 INSERT INTO "CATEGORIZATION" VALUES (24, 162);
 INSERT INTO "CATEGORIZATION" VALUES (6, 164);
@@ -904,10 +706,7 @@ INSERT INTO "CATEGORIZATION" VALUES (4, 198);
 INSERT INTO "CATEGORIZATION" VALUES (37, 199);
 INSERT INTO "CATEGORIZATION" VALUES (12, 200);
 INSERT INTO "CATEGORIZATION" VALUES (18, 200);
-<<<<<<< HEAD
-=======
 INSERT INTO "CATEGORIZATION" VALUES (2, 203);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 INSERT INTO "CATEGORIZATION" VALUES (2, 205);
 INSERT INTO "CATEGORIZATION" VALUES (47, 206);
 INSERT INTO "CATEGORIZATION" VALUES (47, 207);
@@ -962,10 +761,7 @@ INSERT INTO "CATEGORIZATION" VALUES (22, 266);
 INSERT INTO "CATEGORIZATION" VALUES (29, 266);
 INSERT INTO "CATEGORIZATION" VALUES (26, 267);
 INSERT INTO "CATEGORIZATION" VALUES (27, 268);
-<<<<<<< HEAD
-=======
 INSERT INTO "CATEGORIZATION" VALUES (21, 269);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 INSERT INTO "CATEGORIZATION" VALUES (20, 270);
 INSERT INTO "CATEGORIZATION" VALUES (29, 271);
 INSERT INTO "CATEGORIZATION" VALUES (27, 271);
@@ -1026,18 +822,14 @@ INSERT INTO "CATEGORIZATION" VALUES (8, 320);
 INSERT INTO "CATEGORIZATION" VALUES (9, 320);
 INSERT INTO "CATEGORIZATION" VALUES (40, 324);
 INSERT INTO "CATEGORIZATION" VALUES (27, 327);
-<<<<<<< HEAD
-=======
 INSERT INTO "CATEGORIZATION" VALUES (21, 328);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 INSERT INTO "CATEGORIZATION" VALUES (27, 329);
 INSERT INTO "CATEGORIZATION" VALUES (52, 330);
 INSERT INTO "CATEGORIZATION" VALUES (51, 333);
 INSERT INTO "CATEGORIZATION" VALUES (24, 333);
-<<<<<<< HEAD
-=======
+INSERT INTO "CATEGORIZATION" VALUES (30, 335);
+INSERT INTO "CATEGORIZATION" VALUES (26, 335);
 INSERT INTO "CATEGORIZATION" VALUES (21, 336);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 INSERT INTO "CATEGORIZATION" VALUES (22, 336);
 INSERT INTO "CATEGORIZATION" VALUES (30, 337);
 INSERT INTO "CATEGORIZATION" VALUES (26, 337);
@@ -1079,22 +871,6 @@ INSERT INTO "CATEGORIZATION" VALUES (49, 376);
 INSERT INTO "CATEGORIZATION" VALUES (8, 377);
 INSERT INTO "CATEGORIZATION" VALUES (29, 378);
 INSERT INTO "CATEGORIZATION" VALUES (27, 379);
-<<<<<<< HEAD
-INSERT INTO "CATEGORIZATION" VALUES (21, 2);
-INSERT INTO "CATEGORIZATION" VALUES (21, 3);
-INSERT INTO "CATEGORIZATION" VALUES (21, 141);
-INSERT INTO "CATEGORIZATION" VALUES (21, 142);
-INSERT INTO "CATEGORIZATION" VALUES (21, 155);
-INSERT INTO "CATEGORIZATION" VALUES (21, 156);
-INSERT INTO "CATEGORIZATION" VALUES (21, 157);
-INSERT INTO "CATEGORIZATION" VALUES (21, 159);
-INSERT INTO "CATEGORIZATION" VALUES (21, 160);
-INSERT INTO "CATEGORIZATION" VALUES (21, 161);
-INSERT INTO "CATEGORIZATION" VALUES (21, 269);
-INSERT INTO "CATEGORIZATION" VALUES (21, 328);
-INSERT INTO "CATEGORIZATION" VALUES (21, 336);
-=======
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 
 
 --
@@ -1161,110 +937,53 @@ INSERT INTO "CATEGORY" VALUES (55, 'Kesempatan');
 -- Name: CATEGORY_Category_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-<<<<<<< HEAD
-SELECT pg_catalog.setval('"CATEGORY_Category_ID_seq"', 57, true);
-=======
 SELECT pg_catalog.setval('"CATEGORY_Category_ID_seq"', 55, true);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 
 
 --
 -- Data for Name: EMAIL; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-<<<<<<< HEAD
-=======
-INSERT INTO "EMAIL" VALUES (1, 'william.suwignyo@gmail.com', '', 'attachments/1432271977.sql', 'sql', '12:20:05');
-INSERT INTO "EMAIL" VALUES (2, 'william.suwignyo@ui.ac.id', '', 'attachments/1432272160.sql', 'sql', '12:22:49');
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 
 
 --
 -- Name: EMAIL_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-<<<<<<< HEAD
-SELECT pg_catalog.setval('"EMAIL_ID_seq"', 3, true);
-=======
-SELECT pg_catalog.setval('"EMAIL_ID_seq"', 2, true);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
+SELECT pg_catalog.setval('"EMAIL_ID_seq"', 1, false);
 
 
 --
 -- Data for Name: HISTORY; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-INSERT INTO "HISTORY" VALUES (1, '2015-05-22 13:41:23', 3, 1);
-INSERT INTO "HISTORY" VALUES (1, '2015-05-22 13:42:24', 3, 1);
-INSERT INTO "HISTORY" VALUES (1, '2015-05-22 13:45:00', 3, 1);
-INSERT INTO "HISTORY" VALUES (11, '2015-05-22 15:08:08', 3, 1);
-<<<<<<< HEAD
-INSERT INTO "HISTORY" VALUES (11, '2015-05-22 21:05:42', 3, 1);
-INSERT INTO "HISTORY" VALUES (11, '2015-05-22 21:07:52', 3, 1);
-INSERT INTO "HISTORY" VALUES (11, '2015-05-22 21:08:17', 3, 1);
-INSERT INTO "HISTORY" VALUES (11, '2015-05-22 21:09:18', 3, 1);
-INSERT INTO "HISTORY" VALUES (11, '2015-05-22 21:11:23', 3, 1);
-INSERT INTO "HISTORY" VALUES (11, '2015-05-22 21:13:10', 3, 1);
-INSERT INTO "HISTORY" VALUES (11, '2015-05-22 21:15:51', 3, 1);
-INSERT INTO "HISTORY" VALUES (11, '2015-05-22 21:17:32', 3, 1);
-INSERT INTO "HISTORY" VALUES (11, '2015-05-22 21:18:32', 3, 1);
-INSERT INTO "HISTORY" VALUES (11, '2015-05-22 21:19:18', 3, 1);
-INSERT INTO "HISTORY" VALUES (11, '2015-05-22 21:19:39', 3, 1);
-INSERT INTO "HISTORY" VALUES (11, '2015-05-22 21:43:47', 3, 1);
-=======
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 
 
 --
 -- Data for Name: QUESTION; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-<<<<<<< HEAD
-=======
 INSERT INTO "QUESTION" VALUES (1, 'Menurut saya, karir adalah', 0);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 INSERT INTO "QUESTION" VALUES (2, 'Menurut saya , pekerjaan adalah', 0);
 INSERT INTO "QUESTION" VALUES (3, 'Menurut saya, waktu yang paling tepat untuk mulai memikirkan karir adalah', 0);
 INSERT INTO "QUESTION" VALUES (4, ' ', 0);
 INSERT INTO "QUESTION" VALUES (5, 'Orang-orang yang saya mintai pendapat/masukan sebelum saya memutuskan pilihan karir saya adalah', 0);
 INSERT INTO "QUESTION" VALUES (6, 'tes', 1);
-<<<<<<< HEAD
-INSERT INTO "QUESTION" VALUES (9, 'sadsad', 21);
-INSERT INTO "QUESTION" VALUES (10, 'Apa makanan kesukaanmu?', 4);
-INSERT INTO "QUESTION" VALUES (1, 'Menurut saya, karir adalah', 0);
-=======
 INSERT INTO "QUESTION" VALUES (8, 'tes', NULL);
 INSERT INTO "QUESTION" VALUES (9, 'sadsad', 21);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 
 
 --
 -- Name: QUESTION_Question_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-<<<<<<< HEAD
-SELECT pg_catalog.setval('"QUESTION_Question_ID_seq"', 10, true);
-=======
 SELECT pg_catalog.setval('"QUESTION_Question_ID_seq"', 9, true);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 
 
 --
 -- Data for Name: QUEST_CATEGORY; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-<<<<<<< HEAD
-INSERT INTO "QUEST_CATEGORY" VALUES (2, 1);
-INSERT INTO "QUEST_CATEGORY" VALUES (2, 5);
-INSERT INTO "QUEST_CATEGORY" VALUES (9, 1);
-INSERT INTO "QUEST_CATEGORY" VALUES (9, 7);
-INSERT INTO "QUEST_CATEGORY" VALUES (9, 8);
-INSERT INTO "QUEST_CATEGORY" VALUES (10, 3);
-INSERT INTO "QUEST_CATEGORY" VALUES (10, 4);
-INSERT INTO "QUEST_CATEGORY" VALUES (1, 1);
-INSERT INTO "QUEST_CATEGORY" VALUES (1, 2);
-INSERT INTO "QUEST_CATEGORY" VALUES (1, 3);
-=======
 INSERT INTO "QUEST_CATEGORY" VALUES (1, 1);
 INSERT INTO "QUEST_CATEGORY" VALUES (1, 2);
 INSERT INTO "QUEST_CATEGORY" VALUES (1, 3);
@@ -1276,58 +995,36 @@ INSERT INTO "QUEST_CATEGORY" VALUES (8, 4);
 INSERT INTO "QUEST_CATEGORY" VALUES (9, 1);
 INSERT INTO "QUEST_CATEGORY" VALUES (9, 7);
 INSERT INTO "QUEST_CATEGORY" VALUES (9, 8);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 
 
 --
 -- Data for Name: QUIZ; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-<<<<<<< HEAD
-INSERT INTO "QUIZ" VALUES (1, 'Kuesioner Kesiapan Karir', 'Lorem ipsum dolor sit amet', 1);
-INSERT INTO "QUIZ" VALUES (7, 'Kuesioner pencarian bakat', 'coba', NULL);
-INSERT INTO "QUIZ" VALUES (3, 'Kuesioner Tes', 'hahahaha ini cuma buat ngetes doang kok', 1);
-=======
 INSERT INTO "QUIZ" VALUES (3, 'Kuesioner Tes', 'hahahaha ini cuma buat ngetes doang kok', 1);
 INSERT INTO "QUIZ" VALUES (1, 'Kuesioner Kesiapan Karir', 'Lorem ipsum dolor sit amet', 1);
 INSERT INTO "QUIZ" VALUES (5, 'asdjksajd', 'aaaa', 0);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 
 
 --
 -- Data for Name: QUIZ_CONTENT; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-<<<<<<< HEAD
-=======
 INSERT INTO "QUIZ_CONTENT" VALUES (3, 1);
 INSERT INTO "QUIZ_CONTENT" VALUES (3, 5);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 INSERT INTO "QUIZ_CONTENT" VALUES (1, 1);
 INSERT INTO "QUIZ_CONTENT" VALUES (1, 2);
 INSERT INTO "QUIZ_CONTENT" VALUES (1, 3);
 INSERT INTO "QUIZ_CONTENT" VALUES (1, 5);
-<<<<<<< HEAD
-INSERT INTO "QUIZ_CONTENT" VALUES (7, 1);
-INSERT INTO "QUIZ_CONTENT" VALUES (7, 2);
-INSERT INTO "QUIZ_CONTENT" VALUES (7, 3);
-INSERT INTO "QUIZ_CONTENT" VALUES (3, 5);
-INSERT INTO "QUIZ_CONTENT" VALUES (3, 1);
-=======
 INSERT INTO "QUIZ_CONTENT" VALUES (5, 1);
 INSERT INTO "QUIZ_CONTENT" VALUES (5, 2);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 
 
 --
 -- Name: QUIZ_Quiz_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-<<<<<<< HEAD
-SELECT pg_catalog.setval('"QUIZ_Quiz_ID_seq"', 7, true);
-=======
 SELECT pg_catalog.setval('"QUIZ_Quiz_ID_seq"', 6, true);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 
 
 --
@@ -1341,11 +1038,7 @@ INSERT INTO "QUIZ_RESULT" VALUES (1, 1, 'Sukses', 'Selamat! Anda merupakan pengu
 -- Name: QUIZ_RESULT_Result_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-<<<<<<< HEAD
-SELECT pg_catalog.setval('"QUIZ_RESULT_Result_ID_seq"', 3, true);
-=======
 SELECT pg_catalog.setval('"QUIZ_RESULT_Result_ID_seq"', 2, true);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 
 
 --
@@ -1554,10 +1247,7 @@ INSERT INTO "SUB_CATEGORY" VALUES ('Pasangan', 18, 199);
 INSERT INTO "SUB_CATEGORY" VALUES ('Passion', 12, 200);
 INSERT INTO "SUB_CATEGORY" VALUES ('passion and salary', 1, 201);
 INSERT INTO "SUB_CATEGORY" VALUES ('passion, lingkungan, pemerintahan, ilmu', 1, 202);
-<<<<<<< HEAD
-=======
 INSERT INTO "SUB_CATEGORY" VALUES ('Pekerjaan', 89, 203);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 INSERT INTO "SUB_CATEGORY" VALUES ('pekerjaan yang gampang', 1, 204);
 INSERT INTO "SUB_CATEGORY" VALUES ('Pembelajaran kerja', 1, 205);
 INSERT INTO "SUB_CATEGORY" VALUES ('Pemenuhan Kebutuhan', 41, 206);
@@ -1689,6 +1379,7 @@ INSERT INTO "SUB_CATEGORY" VALUES ('situasi dan kondisi', 1, 331);
 INSERT INTO "SUB_CATEGORY" VALUES ('situasi kerja', 2, 332);
 INSERT INTO "SUB_CATEGORY" VALUES ('Situasional', 6, 333);
 INSERT INTO "SUB_CATEGORY" VALUES ('skill', 5, 334);
+INSERT INTO "SUB_CATEGORY" VALUES ('SMA', 54, 335);
 INSERT INTO "SUB_CATEGORY" VALUES ('SMA Akhir', 3, 336);
 INSERT INTO "SUB_CATEGORY" VALUES ('SMP', 8, 337);
 INSERT INTO "SUB_CATEGORY" VALUES ('SMP Akhir', 1, 338);
@@ -1734,17 +1425,13 @@ INSERT INTO "SUB_CATEGORY" VALUES ('Wadah', 10, 377);
 INSERT INTO "SUB_CATEGORY" VALUES ('waktu kuliah', 23, 378);
 INSERT INTO "SUB_CATEGORY" VALUES ('Uncategorized', 0, 379);
 INSERT INTO "SUB_CATEGORY" VALUES ('Aktivitas', 19, 380);
-<<<<<<< HEAD
-INSERT INTO "SUB_CATEGORY" VALUES ('Pekerjaan', 90, 203);
-=======
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 
 
 --
 -- Name: SUB_CATEGORY_Subcategory_ID_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"SUB_CATEGORY_Subcategory_ID_seq"', 383, true);
+SELECT pg_catalog.setval('"SUB_CATEGORY_Subcategory_ID_seq"', 380, true);
 
 
 --
@@ -1780,24 +1467,15 @@ INSERT INTO migration VALUES ('m130524_201442_init', 1429454815);
 -- Data for Name: user; Type: TABLE DATA; Schema: propensi; Owner: postgres
 --
 
-INSERT INTO "user" VALUES (1, 'coba', 'aGVvFQIXurbcvKXfF-J5IlHTBthbpZhN', '$2y$13$6x1GhWB5XnLNHmLJdTa.lOTnk/T77rMDaz9LA23g7JXkH4xCOhkKG', NULL, 'coba@gmail.com', 10, 1432202592, 1432272098, NULL, '', '', 'Pria', '', '', '', 0);
-INSERT INTO "user" VALUES (2, 'coba2', 'VFEeojSYt-AHxL5VRwiP7u8Tavzbd1Hm', '$2y$13$33LvzlD72WyXLfYYkV/.AOLn67OzrnrPDC1.kJ1lhQOP81aIe7n2W', NULL, 'coba2@gmail.com', 10, 1432202846, 1432202846, NULL, '', '', 'Pria', '', '', '', 0);
-<<<<<<< HEAD
-INSERT INTO "user" VALUES (11, 'nitto', 'nec9PChKliUTyZ0AXloA_zOScC6RATbP', '$2y$13$BGAStaj7IXbqFK0JZxmiJO5jws0wcOdYcmjIO3S9G0NucnJIR7Ija', NULL, 'nitto.sahadi@ui.ac.id', 10, 1432277723, 1432277723, '1991-07-02', 'Cilacap', 'n/a', 'Pria', '', 'SMA', 'mahasiswa', 20);
-=======
-INSERT INTO "user" VALUES (11, 'nitto', 'nec9PChKliUTyZ0AXloA_zOScC6RATbP', '$2y$13$BGAStaj7IXbqFK0JZxmiJO5jws0wcOdYcmjIO3S9G0NucnJIR7Ija', NULL, 'nitto.sahadi@ui.ac.id', 10, 1432277723, 1432277723, '1991-07-02', 'Cilacap', 'n/a', 'Pria', '', 'SMA', 'mahasiswa', 0);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
+INSERT INTO "user" VALUES (13, 'coba', 'aGVvFQIXurbcvKXfF-J5IlHTBthbpZhN', '$2y$13$6x1GhWB5XnLNHmLJdTa.lOTnk/T77rMDaz9LA23g7JXkH4xCOhkKG', NULL, 'coba@gmail.com', 10, 1432202592, 1432202592, NULL, '', '', 'Pria', '', '', '', 0);
+INSERT INTO "user" VALUES (14, 'coba2', 'VFEeojSYt-AHxL5VRwiP7u8Tavzbd1Hm', '$2y$13$33LvzlD72WyXLfYYkV/.AOLn67OzrnrPDC1.kJ1lhQOP81aIe7n2W', NULL, 'coba2@gmail.com', 10, 1432202846, 1432202846, NULL, '', '', 'Pria', '', '', '', 0);
 
 
 --
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: propensi; Owner: postgres
 --
 
-<<<<<<< HEAD
-SELECT pg_catalog.setval('user_id_seq', 16, true);
-=======
-SELECT pg_catalog.setval('user_id_seq', 15, true);
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
+SELECT pg_catalog.setval('user_id_seq', 14, true);
 
 
 --
@@ -1897,19 +1575,11 @@ ALTER TABLE ONLY "SUB_CATEGORY"
 
 
 --
--- Name: SUB_CATEGORY_Subcategory_text_key; Type: CONSTRAINT; Schema: propensi; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY "SUB_CATEGORY"
-    ADD CONSTRAINT "SUB_CATEGORY_Subcategory_text_key" UNIQUE ("Subcategory_text");
-
-
---
 -- Name: SUB_CATEGORY_pkey; Type: CONSTRAINT; Schema: propensi; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY "SUB_CATEGORY"
-    ADD CONSTRAINT "SUB_CATEGORY_pkey" PRIMARY KEY ("Subcategory_ID");
+    ADD CONSTRAINT "SUB_CATEGORY_pkey" PRIMARY KEY ("Subcategory_text");
 
 
 --
@@ -1937,17 +1607,6 @@ ALTER TABLE ONLY migration
 
 
 --
-<<<<<<< HEAD
--- Name: user_email_key; Type: CONSTRAINT; Schema: propensi; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY "user"
-    ADD CONSTRAINT user_email_key UNIQUE (email);
-
-
---
-=======
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 -- Name: user_pkey; Type: CONSTRAINT; Schema: propensi; Owner: postgres; Tablespace: 
 --
 
@@ -1980,6 +1639,14 @@ ALTER TABLE ONLY "ANSWER"
 
 
 --
+-- Name: ANSWER_Subcategory_text_fkey; Type: FK CONSTRAINT; Schema: propensi; Owner: postgres
+--
+
+ALTER TABLE ONLY "ANSWER"
+    ADD CONSTRAINT "ANSWER_Subcategory_text_fkey" FOREIGN KEY ("Subcategory_ID") REFERENCES "SUB_CATEGORY"("Subcategory_text") ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
 -- Name: ANSWER_User_ID_fkey; Type: FK CONSTRAINT; Schema: propensi; Owner: postgres
 --
 
@@ -2004,17 +1671,6 @@ ALTER TABLE ONLY "CATEGORIZATION"
 
 
 --
-<<<<<<< HEAD
--- Name: EMAIL_receiver_email_fkey; Type: FK CONSTRAINT; Schema: propensi; Owner: postgres
---
-
-ALTER TABLE ONLY "EMAIL"
-    ADD CONSTRAINT "EMAIL_receiver_email_fkey" FOREIGN KEY (receiver_email) REFERENCES "user"(email) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
-=======
->>>>>>> b9ed615b847e0cc78d415a9185485d573b3f1725
 -- Name: HISTORY_Quiz_ID_fkey; Type: FK CONSTRAINT; Schema: propensi; Owner: postgres
 --
 
@@ -2036,22 +1692,6 @@ ALTER TABLE ONLY "HISTORY"
 
 ALTER TABLE ONLY "HISTORY"
     ADD CONSTRAINT "HISTORY_User_ID_fkey" FOREIGN KEY ("User_ID") REFERENCES "user"(id) ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: QUEST_CATEGORY_Category_ID_fkey; Type: FK CONSTRAINT; Schema: propensi; Owner: postgres
---
-
-ALTER TABLE ONLY "QUEST_CATEGORY"
-    ADD CONSTRAINT "QUEST_CATEGORY_Category_ID_fkey" FOREIGN KEY ("Category_ID") REFERENCES "CATEGORY"("Category_ID") ON UPDATE CASCADE ON DELETE CASCADE;
-
-
---
--- Name: QUEST_CATEGORY_Question_ID_fkey; Type: FK CONSTRAINT; Schema: propensi; Owner: postgres
---
-
-ALTER TABLE ONLY "QUEST_CATEGORY"
-    ADD CONSTRAINT "QUEST_CATEGORY_Question_ID_fkey" FOREIGN KEY ("Question_ID") REFERENCES "QUESTION"("Question_ID") ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 --

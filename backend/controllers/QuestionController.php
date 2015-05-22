@@ -80,7 +80,7 @@ class QuestionController extends Controller
     public function actionView($id)
     {
         $searchModel = new QuestCategorySearch();
-        $dataProvider = $searchModel->searchId(Yii::$app->request->queryParams, $id);
+        $dataProvider = $searchModel->searchCategory(Yii::$app->request->queryParams, $id);
 
         return $this->render('view', [
             'model' => $this->findModel($id),

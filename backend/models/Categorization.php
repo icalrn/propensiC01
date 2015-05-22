@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace app\models;
 
 use Yii;
 
@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "propensi.CATEGORIZATION".
  *
  * @property integer $Category_ID
- * @property string $Subcategory_text
+ * @property integer $Subcategory_ID
  */
 class Categorization extends \yii\db\ActiveRecord
 {
@@ -27,7 +27,7 @@ class Categorization extends \yii\db\ActiveRecord
     {
         return [
             [['Category_ID', 'Subcategory_ID'], 'required'],
-            [['Category_ID', 'Subcategory_ID'], 'integer'],
+            [['Category_ID', 'Subcategory_ID'], 'integer']
         ];
     }
 
@@ -38,17 +38,7 @@ class Categorization extends \yii\db\ActiveRecord
     {
         return [
             'Category_ID' => 'Category  ID',
-            'Subcategory_ID' => 'Subcategory ID',
+            'Subcategory_ID' => 'Subcategory  ID',
         ];
-    }
-
-    public function getCategory()
-    {
-        return $this->hasOne(CATEGORY::className(), ['Category_ID' => 'Category_ID']);
-    }
-
-    public function getSubcategory()
-    {
-        return $this->hasOne(SUBCATEGORY::className(), ['Subcategory_ID' => 'Subcategory_ID']);
     }
 }

@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'email') ?>
 	<?= $form->field($model, 'place_of_birth') ?>
-	<?= $form->field($model, 'date_of_birth') ?>
+	<?= $form->field($model, 'date_of_birth')->label('Tanggal lahir (yyyy-MM-dd)') ?>
 	<?= $form->field($model, 'address') ?>
 	<?= $form->field($model, 'gender')->dropDownList(['Pria','Wanita'], ['prompt'=>'Pilih gender']) ?>
 	<?= $form->field($model, 'phone') ?>

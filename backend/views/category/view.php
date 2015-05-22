@@ -35,12 +35,24 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h3><?= Html::encode('Daftar Pertanyaan') ?></h3>
     <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        'dataProvider' => $dataProviderQuestion,
+        'filterModel' => $searchModelQuestion,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'Question_text',
+            'question.Question_text',
+
+        ],
+    ]); ?>
+
+    <h3><?= Html::encode('Daftar Subkategori') ?></h3>
+    <?= GridView::widget([
+        'dataProvider' => $dataProviderSubcategory,
+        'filterModel' => $searchModelSubcategory,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'subcategory.Subcategory_text',
 
         ],
     ]); ?>

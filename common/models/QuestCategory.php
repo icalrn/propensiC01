@@ -45,4 +45,9 @@ class QuestCategory extends \yii\db\ActiveRecord
     {
         return $this->hasOne(CATEGORY::className(), ['Category_ID' => 'Category_ID']);
     }
+
+    public function getQuestion()
+    {
+        return $this->hasOne(QUESTION::className(), ['Question_ID' => 'Question_ID']);
+    }
 }

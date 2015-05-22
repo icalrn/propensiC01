@@ -22,9 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $form->field($model, 'password')->passwordInput() ?>
                 <?= $form->field($model, 'repeat_password')->passwordInput() ?>
 				<?= $form->field($model, 'place_of_birth') ?>
-				<?= $form->field($model, 'date_of_birth') ?>
-                <?= 'masukan tanggal dengan format yyyy-m-d' ?>
-                <?= '' ?>
+				<?= $form->field($model, 'date_of_birth')->label('Tanggal lahir (yyyy-MM-dd)') ?>
 				<?= $form->field($model, 'address') ?>
 				<?= $form->field($model, 'gender')->dropDownList(['Pria','Wanita'], ['prompt'=>'Pilih gender']) ?>
 				<?= $form->field($model, 'phone') ?>
@@ -34,6 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
                 </div>
             <?php ActiveForm::end(); ?>
+
         </div>
     </div>
 </div>

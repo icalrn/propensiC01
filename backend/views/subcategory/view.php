@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Ubah', ['update', 'id' => $model->Subcategory_text], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Hapus', ['delete', 'id' => $model->Subcategory_text], [
+        <?= Html::a('Ubah', ['update', 'id' => $model->Subcategory_ID], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Hapus', ['delete', 'id' => $model->Subcategory_ID], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Apakah Anda yakin ingin menghapus subkategori ini?',
+                'confirm' => 'Apakah Anda yakin ingin menghapus subkateogri ini?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -31,10 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'Subcategory_text',
             'Counter',
+            'Subcategory_ID',
         ],
     ]) ?>
 
-     <h3><?= Html::encode('Daftar Kategori') ?></h3>
+    <h3><?= Html::encode('Daftar Kategori') ?></h3>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -44,6 +45,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'category.Category_text',
 
         ],
-    ]); ?><br>
+    ]); ?>
 
 </div>
