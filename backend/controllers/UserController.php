@@ -131,7 +131,6 @@ class UserController extends Controller
         $activitylog->Activity = 'Menghapus sebuah data user';
         $activitylog->save();
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 
