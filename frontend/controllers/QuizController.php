@@ -59,7 +59,7 @@ class QuizController extends Controller
         
 
         $listData = ArrayHelper::map(SubCategory::find()->asArray()->all(), 'Subcategory_text', 'Counter');
-        
+
         foreach ($answers as $k => $jawaban) 
         {
             $answer = new Answer();
@@ -68,10 +68,10 @@ class QuizController extends Controller
             $answer->Timestamp = date('Y-m-d H:i:s');
             $answer->Question_ID = $k;
             $answer->Answer_text = $jawaban;
-            $answer->Subcategory_ID = "379";
+            $answer->Subcategory_text = 'Uncategorized';
             $answer->save();
 
-            /*$coba = explode(" ",$jawaban);
+            $coba = explode(" ",$jawaban);
             for ($x = 0; $x < count($coba); $x++)
             {
                 $temp = "";
@@ -83,14 +83,14 @@ class QuizController extends Controller
                         if(strtolower(trim($temp)) == strtolower(trim($subcategory))) 
                         {
                             $answer->Subcategory_text = $subcategory; 
-                            $submodel = SubCategory::findOne($subcategory);
+                            $submodel = SubCategory::findByText($subcategory);
                             $submodel->Counter = $submodel->Counter+1;
                             $submodel->save();
                             $answer->save();
                         }
                     }
                 }
-            }*/
+            }
         }
         return $this->render('submit');
     }

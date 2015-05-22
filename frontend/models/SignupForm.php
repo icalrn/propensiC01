@@ -48,7 +48,7 @@ class SignupForm extends Model
             ['place_of_birth', 'string', 'max' => 30, 'message' => 'Panjang tempat lahir tidak boleh lebih dari 30 karakter'],
 			
 			['date_of_birth', 'filter', 'filter' => 'trim'],
-            ['date_of_birth', 'date', 'format' => 'yyyy-M-d', 'message' => 'Tanggal lahir dengan format yyyy-M-d'],
+            ['date_of_birth', 'date', 'format' => 'yyyy-M-d', 'message' => 'Tanggal lahir dengan format yyyy-MM-dd'],
 			
 			['address', 'filter', 'filter' => 'trim'],
             ['address', 'string', 'max' => 50, 'message' => 'Panjang alamat tidak boleh lebih dari 50 karakter'],
@@ -94,7 +94,7 @@ class SignupForm extends Model
             $user->username = $this->username;
             $user->email = $this->email;
             $user->setPassword($this->password);
-			$user->role = 'u';
+			$user->role = User::ROLE_USER;
 			$user->date_of_birth = $this->date_of_birth;
 			$user->place_of_birth = $this->place_of_birth;
 			$user->address = $this->address;

@@ -68,6 +68,11 @@ class SubCategory extends \yii\db\ActiveRecord
         return $this->hasMany(CATEGORY::className(), ['Category_ID' => 'Category_ID'])->viaTable('propensi.CATEGORIZATION', ['Subcategory_ID' => 'Subcategory_ID']);
     }
 
+     public static function findByText($Subcategory_text)
+    {
+        return static::findOne(['Subcategory_text' => $Subcategory_text]);
+    }
+
     public function afterSave($insert, $changedAttributes){
 
         Yii::$app->db->createCommand()->delete('propensi.CATEGORIZATION', '"Subcategory_ID" = '.(int) $this->Subcategory_ID)->execute();

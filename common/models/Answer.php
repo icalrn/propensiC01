@@ -30,8 +30,8 @@ class Answer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['User_ID', 'Quiz_ID', 'Question_ID', 'Timestamp', 'Answer_text', 'Subcategory_text'], 'required'],
-            [['User_ID', 'Quiz_ID', 'Question_ID', 'Subcategory_ID'], 'integer'],
+            [['User_ID', 'Quiz_ID', 'Question_ID', 'Timestamp', 'Answer_text'], 'required'],
+            [['User_ID', 'Quiz_ID', 'Question_ID'], 'integer'],
             [['Timestamp', 'Subcategory_text'], 'safe'],
             [['Answer_text'], 'string'],
         ];

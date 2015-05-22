@@ -71,7 +71,7 @@ class User extends ActiveRecord implements IdentityInterface
             ['place_of_birth', 'string', 'max' => 30, 'message' => 'Panjang tempat lahir tidak boleh lebih dari 30 karakter'],
 			
 			['date_of_birth', 'filter', 'filter' => 'trim'],
-            ['date_of_birth', 'date', 'format' => 'yyyy-M-d', 'message' => 'Tanggal lahir dengan format yyyy-M-d'],
+            ['date_of_birth', 'date', 'format' => 'yyyy-M-d', 'message' => 'Tanggal lahir dengan format yyyy-MM-dd'],
 			
 			['address', 'filter', 'filter' => 'trim'],
             ['address', 'string', 'max' => 50, 'message' => 'Panjang alamat tidak boleh lebih dari 50 karakter'],
