@@ -7,7 +7,7 @@
 }
 .sidebar-element{
 	width: 100%;
-	font-size: 14pt;
+	font-size: 12pt;
 	color:#EEE;
 	padding: 10px 20px 10px 0;
 	background-color: transparent;
@@ -63,16 +63,16 @@ a:active {
 	border-bottom: 1px #F11 solid;
 }
 
-.logout-element{
-	margin-top: 50px;
+.bottom-element{
+	margin-top: 0;
 	width: 100%;
-	font-size: 14pt;
-	color:#AAA;
+	font-size: 16pt;
+	color:#666;
 	padding: 10px 20px 10px 0;
 	transition: all .5s;
 }
 
-.logout-element:hover{
+.bottom-element:hover{
 	color: #FFF;
 }
 
