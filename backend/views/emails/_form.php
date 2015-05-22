@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'receiver_email')->textInput(['maxlength' => 100]) ?>
+    <?= $form->field($model, 'receiver_email')->dropDownList($listData, ['prompt'=>'Pilih email tujuan']) ?>
 
     <?= $form->field($model, 'subject')->textInput(['maxlength' => 100]) ?>
 
