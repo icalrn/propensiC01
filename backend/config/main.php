@@ -15,7 +15,7 @@ return [
     'components' => [
         'urlManagerFrontend' => [
             'class' => 'yii\web\urlManager',
-            'baseUrl' => 'propensi/frontend/web',
+            'baseUrl' => '/propensi/frontend/web',
             'enablePrettyUrl' => false,
             'showScriptName' => false,
         ],

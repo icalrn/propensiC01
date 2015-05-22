@@ -34,7 +34,7 @@ AppAsset::register($this);
 		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Kelola email</div>', ['emails/index']) ?>
 		<?= Html::a('<div class="sidebar-element text-right MuseoSans">Pengguna</div>', ['user/index']) ?>
 		<?= Html::a('<div class="bottom-element text-right MuseoSans">'.FA::icon('sign-out').' Logout</div>', ['site/logout'], ['data-method' => 'post'])?>
-		<?= Html::a('<div class="bottom-element text-right MuseoSans">'.FA::icon('arrow-circle-right').' Go to site</div>', ['site/logout'], ['data-method' => 'post'])?>
+		<?= Html::a('<div class="bottom-element text-right MuseoSans">'.FA::icon('arrow-circle-right').' Go to site</div>', Yii::$app->urlManagerFrontend->baseUrl)?>
 		
 	</div>
 	<div id="page-wrapper">

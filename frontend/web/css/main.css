@@ -135,24 +135,25 @@
 	color:#79BD9A;
 }
 
-.quiz-wrapper{
+.inset-wrapper{
 	margin: 50px auto 50px auto;
+	padding: 30px 30px 20px 30px;
 	border: 1px #AAA solid;
 	background-color: #FFF;
 }
 
 @media (min-width: 768px) {
-  .quiz-wrapper {
+  .inset-wrapper {
     width: 750px;
   }
 }
 @media (min-width: 992px) {
-  .quiz-wrapper {
+  .inset-wrapper {
     width: 900px;
   }
 }
 @media (min-width: 1200px) {
-  .quiz-wrapper {
+  .inset-wrapper {
     width: 900px;
   }
 }
@@ -225,8 +226,8 @@
 	font-size: 16pt;
 }
 
-#testimonies{
-	
+.header-text{
+	font-size: 36pt;
 }
 
 .login-panel{
@@ -235,4 +236,8 @@
 
 .adminbutton{
     color:#FFCC00 !important;
+}
+
+.text-bold{
+	font-weight: bold;
 }
