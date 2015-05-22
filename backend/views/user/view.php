@@ -7,7 +7,7 @@ use yii\bootstrap\Alert;
 /* @var $this yii\web\View */
 /* @var $model common\models\User */
 
-$this->title = $model->id;
+$this->title = $model->username;
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -16,13 +16,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Upgrade', ['upgrade', 'id' => $model->id], [
+        <?= Html::a('Tingkatkan', ['upgrade', 'id' => $model->id], [
             'class' => 'btn btn-primary',
             'data' => [
                 'confirm' => 'Apakah Anda yakin ingin mengupgrade user ini?',
                 'method' => 'post',
             ],]) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Hapus', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Apakah Anda yakin ingin menghapus user ini?',

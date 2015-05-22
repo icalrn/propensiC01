@@ -6,6 +6,7 @@ use Yii;
 use yii\filters\AccessControl;
 use common\models\User;
 use common\models\UserSearch;
+use common\models\ActivityLog;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -34,7 +35,7 @@ class UserController extends Controller
                         }
                     ],
                     [
-                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['index', 'view', 'create', 'update', 'delete', 'upgrade'],
                         'allow' => true,
                         'roles' => ['@'],
                         'matchCallback' => function ($rule, $action){
@@ -123,7 +124,12 @@ class UserController extends Controller
      * @return mixed
      */
     public function actionDelete($id)
-    {
+    {  
+        $activitylog = new ActivityLog();
+        $activitylog->User_ID = Yii::$app->user->id;
+        $activitylog->Timestamp = date('Y-m-d H:i:s');
+        $activitylog->Activity = 'Menghapus sebuah data user';
+        $activitylog->save();
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -137,6 +143,11 @@ class UserController extends Controller
     public function actionUpgrade($id)
     {
         $this->findModel($id)->upgrade();
+        $activitylog = new ActivityLog();
+        $activitylog->User_ID = Yii::$app->user->id;
+        $activitylog->Timestamp = date('Y-m-d H:i:s');
+        $activitylog->Activity = 'Meningkatkan role user';
+        $activitylog->save();
         return $this->redirect(['view', 'id' => $id]);
     }
 

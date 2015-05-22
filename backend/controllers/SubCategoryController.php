@@ -9,6 +9,7 @@ use common\models\SubCategory;
 use common\models\SubCategorySearch;
 use common\models\CategorizationSearch;
 use common\models\Category;
+use common\models\ActivityLog;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -98,7 +99,14 @@ class SubCategoryController extends Controller
         $model = new SubCategory();
         $listData=ArrayHelper::map(Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->Counter = '0';
+            $model->save();
+            $activitylog = new ActivityLog();
+            $activitylog->User_ID = Yii::$app->user->id;
+            $activitylog->Timestamp = date('Y-m-d H:i:s');
+            $activitylog->Activity = 'Membuat subkateogri baru';
+            $activitylog->save();
             return $this->redirect(['view', 'id' => $model->Subcategory_ID]);
         } else {
             return $this->render('create', [
@@ -121,6 +129,11 @@ class SubCategoryController extends Controller
         $model->category_field = ArrayHelper::getColumn($model->getCategory()->asArray()->all(),'Category_ID');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $activitylog = new ActivityLog();
+            $activitylog->User_ID = Yii::$app->user->id;
+            $activitylog->Timestamp = date('Y-m-d H:i:s');
+            $activitylog->Activity = 'Mengubah sebuah subkategori';
+            $activitylog->save();
             return $this->redirect(['view', 'id' => $model->Subcategory_ID]);
         } else {
             return $this->render('update', [
@@ -138,6 +151,11 @@ class SubCategoryController extends Controller
      */
     public function actionDelete($id)
     {
+        $activitylog = new ActivityLog();
+        $activitylog->User_ID = Yii::$app->user->id;
+        $activitylog->Timestamp = date('Y-m-d H:i:s');
+        $activitylog->Activity = 'Menghapus sebuah subkategori';
+        $activitylog->save();
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
