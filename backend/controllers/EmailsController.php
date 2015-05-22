@@ -6,10 +6,12 @@ use Yii;
 use common\models\Email;
 use common\models\EmailSearch;
 use common\models\ActivityLog;
+use common\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * EmailsController implements the CRUD actions for Email model.
@@ -63,6 +65,7 @@ class EmailsController extends Controller
     public function actionCreate()
     {
         $model = new Email();
+        $listData=ArrayHelper::map(User::find()->asArray()->all(), 'email', 'email');
 
         if ($model->load(Yii::$app->request->post()))
         {
@@ -104,6 +107,7 @@ class EmailsController extends Controller
         else {
             return $this->render('create', [
                 'model' => $model,
+                'listData' => $listData,
             ]);
         }
     }
