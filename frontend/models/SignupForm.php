@@ -60,7 +60,7 @@ class SignupForm extends Model
             ['education', 'string', 'max' => 4],
 			
 			['phone', 'filter', 'filter' => 'trim'],
-            ['phone', 'string', 'max' => 13, 'message' => 'Panjang nomor telepon tidak boleh lebih dari 13 karakter'],
+            ['phone', 'integer', 'max' => 12, 'message' => 'Nomor telepon harus berupa angka dan tidak boleh lebih dari 12 karakter'],
 			
 			['occupation', 'filter', 'filter' => 'trim'],
             ['occupation', 'string', 'max' => 30, 'message' => 'Panjang pekerjaan tidak boleh lebih dari 30 karakter'],

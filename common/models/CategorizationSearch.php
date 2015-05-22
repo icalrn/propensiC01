@@ -23,7 +23,7 @@ class CategorizationSearch extends Categorization
     {
         return [
             [['Category_ID'], 'integer'],
-            [['Subcategory_text', 'category.Category_text'], 'safe'],
+            [['Subcategory_ID', 'category.Category_text'], 'safe'],
         ];
     }
 
@@ -63,13 +63,13 @@ class CategorizationSearch extends Categorization
             'Category_ID' => $this->Category_ID,
         ]);
 
-        $query->andFilterWhere(['like', 'Subcategory_text', $this->Subcategory_text]);
+        $query->andFilterWhere(['like', 'Subcategory_ID', $this->Subcategory_text]);
 
         return $dataProvider;
     }
     public function searchCategory($params, $id)
     {
-        $query = Categorization::find()->joinWith('category')->onCondition(['Subcategory_text' => $id]);
+        $query = Categorization::find()->joinWith('category')->onCondition(['Subcategory_ID' => $id]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -92,7 +92,7 @@ class CategorizationSearch extends Categorization
             'Category_ID' => $this->Category_ID,
         ]);
 
-        $query->andFilterWhere(['like', 'Subcategory_text', $this->Subcategory_text])
+        $query->andFilterWhere(['like', 'Subcategory_ID', $this->Subcategory_text])
             ->andFilterWhere(['like', 'propensi.CATEGORY.Category_text', $this->getAttribute('category.Category_text')]);
 
         return $dataProvider;

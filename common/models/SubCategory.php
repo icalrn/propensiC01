@@ -77,9 +77,9 @@ class SubCategory extends \yii\db\ActiveRecord
 
     public function afterSave($insert, $changedAttributes){
         $query = new Query();
-        $query->select('Category_ID, Subcategory_text')
+        $query->select('Category_ID, Subcategory_ID')
             ->from('propensi.CATEGORIZATION')
-            ->where('"propensi"."CATEGORIZATION"."Subcategory_text" = "' .$this->Subcategory_text. '";');
+            ->where('"propensi"."CATEGORIZATION"."Subcategory_ID" = "' .$this->Subcategory_text. '";');
         $query->all()->delete();
         //Yii::$app->db->createCommand()->delete('propensi.CATEGORIZATION', '"propensi"."CATEGORIZATION"."Subcategory_text" == "'.$this->Subcategory_text.'"')->execute();
         if ($this->category_field!=NULL){

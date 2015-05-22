@@ -26,9 +26,10 @@ class Categorization extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Category_ID', 'Subcategory_text'], 'required'],
+            [['Category_ID', 'Subcategory_ID'], 'required'],
             [['Category_ID'], 'integer'],
-            [['Subcategory_text'], 'string', 'max' => 50]
+            [['Subcategory_ID'], 'integer'],
+            //[['Category_ID', 'Subcategory_text'] , 'unique', 'targetClass' => '\common\models\Categorization', 'message' => 'Kombinasi kategori dan subkategori telah terdaftar.'],
         ];
     }
 
@@ -39,7 +40,7 @@ class Categorization extends \yii\db\ActiveRecord
     {
         return [
             'Category_ID' => 'Category  ID',
-            'Subcategory_text' => 'Subcategory Text',
+            'Subcategory_ID' => 'Subcategory ID',
         ];
     }
 
