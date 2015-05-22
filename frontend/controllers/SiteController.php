@@ -24,6 +24,7 @@ use yii\filters\AccessControl;
  */
 class SiteController extends Controller
 {
+
     /**
      * @inheritdoc
      */

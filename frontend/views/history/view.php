@@ -10,7 +10,7 @@ $this->title = $quizTitle;
 $this->params['breadcrumbs'][] = ['label' => 'Histories', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="history-view">
+<div class="container">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
