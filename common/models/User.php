@@ -26,6 +26,11 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
 
+    //ROLES
+    const ROLE_USER = 10;
+    const ROLE_ADMIN = 20;
+    const ROLE_BANNED = 30;
+
     /**
      * @inheritdoc
      */
@@ -50,6 +55,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
+            //RBAC
+            ['role', 'default', 'value' => self::ROLE_USER],
+            ['role', 'in', 'range' => [self::ROLE_USER, self::ROLE_ADMIN, self::ROLE_BANNED]],
+
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
 			
@@ -225,10 +234,20 @@ class User extends ActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
-	
+
     public function upgrade()
     {
-        $this->role = 'b';
+        $this->role = self::ROLE_ADMIN;
         $this->save();
+    }
+
+    public static function isAdmin($id)
+    {
+        return static::findIdentity($id)->role == self::ROLE_ADMIN? true : false;
+    }
+
+    public static function isBanned($id)
+    {
+        return static::$this->findIdentity($id)->role == self::ROLE_BANNED? true : false;
     }
 }

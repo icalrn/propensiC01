@@ -2,6 +2,7 @@
 namespace backend\controllers;
 
 use Yii;
+use common\models\User;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use common\models\LoginForm;
@@ -27,9 +28,20 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
+                        'actions' => ['logout' ,'error'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action){
+                            return !User::isAdmin(Yii::$app->user->id);
+                        }
+                    ],
+                    [
                         'actions' => ['logout', 'index'],
                         'allow' => true,
                         'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action){
+                            return User::isAdmin(Yii::$app->user->id);
+                        }
                     ],
                 ],
             ],
@@ -40,6 +52,17 @@ class SiteController extends Controller
                 ],
             ],
         ];
+    }
+
+    public function beforeAction($action){
+        if (parent::beforeAction($action)){
+            if ($action->id=='error'){
+                $this->layout='mainBackup';
+                return true;
+            }else{
+                return true;
+            }
+        }
     }
 
     /**

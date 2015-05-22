@@ -13,6 +13,12 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
+        'urlManagerFrontend' => [
+            'class' => 'yii\web\urlManager',
+            'baseUrl' => 'propensi/frontend/web',
+            'enablePrettyUrl' => false,
+            'showScriptName' => false,
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
