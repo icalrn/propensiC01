@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use Yii;
+use common\models\User;
 use common\models\Answer;
 use common\models\LoginForm;
 use common\models\Quiz;
@@ -89,7 +90,12 @@ class SiteController extends Controller
             $activitylog->Timestamp = date('Y-m-d H:i:s');
             $activitylog->Activity = 'Login ke dalam sistem';
             $activitylog->save();
-            return $this->goBack();
+            if (User::isAdmin(Yii::$app->user->getId()))
+            {
+                return $this->redirect(Yii::$app->urlManagerBackend->baseUrl);
+            }else{
+                return $this->goBack();
+            }
         } else {
             return $this->render('login', [
                 'model' => $model,

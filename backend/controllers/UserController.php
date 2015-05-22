@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
 use common\models\User;
 use common\models\UserSearch;
 use yii\web\Controller;
@@ -17,6 +18,31 @@ class UserController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['deny', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['error'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action){
+                            return !User::isAdmin(Yii::$app->user->id);
+                        }
+                    ],
+                    [
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action){
+                            return User::isAdmin(Yii::$app->user->id);
+                        }
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -103,6 +129,11 @@ class UserController extends Controller
         return $this->redirect(['index']);
     }
 
+    /**
+    * Upgrades the user's clearance level to admin.
+    * @param integer $id
+    * @return integer user's id
+    **/
     public function actionUpgrade($id)
     {
         $this->findModel($id)->upgrade();
