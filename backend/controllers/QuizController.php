@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use common\models\User;
 use common\models\Quiz;
 use common\models\QuizSearch;
 use common\models\Question;
@@ -16,6 +17,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\data\Pagination;
 
 /**
  * QuizController implements the CRUD actions for Quiz model.
@@ -33,9 +35,20 @@ class QuizController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['error'],
                         'allow' => true,
                         'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action){
+                            return !User::isAdmin(Yii::$app->user->id);
+                        }
+                    ],
+                    [
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action){
+                            return User::isAdmin(Yii::$app->user->id);
+                        }
                     ],
                 ],
             ],
@@ -93,8 +106,13 @@ class QuizController extends Controller
     public function actionCreate()
     {
         $model = new Quiz();
-        $question = Question::find()->all();
+        $searchModel = new QuestionSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        //$question = Question::find()->all();
         $listData = ArrayHelper::map(Question::find()->asArray()->all(), 'Question_ID', 'Question_text');
+        //$pages = new Pagination(['totalCount' => count($query)]);
+        //$listData = $query->offset($pages->offset)->limit($pages->limit)->all();
+        ArrayHelper::multisort($listData, ['Question_text'], [SORT_ASC]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $activitylog = new ActivityLog();
@@ -102,11 +120,14 @@ class QuizController extends Controller
             $activitylog->Timestamp = date('Y-m-d H:i:s');
             $activitylog->Activity = 'Membuat kuesioner baru';
             $activitylog->save();
+
             return $this->redirect(['view', 'id' => $model->Quiz_ID]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'question' => $question,
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+               // 'question' => $question,
                 'listData' => $listData,
             ]);
         }

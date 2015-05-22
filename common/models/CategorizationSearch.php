@@ -14,7 +14,7 @@ class CategorizationSearch extends Categorization
 {
     public function attributes()
     {
-        return array_merge(parent::attributes(), ['category.Category_text']);
+        return array_merge(parent::attributes(), ['category.Category_text', 'subcategory.Subcategory_text']);
     }
     /**
      * @inheritdoc
@@ -22,8 +22,8 @@ class CategorizationSearch extends Categorization
     public function rules()
     {
         return [
-            [['Category_ID'], 'integer'],
-            [['Subcategory_ID', 'category.Category_text'], 'safe'],
+            [['Category_ID', 'Subcategory_ID'], 'integer'],
+            [['category.Category_text', 'subcategory.Subcategory_text'], 'safe'],
         ];
     }
 
@@ -61,12 +61,17 @@ class CategorizationSearch extends Categorization
 
         $query->andFilterWhere([
             'Category_ID' => $this->Category_ID,
+            'Subcategory_ID' => $this->Subcategory_ID,
         ]);
 
+<<<<<<< HEAD
         $query->andFilterWhere(['like', 'Subcategory_ID', $this->Subcategory_text]);
 
+=======
+>>>>>>> 8e738390aa54d29b0d2fe91aeecb18fbbd0de09a
         return $dataProvider;
     }
+
     public function searchCategory($params, $id)
     {
         $query = Categorization::find()->joinWith('category')->onCondition(['Subcategory_ID' => $id]);
@@ -90,10 +95,46 @@ class CategorizationSearch extends Categorization
 
         $query->andFilterWhere([
             'Category_ID' => $this->Category_ID,
+            'Subcategory_ID' => $this->Subcategory_ID,
         ]);
 
+        $query->andFilterWhere(['like', 'propensi.CATEGORY.Category_text', $this->getAttribute('category.Category_text')]);
+
+        return $dataProvider;
+    }
+
+    public function searchSubCategory($params, $id)
+    {
+        $query = Categorization::find()->joinWith('subcategory')->onCondition(['Category_ID' => $id]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $dataProvider->sort->attributes['subcategory.Subcategory_text'] = [
+            'asc' => ['propensi.SUB_CATEGORY.Subcategory_text' => SORT_ASC],
+            'desc'=> ['propensi.SUB_CATEGORY.Subcategory_text' => SORT_DESC],
+        ];
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'Category_ID' => $this->Category_ID,
+            'Subcategory_ID' => $this->Subcategory_ID,
+        ]);
+
+<<<<<<< HEAD
         $query->andFilterWhere(['like', 'Subcategory_ID', $this->Subcategory_text])
             ->andFilterWhere(['like', 'propensi.CATEGORY.Category_text', $this->getAttribute('category.Category_text')]);
+=======
+        $query->andFilterWhere(['like', 'propensi.SUB_CATEGORY.Subcategory_text', $this->getAttribute('subcategory.Subcategory_text')]);
+>>>>>>> 8e738390aa54d29b0d2fe91aeecb18fbbd0de09a
 
         return $dataProvider;
     }

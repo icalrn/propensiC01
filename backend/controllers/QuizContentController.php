@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use Yii;
+use common\models\User;
 use common\models\QuizContent;
 use common\models\QuizContentSearch;
 use yii\web\Controller;
@@ -17,6 +18,31 @@ class QuizContentController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['deny', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['error'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action){
+                            return !User::isAdmin(Yii::$app->user->id);
+                        }
+                    ],
+                    [
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action){
+                            return User::isAdmin(Yii::$app->user->id);
+                        }
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

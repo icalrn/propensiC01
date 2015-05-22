@@ -3,6 +3,8 @@
 namespace backend\controllers;
 
 use Yii;
+use yii\filters\AccessControl;
+use common\models\User;
 use common\models\SubCategory;
 use common\models\SubCategorySearch;
 use common\models\CategorizationSearch;
@@ -20,6 +22,31 @@ class SubCategoryController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['deny', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['error'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action){
+                            return !User::isAdmin(Yii::$app->user->id);
+                        }
+                    ],
+                    [
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action){
+                            return User::isAdmin(Yii::$app->user->id);
+                        }
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -46,13 +73,14 @@ class SubCategoryController extends Controller
 
     /**
      * Displays a single SubCategory model.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+     public function actionView($id)
     {
         $searchModel = new CategorizationSearch();
         $dataProvider = $searchModel->searchCategory(Yii::$app->request->queryParams, $id);
+
         return $this->render('view', [
             'model' => $this->findModel($id),
             'searchModel' => $searchModel,
@@ -71,7 +99,7 @@ class SubCategoryController extends Controller
         $listData=ArrayHelper::map(Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->Subcategory_text]);
+            return $this->redirect(['view', 'id' => $model->Subcategory_ID]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -83,18 +111,21 @@ class SubCategoryController extends Controller
     /**
      * Updates an existing SubCategory model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $listData=ArrayHelper::map(Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
+        $model->category_field = ArrayHelper::getColumn($model->getCategory()->asArray()->all(),'Category_ID');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->Subcategory_text]);
+            return $this->redirect(['view', 'id' => $model->Subcategory_ID]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'listData' => $listData,
             ]);
         }
     }
@@ -102,7 +133,7 @@ class SubCategoryController extends Controller
     /**
      * Deletes an existing SubCategory model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
@@ -115,7 +146,7 @@ class SubCategoryController extends Controller
     /**
      * Finds the SubCategory model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
+     * @param integer $id
      * @return SubCategory the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */

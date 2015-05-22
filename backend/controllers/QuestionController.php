@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use common\models\Question;
+use common\models\User;
 use common\models\QuestionSearch;
 use common\models\Category;
 use common\models\ActivityLog;
@@ -30,9 +31,20 @@ class QuestionController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['error'],
                         'allow' => true,
                         'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action){
+                            return !User::isAdmin(Yii::$app->user->id);
+                        }
+                    ],
+                    [
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action){
+                            return User::isAdmin(Yii::$app->user->id);
+                        }
                     ],
                 ],
             ],
@@ -68,7 +80,7 @@ class QuestionController extends Controller
     public function actionView($id)
     {
         $searchModel = new QuestCategorySearch();
-        $dataProvider = $searchModel->searchId(Yii::$app->request->queryParams, $id);
+        $dataProvider = $searchModel->searchCategory(Yii::$app->request->queryParams, $id);
 
         return $this->render('view', [
             'model' => $this->findModel($id),

@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use common\models\User;
 use common\models\QuizResult;
 use common\models\QuizResultSearch;
 use common\models\Quiz;
@@ -30,9 +31,20 @@ class QuizResultController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'view', 'create', 'update', 'delete'],
+                        'actions' => ['error'],
                         'allow' => true,
                         'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action){
+                            return !User::isAdmin(Yii::$app->user->id);
+                        }
+                    ],
+                    [
+                        'actions' => ['index', 'view', 'create', 'update', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action){
+                            return User::isAdmin(Yii::$app->user->id);
+                        }
                     ],
                 ],
             ],

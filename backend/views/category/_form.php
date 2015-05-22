@@ -14,6 +14,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Category_text')->textInput(['maxlength' => 30]) ?>
 
+    <?= $form->field($model, 'subcategory_field')->checkboxList($listData, array('separator' => '<br>')) ?>
+
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Buat' : 'Ubah', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
