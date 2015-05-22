@@ -43,19 +43,23 @@ MuseoAsset::register($this);
 			$menuItems[] = ['label' => 'Daftar', 'url' => ['/site/signup']];
 			$menuItems[] = ['label' => 'Masuk', 'url' => ['/site/login']];
 		} else {
-			if (User::isAdmin(Yii::$app->user->id))
-				{
-					$menuItems[] = ['label' => 'Administrasi', 'url' => Yii::$app->urlManagerBackend->baseUrl];
-				}
+			
 			$menuItems[] = ['label' => 'Profil', 'url' => ['user/view', 'User_ID' => Yii::$app->user->id]];
 			$menuItems[] = ['label' => 'Riwayat', 'url' => ['history/index', 'User_ID' => Yii::$app->user->id]];
 			$menuItems[] = ['label' => 'Testimoni', 'url' => ['testimony/create']];
-
 			$menuItems[] = [
 			'label' => 'Keluar (' . Yii::$app->user->identity->username . ')',
 			'url' => ['/site/logout'],
 			'linkOptions' => ['data-method' => 'post']
 			];
+			if (User::isAdmin(Yii::$app->user->id))
+				{
+					$menuItems[] = [
+						'label' => 'Administrasi',
+						'url' => Yii::$app->urlManagerBackend->baseUrl,
+						'linkOptions' => ['class' => 'adminbutton']];
+
+				}
 		}
 		echo Nav::widget([
 			'options' => ['class' => 'navbar-nav navbar-right'],

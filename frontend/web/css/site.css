@@ -93,3 +93,7 @@ a.desc:after {
 .login-panel{
     margin-top: 50px;
 }
+
+.adminbutton{
+    color:#FFCC00 !important;
+}
