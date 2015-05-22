@@ -5,7 +5,7 @@ use yii\helpers\Html;
 $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-about">
+<div class="container">
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>Sistem Informasi Perencanaan Karir merupakan implementasi dari hasil penelitian yang dilakukan oleh </p>

@@ -1,4 +1,5 @@
 <?php
+use common\models\User;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -36,18 +37,22 @@ MuseoAsset::register($this);
 		$activateItems =true;
 		$menuItems = [
 			['label' => 'Home', 'url' => ['/site/index']],
-			['label' => 'About', 'url' => ['/site/about']],
+			['label' => 'Tentang', 'url' => ['/site/about']],
 		];
 		if (Yii::$app->user->isGuest) {
-			$menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-			$menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+			$menuItems[] = ['label' => 'Daftar', 'url' => ['/site/signup']];
+			$menuItems[] = ['label' => 'Masuk', 'url' => ['/site/login']];
 		} else {
+			if (User::isAdmin(Yii::$app->user->id))
+				{
+					$menuItems[] = ['label' => 'Administrasi', 'url' => Yii::$app->urlManagerBackend->baseUrl];
+				}
 			$menuItems[] = ['label' => 'Profil', 'url' => ['user/view', 'User_ID' => Yii::$app->user->id]];
 			$menuItems[] = ['label' => 'Riwayat', 'url' => ['history/index', 'User_ID' => Yii::$app->user->id]];
 			$menuItems[] = ['label' => 'Testimoni', 'url' => ['testimony/create']];
 
 			$menuItems[] = [
-			'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+			'label' => 'Keluar (' . Yii::$app->user->identity->username . ')',
 			'url' => ['/site/logout'],
 			'linkOptions' => ['data-method' => 'post']
 			];

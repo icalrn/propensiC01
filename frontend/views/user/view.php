@@ -10,7 +10,7 @@ $this->title = $model->username;
 $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="user-view">
+<div class="container">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
