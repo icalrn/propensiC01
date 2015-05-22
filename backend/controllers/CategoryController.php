@@ -103,7 +103,8 @@ class CategoryController extends Controller
     public function actionCreate()
     {
         $model = new Category();
-        $listData=ArrayHelper::map(SubCategory::find()->asArray()->all(), 'Subcategory_ID', 'Subcategory_text');
+        $listData=ArrayHelper::map(SubCategory::find()->asArray()->all(), 'Subcategory_text', 'Subcategory_text');
+        ArrayHelper::multisort($listData, [SORT_ASC]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $activitylog = new ActivityLog();
@@ -129,8 +130,9 @@ class CategoryController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $listData=ArrayHelper::map(SubCategory::find()->asArray()->all(), 'Subcategory_ID', 'Subcategory_text');
-        $model->subcategory_field = ArrayHelper::getColumn($model->getSubCategory()->asArray()->all(),'Subcategory_ID');
+        $listData=ArrayHelper::map(SubCategory::find()->asArray()->all(), 'Subcategory_text', 'Subcategory_text');
+        $model->subcategory_field = ArrayHelper::getColumn($model->getSubCategory()->asArray()->all(),'Subcategory_text');
+        ArrayHelper::multisort($listData, [SORT_ASC]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $activitylog = new ActivityLog();

@@ -31,7 +31,7 @@ class Answer extends \yii\db\ActiveRecord
     {
         return [
             [['User_ID', 'Quiz_ID', 'Question_ID', 'Timestamp', 'Answer_text', 'Subcategory_text'], 'required'],
-            [['User_ID', 'Quiz_ID', 'Question_ID', 'Subcategory_ID'], 'integer'],
+            [['User_ID', 'Quiz_ID', 'Question_ID'], 'integer'],
             [['Timestamp', 'Subcategory_text'], 'safe'],
             [['Answer_text'], 'string'],
         ];
@@ -48,7 +48,7 @@ class Answer extends \yii\db\ActiveRecord
             'Question_ID' => 'Question  ID',
             'Timestamp' => 'Waktu',
             'Answer_text' => 'Jawaban',
-            'Subcategory_ID' => 'Sub-kategori',
+            'Subcategory_text' => 'Sub-kategori',
         ];
     }
 }

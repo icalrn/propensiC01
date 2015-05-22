@@ -64,11 +64,6 @@ class CategorizationSearch extends Categorization
             'Subcategory_ID' => $this->Subcategory_ID,
         ]);
 
-<<<<<<< HEAD
-        $query->andFilterWhere(['like', 'Subcategory_ID', $this->Subcategory_text]);
-
-=======
->>>>>>> 8e738390aa54d29b0d2fe91aeecb18fbbd0de09a
         return $dataProvider;
     }
 
@@ -129,13 +124,7 @@ class CategorizationSearch extends Categorization
             'Subcategory_ID' => $this->Subcategory_ID,
         ]);
 
-<<<<<<< HEAD
-        $query->andFilterWhere(['like', 'Subcategory_ID', $this->Subcategory_text])
-            ->andFilterWhere(['like', 'propensi.CATEGORY.Category_text', $this->getAttribute('category.Category_text')]);
-=======
         $query->andFilterWhere(['like', 'propensi.SUB_CATEGORY.Subcategory_text', $this->getAttribute('subcategory.Subcategory_text')]);
->>>>>>> 8e738390aa54d29b0d2fe91aeecb18fbbd0de09a
-
         return $dataProvider;
     }
 }

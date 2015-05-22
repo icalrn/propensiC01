@@ -68,7 +68,7 @@ class QuizController extends Controller
             $answer->Timestamp = date('Y-m-d H:i:s');
             $answer->Question_ID = $k;
             $answer->Answer_text = $jawaban;
-            $answer->Subcategory_ID = "379";
+            $answer->Subcategory_text = "Uncategorized";
             $answer->save();
 
             /*$coba = explode(" ",$jawaban);
