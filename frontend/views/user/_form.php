@@ -27,5 +27,5 @@ use yii\widgets\ActiveForm;
 
     <?php ActiveForm::end(); ?>
 
-<p><?= Html::a('<button class="btn btn-danger btn-s">Cancel</button>', ['user/view', 'User_ID'=>$model->id]); ?> </p>
+
 </div>

@@ -108,11 +108,8 @@ class QuizController extends Controller
         $model = new Quiz();
         $searchModel = new QuestionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        //$question = Question::find()->all();
-        $listData = ArrayHelper::map(Question::find()->asArray()->all(), 'Question_ID', 'Question_text');
-        //$pages = new Pagination(['totalCount' => count($query)]);
-        //$listData = $query->offset($pages->offset)->limit($pages->limit)->all();
-        ArrayHelper::multisort($listData, ['Question_text'], [SORT_ASC]);
+        $listData = ArrayHelper::map(Question::find()->asArray()->all(), 'Question_text', 'Question_text');
+        ArrayHelper::multisort($listData, [SORT_ASC]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $activitylog = new ActivityLog();
@@ -143,8 +140,9 @@ class QuizController extends Controller
     {
         $model = $this->findModel($id);
         $question = Question::find()->all();
-        $listData = ArrayHelper::map(Question::find()->asArray()->all(), 'Question_ID', 'Question_text');
-        $model->question_field = ArrayHelper::getColumn($model->getQuestions()->asArray()->all(),'Question_ID');
+        $listData = ArrayHelper::map(Question::find()->asArray()->all(), 'Question_text', 'Question_text');
+        ArrayHelper::multisort($listData, [SORT_ASC]);
+        $model->question_field = ArrayHelper::getColumn($model->getQuestions()->asArray()->all(),'Question_text');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $activitylog = new ActivityLog();

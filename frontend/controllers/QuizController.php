@@ -52,12 +52,10 @@ class QuizController extends Controller
 		$history->Result_ID = '1';
 		$history->save();
 		
-
         $answers = Yii::$app->request->post('Pertanyaan');
         $quizID = $id;
-        $uid = Yii::$app->user->id;
+        $uid = Yii::$app->user->id;      
         
-
         $listData = ArrayHelper::map(SubCategory::find()->asArray()->all(), 'Subcategory_text', 'Counter');
 
         foreach ($answers as $k => $jawaban) 

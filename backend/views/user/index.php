@@ -28,8 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'password_reset_token',
             'email:email',
             'status',
-            'created_at',
-            'updated_at',
+            [
+                'attribute' => 'created_at',
+                'format' => ['date', 'php:d/m/Y H:i:s']
+            ],
+            [
+                'attribute' => 'updated_at',
+                'format' => ['date', 'php:d/m/Y H:i:s']
+            ],
             'role',
             'date_of_birth',
             'place_of_birth',

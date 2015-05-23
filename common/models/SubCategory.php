@@ -78,9 +78,10 @@ class SubCategory extends \yii\db\ActiveRecord
         Yii::$app->db->createCommand()->delete('propensi.CATEGORIZATION', '"Subcategory_ID" = '.(int) $this->Subcategory_ID)->execute();
         if ($this->category_field!=NULL){
             foreach ($this->category_field as $id) {
+                $category = Category::findOne(['Category_text' => $id]);
                 $tc = new Categorization();
                 $tc->Subcategory_ID = $this->Subcategory_ID;
-                $tc->Category_ID = $id;
+                $tc->Category_ID = $category->Category_ID;
                 $tc->save();
             }
         }
