@@ -13,7 +13,7 @@ use yii\filters\VerbFilter;
 /**
  * QuizContentController implements the CRUD actions for QuizContent model.
  */
-class QuizContentController extends Controller
+class QuizcontentController extends Controller
 {
     public function behaviors()
     {

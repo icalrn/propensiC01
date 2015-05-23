@@ -12,7 +12,7 @@ use yii\filters\VerbFilter;
 /**
  * QuestCategoryController implements the CRUD actions for QuestCategory model.
  */
-class QuestCategoryController extends Controller
+class QuestcategoryController extends Controller
 {
     public function behaviors()
     {

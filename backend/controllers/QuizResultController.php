@@ -18,7 +18,7 @@ use yii\helpers\ArrayHelper;
 /**
  * QuizResultController implements the CRUD actions for QuizResult model.
  */
-class QuizResultController extends Controller
+class QuizresultController extends Controller
 {
     public function behaviors()
     {

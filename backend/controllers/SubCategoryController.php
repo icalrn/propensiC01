@@ -18,7 +18,7 @@ use yii\helpers\ArrayHelper;
 /**
  * SubCategoryController implements the CRUD actions for SubCategory model.
  */
-class SubCategoryController extends Controller
+class SubcategoryController extends Controller
 {
     public function behaviors()
     {

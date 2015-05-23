@@ -14,7 +14,7 @@ use yii\filters\VerbFilter;
 /**
  * ActivityLogController implements the CRUD actions for ActivityLog model.
  */
-class ActivityLogController extends Controller
+class ActivitylogController extends Controller
 {
     public function behaviors()
     {

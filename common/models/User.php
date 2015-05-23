@@ -77,7 +77,7 @@ class User extends ActiveRecord implements IdentityInterface
             ['address', 'string', 'max' => 50, 'message' => 'Panjang alamat tidak boleh lebih dari 50 karakter'],
 			
 			['phone', 'filter', 'filter' => 'trim'],
-            ['phone', 'string', 'max' => 13, 'message' => 'Panjang nomor telepon tidak boleh lebih dari 13 karakter'],
+            ['phone', 'integer', 'message' => 'Panjang nomor telepon harus berupa angka'],
 			
 			['gender', 'filter', 'filter' => 'trim'],
             ['gender', 'string', 'max' => 6],
