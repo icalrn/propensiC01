@@ -86,9 +86,10 @@ class Question extends \yii\db\ActiveRecord
         Yii::$app->db->createCommand()->delete('propensi.QUEST_CATEGORY', '"Question_ID" = '.(int) $this->Question_ID)->execute();
         if ($this->category_field!=NULL){
             foreach ($this->category_field as $id) {
+                $category = Category::findOne(['Category_text' => $id]);
                 $tc = new QuestCategory();
                 $tc->Question_ID = $this->Question_ID;
-                $tc->Category_ID = $id;
+                $tc->Category_ID = $category->Category_ID;
                 $tc->save();
             }
         }

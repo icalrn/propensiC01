@@ -103,9 +103,10 @@ class Quiz extends \yii\db\ActiveRecord
         Yii::$app->db->createCommand()->delete('propensi.QUIZ_CONTENT', '"Quiz_ID" = '.(int) $this->Quiz_ID)->execute();
         if ($this->question_field!=NULL){
         foreach ($this->question_field as $id) {
+            $question = Question::findOne(['Question_text' => $id]);
             $tc = new QuizContent();
             $tc->Quiz_ID = $this->Quiz_ID;
-            $tc->Question_ID = $id;
+            $tc->Question_ID = $question->Question_ID;
             $tc->save();
         }
         }

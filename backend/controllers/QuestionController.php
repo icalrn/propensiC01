@@ -97,7 +97,8 @@ class QuestionController extends Controller
     public function actionCreate()
     {
         $model = new Question();
-        $listData=ArrayHelper::map(Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
+        $listData=ArrayHelper::map(Category::find()->asArray()->all(), 'Category_text', 'Category_text');
+        ArrayHelper::multisort($listData, [SORT_ASC]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $activitylog = new ActivityLog();
@@ -123,8 +124,9 @@ class QuestionController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $listData=ArrayHelper::map(Category::find()->asArray()->all(), 'Category_ID', 'Category_text');
-        $model->category_field = ArrayHelper::getColumn($model->getCategory()->asArray()->all(),'Category_ID');
+        $listData=ArrayHelper::map(Category::find()->asArray()->all(), 'Category_text', 'Category_text');
+        ArrayHelper::multisort($listData, [SORT_ASC]);
+        $model->category_field = ArrayHelper::getColumn($model->getCategory()->asArray()->all(),'Category_text');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $activitylog = new ActivityLog();
