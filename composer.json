@@ -20,8 +20,7 @@
         "yiisoft/yii2-swiftmailer": "*",
 		"rmrevin/yii2-fontawesome": "*",
         "kartik-v/yii2-krajee-base": "dev-master",
-        "kartik-v/yii2-export": "dev-master",
-        "kartik-v/yii2-mpdf": "dev-master"
+        "kartik-v/yii2-export": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
